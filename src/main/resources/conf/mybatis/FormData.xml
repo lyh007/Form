@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.form.model.FormData">
+    <select id="getById" parameterType="int" resultType="FormData">
+          select * from form_basic  where id=#{id}
+    </select>
+    <insert id="save" parameterType="FormData">
+        insert into form_basic (id,text_20_1,text_20_2,text_20_3,text_20_4,text_20_5,text_20_6,text_20_7,text_20_8,text_20_9,text_20_10,text_20_11,text_20_12,text_20_13,text_20_14,text_20_15,text_20_16,text_20_17,text_20_18,text_20_19,text_20_20,text_50_1,text_50_2,text_50_3,text_50_4,text_50_5,text_50_6,text_50_7,text_50_8,text_50_9,text_50_10,text_50_11,text_50_12,text_50_13,text_50_14,text_50_15,text_50_16,text_50_17,text_50_18,text_50_19,text_50_20,text_100_1,text_100_2,text_100_3,text_100_4,text_100_5,text_100_6)
+        values (#{id},#{text_20_1},#{text_20_2},#{text_20_3},#{text_20_4},#{text_20_5},#{text_20_6},#{text_20_7},#{text_20_8},#{text_20_9},#{text_20_10},#{text_20_11},#{text_20_12},#{text_20_13},#{text_20_14},#{text_20_15},#{text_20_16},#{text_20_17},#{text_20_18},#{text_20_19},#{text_20_20},#{text_50_1},#{text_50_2},#{text_50_3},#{text_50_4},#{text_50_5},#{text_50_6},#{text_50_7},#{text_50_8},#{text_50_9},#{text_50_10},#{text_50_11},#{text_50_12},#{text_50_13},#{text_50_14},#{text_50_15},#{text_50_16},#{text_50_17},#{text_50_18},#{text_50_19},#{text_50_20},#{text_100_1},#{text_100_2},#{text_100_3},#{text_100_4},#{text_100_5},#{text_100_6})
+    </insert>
+    <update id="update" parameterType="FormData">
+        update form_basic set
+            text_20_1=#{text_20_1}
+            where id=#{id}
+    </update>
+    <delete id="delete" parameterType="int">
+            delete from form_basic where id = #{id}
+    </delete>
+    <select id="queryByPage" parameterType="QueryParams" resultType="FormData">
+        select * from form_basic
+        limit #{paging.startRecord},#{paging.pageSize}
+    </select>
+    <select id="queryByPage_count" parameterType="QueryParams" resultType="int">
+        select count(*) from form_basic
+    </select>
+</mapper>

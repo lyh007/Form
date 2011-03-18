@@ -1,0 +1,199 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<%@include file="/common/taglibs.jsp" %>
+<html lang="en">
+<head>
+    <base href="<%=basePath%>"/>
+    <meta charset="utf-8">
+    <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
+    <meta name="created" content="Sun, 30 Jan 2011 03:24:42 GMT">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>The Boyd School</title>
+    <link rel="stylesheet" type="text/css" href="/css/boyd.css"/>
+
+</head>
+<body>
+<div class="outline normal">
+    <div class="floatRight" style="margin:20px 0px;">
+        Child's Name:<input class="bottom" name="name" type="text" size="50">
+    </div>
+    <div style="clear:both;"></div>
+    <hr/>
+    <div>
+        <div><strong>SHIRT AND BAG INFORMATION</strong></div>
+        <div>The Boyd School provides your child's first shirt and a food bag for infants or a t-shirt and backpack for
+            toddlers;includeded in the inital fees for enrollment. Additinal shirts can be purchased for $12.00 and bags
+            for $20.00. Please include shirt size below.
+        </div>
+        <div style="margin:10px 0px;">
+            <input class="checkbox" name="relative" type="checkbox">Child X-Small (2-4)</input>
+            <input class="checkbox" name="relative" type="checkbox">Child Small (6-8)</input>
+            <input class="checkbox" name="relative" type="checkbox">Child Medium (8-10)</input>
+        </div>
+    </div>
+
+    <hr/>
+    <div>
+        <div><strong>LUNCH CHOICE</strong></div>
+        <div>At The Boyd School, we are very consious that nutritious foods enhance the performance and good health of
+            your child. Our food program emphasizes whole grains
+            and fresh fruits and vegetables. We offer a regula meal or a vegetarian meal for our students. Please select
+            a lunch choice for your child.
+        </div>
+        <div style="margin:10px 0px;">
+            <input class="checkbox" name="relative" type="checkbox">Regular</input>
+            <input class="checkbox" name="relative" type="checkbox">Vegetarian</input>
+        </div>
+    </div>
+
+    <hr/>
+    <div>
+        <div><strong>DIRECTORY</strong></div>
+        <div>My child's name, address and phone number may be included in THe Boyd SAchool Directory.</div>
+        <div style="margin:10px 0px;">
+            <input class="checkbox" name="relative" type="checkbox">Yes</input>
+            <input class="checkbox" name="relative" type="checkbox">No</input>
+            <input class="bottom" style="margin:0px 5px 0px 10px;" name="name" type="text" size="10"> (inital)
+        </div>
+        <div class="doubleLine">
+            <div>How would you like your child to appear in THe BOyd School Directory?</div>
+            <div>Child's Name <input class="bottom" style="margin:0px 5px 0px 10px;" name="name" type="text" size="60">
+                Parent Name(s) <input class="bottom" style="margin:0px 5px 0px 10px;" name="name" type="text" size="70">
+            </div>
+            <div>Address <input class="bottom" style="margin:0px 5px 0px 10px;" name="name" type="text" size="162">
+            </div>
+            <div>City <input class="bottom" name="address" type="text" size="60">
+                Zip <input class="bottom" name="address" type="text" size="30">
+                Phone <input class="bottom" name="address" type="text" size="55">
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+    <div>
+        <div><strong>PHOTOGRAPHS</strong></div>
+        <div>Photographs may be taken of my child within the classrom, on the grounds and in-house field trips for use
+            in articles and information about The Boyd School.
+        </div>
+        <div style="margin:10px 0px;">
+            <input class="checkbox" name="relative" type="checkbox">Yes</input>
+            <input class="checkbox" name="relative" type="checkbox">No</input>
+            <input class="bottom" style="margin:0px 5px 0px 10px;" name="name" type="text" size="10"> (inital)
+        </div>
+    </div>
+
+    <hr/>
+    <div>
+        <div><strong>COMPLIANCE POLICY</strong></div>
+        <div>I will pick-up my child as soon as possible in the event that The Boyd School calls to inform me that my
+            child is ill. This is in complicance with
+            state regulations.
+            <input class="bottom" name="name" type="text" size="10"> (inital)
+            I further agree that in the event that any person in our household; even if they do not attend The Boyd
+            School, contracts a communicable disease,
+            I will inform The Boyd School immediately
+            <input class="bottom" name="name" type="text" size="10"> (inital)
+        </div>
+
+        <hr/>
+        <div style="margin:20px 0px;">
+            <div><strong>TRIP PERMISSION</strong></div>
+            <div>I hereby give permission for my child,<input class="bottom" name="name" type="text" size="30">to be
+                transported via Williams Bus Line to and from field trips away from school
+                grounds during the school year, unless the school receives written notice from me to the contrary.<input
+                        class="bottom" name="name" type="text" size="10"> (initial)
+                <br/><br/>
+                I hereby give permission for my child,<input class="bottom" name="name" type="text" size="30">to be
+                transported to the field trips by a licensed and insured driver. I understand
+                that when my child is transported in the car, the driver will follow all safety precautions, including
+                the use of seat belts. I wil provide a child safety seat as required by Virginia
+                State Law.<input class="bottom" name="name" type="text" size="10"> (initial)
+                <br/><br/>
+                I understand that if I do not wish for my child to participate in a specific trip, the school will make
+                every effort to find a space in another class at the school. If no space is reasonably
+                available, I understand that it may be necessary to keep my child home the day of the trip.<input
+                        class="bottom" name="name" type="text" size="10"> (initial)
+                <br/><br/>
+                ** Please note that Virginina State Law does NOT require safety seats on the school bus.
+            </div>
+
+            <hr/>
+            <div>
+                <div><strong>TRANSPORTATION AUTHORIZATION</strong></div>
+                <div>Children can only be released to people authorized on this list.
+                    <br/><br/>
+
+                    <div style="width:1000px;">
+                        <div class="floatRight doubleLine">
+                            <input class="bottom" name="name" type="text" size="120"><br/>
+                            <input class="bottom" name="name" type="text" size="120"><br/>
+                            <input class="bottom" name="name" type="text" size="120">
+                        </div>
+                        <div>Persons authorized to pick up</div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <br/>
+
+                    <div style="width:1000px;">
+                        <div class="floatRight doubleLine">
+                            <input class="bottom" name="name" type="text" size="120"><br/>
+
+                            <div style="line-height:100%;margin:0px 20px;font-style:italic;text-align:center;">
+                                Appropriate Legal paperwork is required if a parent is listed
+                            </div>
+                        </div>
+                        <div>Persons NOT authorized to pick up</div>
+                        <div style="clear:both;"></div>
+                        <br/>
+                    </div>
+                    <div>I understand that I must inform The Boyd School in writing of any changes. Inthe event of an
+                        emergency I will contact The
+                        Boyd School to give my permission.<input class="bottom" name="name" type="text" size="10">
+                        (initial)
+                    </div>
+
+
+                    <hr/>
+                    <div>
+                        <div><strong>PARENT HANDBOOK ACKNOWLEDGMENT</strong></div>
+                        <div>I have received a Parent Handbook which contains important information for all parents who
+                            enroll their children in The Boyd School.
+                            The Parent Handbook is a composite of policies and procedures that will make your experience
+                            at our school more enjoyable. We hope that
+                            you wil understnad the need for the policies and procedures and that the ideas and
+                            suggestions will facilitate communication while
+                            helping us to provide a supportive and responsive environment for all the families. Please
+                            keep your handbook for future reference.
+                            It is an important part of our Enrollment Agreement that will aid in the understanding and
+                            the compliance with all policies and procedures.
+                            I/We acknowledge receipt of the Parent Handbook. I/We understand that by signing this we
+                            also agree to abide by the rules and regulations
+                            contained in the handbook.
+                        </div>
+                        <br/><br/>
+
+                        <div>
+                            Parent Name (PRINT)<input class="bottom" name="name" type="text" size="50">
+                            Parent Signature<input class="bottom" name="name" type="text" size="50">
+                            Date<input class="bottom" name="name" type="text" size="20">
+                        </div>
+                        <br/><br/>
+
+                        <div>
+                            Parent Name (PRINT)<input class="bottom" name="name" type="text" size="50">
+                            Parent Signature<input class="bottom" name="name" type="text" size="50">
+                            Date<input class="bottom" name="name" type="text" size="20">
+                        </div>
+                    </div>
+
+                    <hr/>
+                    <div><input type="button" value="Save & Exit"/><input type="button" value="Submit"/></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

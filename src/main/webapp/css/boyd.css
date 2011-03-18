@@ -1,0 +1,81 @@
+	hr {
+	   background-color:black;
+	   height:3px;
+	   margin:10px 0px;	   
+	}
+	
+	div.outline{
+	  width:1120px;
+      font-size:15px;
+      font-family:Arial; 	
+	}
+
+	
+	div.content{		
+		line-height:200%;	
+		margin:0px 10px;	      
+	}
+    
+    div.doubleLine{ 
+        line-height:200%;
+    }
+	
+	div.normal {	   
+		margin:0px 10px;
+	}
+	
+	div.contactContent{			
+		margin:20px;				 	
+	}
+	
+	div.topRightHeader{		        
+		font-size:30px;		
+		text-align:right;
+	}
+	
+	div.contractRight{
+		float:right;	
+		width:350px;
+		top:0px;  
+		border-style:solid;
+		border-width:medium;
+		margin:20px 15px;
+		
+	}
+	
+	div.border{
+		border-style:solid;
+		border-width:2px;
+		padding:10px;
+		margin:15px 0px;
+	}
+	
+	div.floatRight{
+		float:right;	
+		margin:2px;
+	}
+	
+	div.topHeader{		
+		font-size:50px;
+		font-family:Bradley Hand ITC;
+		font-weight:bold;
+	}
+	
+	div.inverseHeader{
+		color:white;
+		background-color:black;
+		font-weight:bold;
+		text-align:center;
+		font-size:20px;
+	}
+			
+	input.bottom{
+		border-top:none;
+		border-left:none;
+		border-right:none;	 
+		border-bottom:default;
+		border-color:gray;
+	}
+	input.checkbox{
+	   margin: 0px 5px 0px 20px;
+	}
