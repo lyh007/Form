@@ -15,7 +15,8 @@
 <body>
 <div class="outline">
     <center>
-        <h3>form data list</h3>
+        <h3>form data list</h3><br>
+        <h4><a href="<%=request.getContextPath()%>/formdata/form-data!step1.action">Fill a new Form</a></h4>
         <table width="100%">
             <tr>
                 <td>ID</td>

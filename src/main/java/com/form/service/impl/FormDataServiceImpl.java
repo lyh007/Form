@@ -6,6 +6,7 @@ import com.form.service.FormDataService;
 import com.form.dao.FormDataDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Form service implent
  */
+@Transactional
 public class FormDataServiceImpl implements FormDataService {
     @Autowired
     private FormDataDao formDataDao;

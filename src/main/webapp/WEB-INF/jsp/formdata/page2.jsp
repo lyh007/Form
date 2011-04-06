@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="outline normal">
+     <form action="formdata/form-data!save.action" method="POST" id="formId">
     <div class="floatRight" style="margin:20px 0px;">
         Child's Name:<input class="bottom" name="name" type="text" size="50">
     </div>
@@ -188,12 +189,12 @@
                     </div>
 
                     <hr/>
-                    <div><input type="button" value="Save & Exit"/><input type="button" value="Submit"/></div>
-
+                    <div><input type="submit" value="Save & Exit"/><input type="submit" value="Submit"/></div>
                 </div>
             </div>
         </div>
     </div>
+    </form>
 </div>
 </body>
 </html>

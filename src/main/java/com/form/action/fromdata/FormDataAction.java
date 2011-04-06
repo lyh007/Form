@@ -36,6 +36,7 @@ public class FormDataAction extends BaseAction {
     private String[] text_20_1;
     private String[] text_20_12;
     private String[] text_50_14;
+    private int submitType; //submit type: 1,Save & Exit;2,Save & Continue
     //first step
 
     public String step1() {
@@ -50,11 +51,17 @@ public class FormDataAction extends BaseAction {
             formData.setText_50_14(arrayToString(text_50_14));
             formDataService.save(formData);
         }
-        return "step2";
+        if (submitType == 2) {
+            return "step2";
+        } else {
+            return list();
+        }
     }
+
     //save
     public String save() {
-        return "result";
+      //  return "result";
+        return list();
     }
 
     public String list() {
@@ -148,5 +155,13 @@ public class FormDataAction extends BaseAction {
 
     public void setText_50_14(String[] text_50_14) {
         this.text_50_14 = text_50_14;
+    }
+
+    public int getSubmitType() {
+        return submitType;
+    }
+
+    public void setSubmitType(int submitType) {
+        this.submitType = submitType;
     }
 }

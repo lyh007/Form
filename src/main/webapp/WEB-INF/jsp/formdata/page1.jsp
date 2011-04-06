@@ -11,11 +11,18 @@
     <meta name="keywords" content="">
     <title>The Boyd School</title>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>css/boyd.css"/>
-
+     <script>
+         function submitForm(submitType){
+             var form=document.getElementById("formId");
+             document.getElementById("submitType").value=submitType;
+             form.submit();
+         }
+     </script>
 </head>
 <body>
 <div class="outline">
-    <form action="formdata/form-data!step2.action" method="POST">
+    <form action="formdata/form-data!step2.action" method="POST" id="formId">
+        <input type="hidden" name="submitType" value=1 id="submitType">
         <div class="floatRight">
             <div class="topRightHeader"> Admissions Contract</div>
             <div><strong>CAMPUS:</strong>
@@ -142,7 +149,7 @@
             </div>
         </div>
         <hr/>
-        <div><input type="button" value="Save & Exit"/><input type="submit" value="Save & Continue"/></div>
+        <div><input type="button" value="Save & Exit" onclick="submitForm(1)"/><input type="submit" value="Save & Continue"  onclick="submitForm(2)"/></div>
     </form>
 </div>
 </body>
