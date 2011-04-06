@@ -18,7 +18,7 @@
         <h3>form data list</h3>
         <table width="100%">
             <tr>
-                <td>标识</td>
+                <td>ID</td>
                 <td>Full Name</td>
                 <td>age</td>
                 <td>Date of Birth</td>

@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * DAO基类。针对数据库的读、写操作分别采用不同的Template,可以在一定程度上防止大量并发造成的死锁。
+ * DAO Base Class
  */
 public class BaseDaoImpl<T extends DomainObject> {
     /**
-     * 分页statement后缀：_count
+     * page sql statement Suffix：_count
      */
     protected static final String COUNT_STATEMENT_SUFFIX = "_count";
 
     /**
-     * 实体类
+     * Enitty class
      */
     private String entityClass;
 
@@ -27,9 +27,9 @@ public class BaseDaoImpl<T extends DomainObject> {
     private SqlSessionFactory sqlSessionFactory;
 
     /**
-     * 根据T类型来算出带命名空间的函数名
+     * T calculated according to the type of function names with namespace
      *
-     * @return 返回类型为 ClassName.methodName
+     * @return ClassName.methodName
      */
     public String getStatement() {
         StackTraceElement[] stacks = new Exception().getStackTrace();
@@ -37,10 +37,10 @@ public class BaseDaoImpl<T extends DomainObject> {
     }
 
     /**
-     * 根据T类型来算出带命名空间的函数名
+     * T calculated according to the type of function names with namespace
      *
-     * @param methodName 方法名
-     * @return 返回类型为 ClassName.methodName
+     * @param methodName method name
+     * @return return type ClassName.methodName
      */
     public String getStatement(String methodName) {
         ParameterizedType type = ((ParameterizedType) getClass().getGenericSuperclass());
@@ -49,11 +49,11 @@ public class BaseDaoImpl<T extends DomainObject> {
     }
 
     /**
-     * 新增实体
+     * add entity
      *
-     * @param statement 语句
-     * @param entity    实体类
-     * @return 数据库标识
+     * @param statement statement
+     * @param entity    entity instance
+     * @return Domain Object
      */
     public DomainObject save(String statement, DomainObject entity) {
         int entityId = sqlSessionFactory.openSession().insert(statement, entity);
@@ -63,67 +63,105 @@ public class BaseDaoImpl<T extends DomainObject> {
         return entity;
     }
 
+    /**
+     * save an entity
+     *
+     * @param entity
+     */
     public void save(T entity) {
         this.save(getStatement(), entity);
 
     }
 
+    /**
+     * update an entity
+     *
+     * @param statement statement
+     * @param params    paramters
+     */
     public void update(String statement, Object params) {
         sqlSessionFactory.openSession().update(statement, params);
     }
 
+    /**
+     * update an entity
+     *
+     * @param entity entity instance
+     */
     public void update(T entity) {
         this.update(getStatement(), entity);
     }
 
+    /**
+     * delte a record
+     *
+     * @param statement statement
+     * @param params    paramenters
+     */
     public void delete(String statement, Object params) {
         sqlSessionFactory.openSession().delete(statement, params);
     }
 
+    /**
+     * delete a record by ID
+     *
+     * @param id ID
+     */
     public void delete(Long id) {
         delete(getStatement(), id);
     }
 
+    /**
+     * delete records by Ids
+     *
+     * @param ids Ids
+     */
     public void deleteByIds(String ids) {
         deleteByIds(getStatement(), ids);
     }
 
     /**
-     * 批量删除
+     * batch delete
      *
-     * @param statement
-     * @param params
+     * @param statement statement
+     * @param params    Parameters
      */
     public void deleteByIds(String statement, Object params) {
         sqlSessionFactory.openSession().delete(statement, params);
     }
 
     /**
-     * 根据参数取得<code>T</code>类型实体
+     * According to the parameters obtained <code> T </ code> type of entity
      *
-     * @param statement
-     * @param params
-     * @return
+     * @param statement statement
+     * @param params    parameters
+     * @return Type of T
      */
     public T getEntity(String statement, Object params) {
         return (T) sqlSessionFactory.openSession().selectOne(statement, params);
     }
 
+    /**
+     * get Type Of T object by ID
+     *
+     * @param id ID
+     * @return Type of T object
+     */
     public T getById(Long id) {
         return this.getEntity(getStatement(), id);
     }
 
     /**
-     * 根据参数查询列表，可分页
+     * Query T type List by page
      *
-     * @param statement
-     * @param params
-     * @return
+     * @param statement statement
+     * @param params    query parameters
+     * @return Type of T list
      */
     public List<T> query(String statement, QueryParams params) {
         if (params != null && params.getPaging() != null) {
             int records = queryCount(statement, params);
-            //如果查询出符合条件的记录数为0，那么就直接返回一个空的List，因为后面的已经没有执行的必要
+            // if recors size equal zero return a new list
             if (records == 0) {
                 return new ArrayList<T>(0);
             }
@@ -133,33 +171,33 @@ public class BaseDaoImpl<T extends DomainObject> {
     }
 
     /**
-     * 查询列表，不提供分页功能
+     * query list
      *
-     * @param statement
-     * @param params
-     * @return
+     * @param statement statement
+     * @param params    query parameters
+     * @return Type of T list
      */
     public List<T> query(String statement, Object params) {
         return (List<T>) sqlSessionFactory.openSession().selectList(statement, params);
     }
 
     /**
-     * 根据参数判断该记录是否已存在（逻辑上存在）
+     * According to the parameters to determine whether the record already exists (logically exists)
      *
-     * @param statement
-     * @param params
-     * @return
+     * @param statement statement
+     * @param params    paramters
+     * @return if exists return true.
      */
     public boolean isExistEntity(String statement, Object params) {
         return (Integer) sqlSessionFactory.openSession().selectOne(statement, params) > 0;
     }
 
     /**
-     * 查询符合条件的记录数，仅供分页查询调用。
+     * Query matches the number of records, only for paging query calls.
      *
-     * @param statement
-     * @param params
-     * @return
+     * @param statement statements
+     * @param params    query paramters
+     * @return count
      */
     public int queryCount(String statement, QueryParams<?> params) {
         if (params == null)
@@ -167,20 +205,32 @@ public class BaseDaoImpl<T extends DomainObject> {
         return (Integer) sqlSessionFactory.openSession().selectOne(statement + COUNT_STATEMENT_SUFFIX, params);
     }
 
+    /**
+     * The number of records for the specified parameters
+     *
+     * @param params paramters
+     * @return count
+     */
     public int getTotalCount(Object params) {
         return uniqueIntResult(getStatement("queryByPage") + COUNT_STATEMENT_SUFFIX, params);
     }
 
+    /**
+     * Query page
+     *
+     * @param queryParams query parameters
+     * @return Type of T list
+     */
     public List<T> queryByPage(QueryParams<?> queryParams) {
         return this.query(getStatement(), queryParams);
     }
 
     /**
-     * 根据条件查询整数结果。
+     * According to criteria query integer result.
      *
-     * @param statement
-     * @param params
-     * @return
+     * @param statement statement
+     * @param params    paramters
+     * @return Integer type
      */
     public int uniqueIntResult(String statement, Object params) {
         if (params == null)

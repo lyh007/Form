@@ -3,56 +3,56 @@ package com.form.base;
 import java.util.List;
 
 /**
- * 公共接口，包括添加、修改、删除、通过id查询、分页查询、查询总数
+ * public interace:contain add,update,delete,get by id,query by page function etc.
  */
 public interface BaseInterface<T> {
     /**
-     * 保存
+     * save
      *
      * @param entity
      */
     public void save(T entity);
 
     /**
-     * 修改
+     * update
      *
      * @param entity
      */
     public void update(T entity);
 
     /**
-     * 删除
+     * delete
      *
      * @param id
      */
     public void delete(Long id);
 
     /**
-     * 批量删除
+     * batch delete
      */
     public void deleteByIds(String ids);
 
     /**
-     * 通过id查询
+     * get by id
      *
      * @param id
-     * @return
+     * @return T
      */
     public T getById(Long id);
 
     /**
-     * 分页查询
+     * search by page
      *
      * @param queryParams
-     * @return
+     * @return T type List
      */
     public List<T> queryByPage(QueryParams<?> queryParams);
 
     /**
-     * 获取总数
+     * get query count
      *
-     * @param params
-     * @return
+     * @param params parameters object
+     * @return count
      */
     public int getTotalCount(Object params);
 }

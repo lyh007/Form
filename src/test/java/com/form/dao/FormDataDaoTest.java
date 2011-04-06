@@ -8,13 +8,6 @@ import com.form.base.QueryParams;
 import org.junit.Test;
 
 import java.util.List;
-
-/**
- * Created by IntelliJ IDEA.
- *
- * @author <a href="mailto:liuyuhui007@gmail.com">VSandJava</a>
- * @version 1.0 2011-3-11  21:58:27
- */
 public class FormDataDaoTest extends BaseTestCase {
     private FormDataDao formDataDao;
 

@@ -36,12 +36,12 @@ public class FormDataAction extends BaseAction {
     private String[] text_20_1;
     private String[] text_20_12;
     private String[] text_50_14;
-    //第一步
+    //first step
 
     public String step1() {
         return "step1";
     }
-    //第二步
+    //third step
 
     public String step2() {
         if (formData != null) {
@@ -52,10 +52,8 @@ public class FormDataAction extends BaseAction {
         }
         return "step2";
     }
-    //保存
-
+    //save
     public String save() {
-
         return "result";
     }
 

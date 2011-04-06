@@ -3,11 +3,11 @@ package com.form.base;
 import java.io.Serializable;
 
 /**
- * 系统领域对象的基类，实现了Serializable接口
+ * business Object base class，implemnet Serializable interface
  */
 public class DomainObject implements Serializable {
     /**
-     * 领域对象的代理主键.
+     * Surrogate primary key
      */
     private long id;
 

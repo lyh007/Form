@@ -1,7 +1,7 @@
 package com.form.base;
 
 /**
- * 分页对象
+ * Page Object
  */
 public class Page {
     public static final int FIRST_PAGE = 1;
@@ -9,31 +9,28 @@ public class Page {
     public static final int DEFAULT_PAGE_SIZE = 10;
 
     /**
-     * 每页有多少条记录
+     * items for per page
      */
     private int pageSize = DEFAULT_PAGE_SIZE;
 
     /**
-     * 总页数
+     * total page count
      */
     private int pages;
 
     /**
-     * 当前页
-     */
-
-    /**
-     * 开始 added by andy_luo
+     * start  record
      */
     private int startRecord;
-
+    /**
+     * default current page
+     */
     private int currentPage = 1;
-
+    /**
+     * items count
+     */
     private int records;
 
-    /**
-     * added by ixr_wang
-     */
     public Page() {
         this(FIRST_PAGE, DEFAULT_PAGE_SIZE);
     }
@@ -121,19 +118,10 @@ public class Page {
             pages = records / pageSize + 1;
         else
             pages = records / pageSize;
-
-        /*
-           * 如果当前页码小于第一页，强制将其设置成第一页
-           */
         if (currentPage < FIRST_PAGE)
             currentPage = FIRST_PAGE;
-
-        /*
-           * 如果当前页码大于总页码，强制设置成总页码
-           */
         if (pages > 0 && currentPage > pages)
             currentPage = pages;
-
     }
 
     public int getNextPage() {

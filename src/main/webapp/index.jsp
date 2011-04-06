@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>Form</h2>
-<a href="<%=request.getContextPath()%>/formdata/form-data!list.action">表单列表</a>
-<a href="<%=request.getContextPath()%>/formdata/form-data!step1.action">添加表单</a>
+<a href="<%=request.getContextPath()%>/formdata/form-data!list.action">Form Result List</a>
+<a href="<%=request.getContextPath()%>/formdata/form-data!step1.action">Fill a new Form</a>
 </body>
 </html>

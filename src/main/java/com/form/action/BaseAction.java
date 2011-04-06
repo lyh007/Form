@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Action基类
+ * Action Base Class
  */
 public class BaseAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
     private static Log logger = LogFactory.getLog(BaseAction.class);
     protected HttpServletRequest request;
     protected HttpServletResponse response;
-    //当前页
+    //current page
     protected int currentPage = 1;
 
-    //每页显示多少条
+    //number of per page
     protected int pageSize = 10;
 
-    //总记录数
+    //total count
     protected int records = 0;
 
     public HttpServletRequest getRequest() {

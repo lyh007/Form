@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
 
 @Repository("formDataDao")
+/**
+ * Form Dao implement
+ */
 public class FormDataDaoImpl extends BaseDaoImpl<FormData> implements FormDataDao {
     @Resource(name = "sqlSessionFactory")
     private SqlSessionFactory sqlSessionFactory;

@@ -4,11 +4,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BaseTestCase {
-    //Spring配置文件路径
+    //Spring config file path
     private static String[] configLocations = {"conf/spring/applicationContext*.xml"};
     private static ApplicationContext context;
 
-    //设置配置文件路径
+    //set config path
     protected static void setConfigLocations(String[] locations) {
         configLocations = locations;
     }

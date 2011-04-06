@@ -2,6 +2,9 @@ package com.form.model;
 
 import com.form.base.DomainObject;
 
+/**
+ * Form Persist Object
+ */
 public class FormData extends DomainObject {
     private String text_20_1;
     private String text_20_2;
