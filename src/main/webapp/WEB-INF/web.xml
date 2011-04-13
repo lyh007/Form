@@ -36,21 +36,25 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/conf/spring/applicationContext*.xml</param-value>
     </context-param>
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log4j.properties</param-value>
+    </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-     <!--<error-page>-->
-         <!--<error-code>500</error-code>-->
-         <!--<location>/common/error.jsp</location>-->
-     <!--</error-page>-->
-     <!--<error-page>-->
-         <!--<error-code>404</error-code>-->
-         <!--<location>/common/error.jsp</location>-->
-     <!--</error-page>-->
-     <!--<error-page>-->
-         <!--<error-code>400</error-code>-->
-         <!--<location>/common/error.jsp</location>-->
-     <!--</error-page>-->
+    <!--<error-page>-->
+    <!--<error-code>500</error-code>-->
+    <!--<location>/common/error.jsp</location>-->
+    <!--</error-page>-->
+    <!--<error-page>-->
+    <!--<error-code>404</error-code>-->
+    <!--<location>/common/error.jsp</location>-->
+    <!--</error-page>-->
+    <!--<error-page>-->
+    <!--<error-code>400</error-code>-->
+    <!--<location>/common/error.jsp</location>-->
+    <!--</error-page>-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
         <welcome-file>index.html</welcome-file>
