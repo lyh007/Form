@@ -4,8 +4,10 @@
     <typeAliases>
         <typeAlias type="com.form.base.QueryParams" alias="QueryParams"/>
         <typeAlias type="com.form.model.FormData" alias="FormData"/>
+        <typeAlias type="com.form.model.Company" alias="Company"/>
     </typeAliases>
     <mappers>
         <mapper resource="conf/mybatis/FormData.xml"/>
+        <mapper resource="conf/mybatis/company.xml"/>
     </mappers>
 </configuration>
