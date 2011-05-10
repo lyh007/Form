@@ -1,0 +1,29 @@
+.footer
+{
+  font-size:12px;
+}
+
+.header
+{
+  font-size:25px;
+	font-weight:bold
+}
+div 
+{
+ margin:20px 20px;
+ padding:10px 5px;
+ font-family:Arial, Times, serif;
+}
+table
+{
+border-collapse:collapse;
+align:left;
+}
+
+table,th, td, th
+{
+border: 1px solid black;
+text-align:left;
+padding:10px 5px;
+}
+

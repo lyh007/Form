@@ -1,0 +1,135 @@
+www.formphile.com/www.formphila.com
+
+Use view to link user data to generic table.
+
+Jsp define which table to use.
+
+Java side:
+
+FormData {
+
+DataText20;
+DataText50;
+DataText200;
+DataText500;
+DataLongText;
+DataBoolean;
+
+
+
+
+}
+
+
+
+Table form_meta
+
+id
+name
+description
+created_date
+created_by
+last_modified_date
+last_modified_by
+owning_company_id
+
+
+
+Table form_fields??? may not needed
+
+form_id
+field_id
+field_name
+value_table_name
+value_column_name
+
+Form data tables:
+
+Table data_text_20_1
+form_id
+value_1 (varchar 20)
+value_2 (varchar 20)
+value_3 (varchar 20)
+value_4 (varchar 20)
+value_5 (varchar 20)
+value_6 (varchar 20)
+value_7 (varchar 20)
+value_8 (varchar 20)
+value_9 (varchar 20)
+value_10 (varchar 20)
+value_11 (varchar 20)
+value_12 (varchar 20)
+value_13 (varchar 20)
+value_14 (varchar 20)
+value_15 (varchar 20)
+value_16 (varchar 20)
+value_17 (varchar 20)
+value_18 (varchar 20)
+value_19 (varchar 20)
+value_20 (varchar 20)
+
+
+
+Table text_50
+form_id
+value_1 (varchar 50)
+value_2 (varchar 50)
+value_3 (varchar 50)
+...
+
+value_19 (varchar 50)
+value_20 (varchar 50)
+
+
+
+Table text_200
+form_id
+value_1 (varchar 200)
+value_2 (varchar 200)
+value_3 (varchar 200)
+...
+
+value_19 (varchar 200)
+value_20 (varchar 200)
+
+
+
+Table text_500
+form_id
+value_1 (varchar 500)
+value_2 (varchar 500)
+value_3 (varchar 500)
+...
+
+value_19 (varchar 500)
+value_20 (varchar 500)
+
+
+table boolean
+form_id
+value_1 (boolean)
+value_2 (boolean)
+value_3 (boolean)
+.....
+value_19 (boolean)
+value_20 (boolean)
+
+table number
+form_id
+value_1 (number)
+value_2 (number)
+value_3 (number)
+.....
+value_19 (number)
+value_20 (number)
+
+table date
+form_id
+value_1 (date)
+value_2 (date)
+value_3 (date)
+.....
+value_19 (date)
+value_20 (date)
+
+For Multi selection can use text table as value store.

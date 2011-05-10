@@ -12,5 +12,5 @@
 <%--</body>--%>
 <%--</html>--%>
 <%
-    response.sendRedirect(request.getContextPath()+"/formdata/form-data!list.action");
+    response.sendRedirect(request.getContextPath()+"/index.action");
 %>
