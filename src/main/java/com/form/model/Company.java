@@ -2,13 +2,11 @@ package com.form.model;
 
 import com.form.base.DomainObject;
 
-import java.io.Serializable;
-
 /**
  * Comany Persist Object
  */
 public class Company extends DomainObject {
-    private String companyId; //db FP_ID
+    private String companyId; //db companyId
     private String name;   //company name
     private String email; //company Email
 

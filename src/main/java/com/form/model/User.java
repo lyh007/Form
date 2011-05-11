@@ -6,7 +6,6 @@ import com.form.base.DomainObject;
  * User Persist Object
  */
 public class User extends DomainObject {
-    private String userId; //db FP_LOGIN_ID
     private long companyId;   //Company Id
     private String firstName;
     private String middleInital;
@@ -14,6 +13,7 @@ public class User extends DomainObject {
     private String title;
     private int status; //0:Disabled 1:Enabled
     private int type; //0:Super User 9:Read Only
+     private String userId; //db FP_LOGIN_ID
     private String password;
     private String email;
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.form.model.Template">
+    <select id="getById" parameterType="int" resultType="Template">
+          select ID,COMPANY_ID as companyId,CREATED_BY as createdBy,LAST_MODIFIED_BY as lastModifiedBy,FORM_TITLE as title,FORM_DESCRIPTION as description,STATUS from fp_form_template  where id=#{id}
+    </select>
+    <insert id="save" parameterType="Template">
+        insert into fp_form_template (ID,COMPANY_ID,CREATED_BY,LAST_MODIFIED_BY,FORM_TITLE,FORM_DESCRIPTION,STATUS)
+        values (#{id},#{companyId},#{createdBy},#{lastModifiedBy},#{title},#{description},#{status})
+    </insert>
+    <update id="update" parameterType="Template">
+        update fp_form_template set
+            COMPANY_ID=#{companyId},
+            CREATED_BY=#{createdBy},
+            LAST_MODIFIED_BY=#{lastModifiedBy},
+            FORM_TITLE=#{title},
+            FORM_DESCRIPTION=#{description},
+            STATUS=#{status}
+            where id=#{id}
+    </update>
+    <delete id="delete" parameterType="int">
+            delete from fp_form_template where id = #{id}
+    </delete>
+    <select id="queryByPage" parameterType="QueryParams" resultType="Template">
+        select * from fp_form_template
+        limit #{paging.startRecord},#{paging.pageSize}
+    </select>
+    <select id="queryByPage_count" parameterType="QueryParams" resultType="int">
+        select count(*) from fp_form_template
+    </select>
+</mapper>

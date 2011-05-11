@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.form.model.Company">
     <select id="getById" parameterType="int" resultType="Company">
-          select * from fp_company  where id=#{id}
+          select ID,FP_ID as companyId,NAME,EMAIL from fp_company  where id=#{id}
     </select>
     <insert id="save" parameterType="Company">
         insert into fp_company (id,FP_ID,NAME,EMAIL)
@@ -10,8 +10,8 @@
     </insert>
     <update id="update" parameterType="Company">
         update fp_company set
-            FP_ID=#{companyId}
-            NAME=#{name}
+            FP_ID=#{companyId},
+            NAME=#{name},
             EMAIL=#{email}
             where id=#{id}
     </update>
