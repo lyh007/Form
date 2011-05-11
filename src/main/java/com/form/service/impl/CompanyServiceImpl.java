@@ -53,4 +53,12 @@ public class CompanyServiceImpl implements CompanyService {
     public int getTotalCount(Object params) {
         return companyDao.getTotalCount(params);
     }
+    /**
+     * save an Comany
+     *
+     * @param company
+     */
+    public void saveCompany(Company company){
+        companyDao.saveCompany(company);
+    }
 }

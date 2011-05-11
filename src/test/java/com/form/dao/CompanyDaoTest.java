@@ -32,6 +32,18 @@ public class CompanyDaoTest extends BaseTestCase {
         company.setEmail("admin@gmail.com");
         company.setName("Big BC");
         companyDao.save(company);
+        System.out.println("success!");
+    }
+
+    @Test
+    //save
+    public void testSaveCompanyWithReturn() {
+        Company company = new Company();
+        company.setCompanyId("hello");
+        company.setEmail("hello@gmail.com");
+        company.setName("Hello World");
+        companyDao.saveCompany(company);
+        System.out.println("companyId:"+company.getId() );
     }
 
     @Test

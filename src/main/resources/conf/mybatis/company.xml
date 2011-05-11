@@ -5,8 +5,26 @@
           select ID,FP_ID as companyId,NAME,EMAIL from fp_company  where id=#{id}
     </select>
     <insert id="save" parameterType="Company">
-        insert into fp_company (id,FP_ID,NAME,EMAIL)
+       <![CDATA[
+        insert into fp_company (ID,FP_ID,NAME,EMAIL)
         values (#{id},#{companyId},#{name},#{email})
+          ]]>
+         <selectKey keyProperty="id" resultType="long">
+			<![CDATA[
+				SELECT LAST_INSERT_ID() AS VALUE
+			]]>
+		</selectKey>
+    </insert>
+    <insert id="saveCompany" parameterType="Company">
+        <![CDATA[
+        insert into fp_company (ID,FP_ID,NAME,EMAIL)
+        values (#{id},#{companyId},#{name},#{email})
+        ]]>
+        <selectKey keyProperty="id" resultType="long">
+			<![CDATA[
+				SELECT LAST_INSERT_ID() AS VALUE
+			]]>
+		</selectKey>
     </insert>
     <update id="update" parameterType="Company">
         update fp_company set

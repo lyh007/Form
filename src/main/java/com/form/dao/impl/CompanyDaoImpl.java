@@ -12,4 +12,13 @@ import javax.annotation.Resource;
 public class CompanyDaoImpl extends BaseDaoImpl<Company> implements CompanyDao {
     @Resource(name = "sqlSessionFactory")
     private SqlSessionFactory sqlSessionFactory;
+
+    /**
+     * save an Comany
+     *
+     * @param company
+     */
+    public void saveCompany(Company company) {
+        sqlSessionFactory.openSession().insert(getStatement(), company);
+    }
 }
