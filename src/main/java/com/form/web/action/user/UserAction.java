@@ -1,6 +1,7 @@
 package com.form.web.action.user;
 
 import com.form.SystemConstants;
+import com.form.base.OceanRuntimeException;
 import com.form.model.Company;
 import com.form.model.User;
 import com.form.service.UserService;
@@ -56,7 +57,6 @@ public class UserAction extends BaseAction {
         if (user.getFirstName() == null || user.getFirstName().length() == 0) {
             addActionError("please input User FirstName!");
             return "preCreate";
-
         }
         if (user.getMiddleInital() == null || user.getMiddleInital().length() == 0) {
             addActionError("please input User MiddleInita!");
@@ -100,16 +100,80 @@ public class UserAction extends BaseAction {
 
     //prepare update User
     public String preUpdate() throws Exception {
+        if (user == null || user.getId() == 0L) {
+            throw new OceanRuntimeException("delete user paramter is wrong!");
+        }
+        user = userService.getById(user.getId());
+        if (user == null) {
+            throw new OceanRuntimeException("delete user not exists!");
+        }
         return "preUpdate";
     }
 
     //update company User
     public String update() throws Exception {
+        if (user == null) {
+            addActionError("please input company infomation!");
+            return "preCreate";
+        }
+        if (user.getFirstName() == null || user.getFirstName().length() == 0) {
+            addActionError("please input User FirstName!");
+            return "preCreate";
+        }
+        if (user.getMiddleInital() == null || user.getMiddleInital().length() == 0) {
+            addActionError("please input User MiddleInita!");
+            return "preCreate";
+        }
+        if (StringUtils.isEmpty(user.getLastName())) {
+            addActionError("please input User lastName!");
+            return "preCreate";
+        }
+        if (StringUtils.isEmpty(user.getTitle())) {
+            addActionError("please input User title!");
+            return "preCreate";
+        }
+        if (user.getUserId() == null || user.getUserId().length() == 0) {
+            addActionError("please input User Login Id!");
+            return "preCreate";
+        }
+        if (user.getPassword() == null || user.getPassword().length() == 0) {
+            addActionError("please input User password!");
+            return "preCreate";
+        }
+        if (confirmPsw == null || confirmPsw.length() == 0) {
+            addActionError("please input user  rePassword!");
+            return "preCreate";
+        }
+        if (!user.getPassword().equals(confirmPsw)) {
+            addActionError("password not match Password Re-Type!");
+            return "preCreate";
+        }
+        User dbUser = userService.getById(user.getId());
+        if (dbUser == null) {
+            addActionError("modify user not exist!!");
+            return "preCreate";
+        }
+        dbUser.setFirstName(user.getFirstName());
+        dbUser.setMiddleInital(user.getMiddleInital());
+        dbUser.setLastName(user.getLastName());
+        dbUser.setTitle(user.getTitle());
+        dbUser.setStatus(user.getStatus());
+        dbUser.setTitle(user.getTitle());
+        dbUser.setPassword(user.getPassword());
+        userService.update(dbUser);
         return execute();
     }
 
     //delete company User
     public String delete() throws Exception {
+        if (user == null || user.getId() == 0L) {
+            throw new OceanRuntimeException("delete user paramter is wrong!");
+        }
+        user = userService.getById(user.getId());
+        if (user == null) {
+            throw new OceanRuntimeException("delete user not exists!");
+        }
+        userService.delete(user.getId());
         return execute();
     }
 

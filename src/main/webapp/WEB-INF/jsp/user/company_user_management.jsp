@@ -36,8 +36,10 @@
                     <s:if test="type==0">Super User</s:if><s:else>Read Only</s:else>
                 </td>
                 <td>
-                    <s:if test="type==0"><a href="user/user!preUpdate.action">Update</a></s:if>
-                    <s:else><a href="user/user!preUpdate.action">Update</a>|<a href="user/user!preUpdate.action">Delete</a></s:else>
+                    <s:if test="type==0"><a href="user/user!preUpdate.action?user.id=${id}">Update</a></s:if>
+                    <s:else>
+                        <a href="user/user!preUpdate.action?user.id=${id}">Update</a>|<a href="user/user!delete.action?user.id=${id}">Delete</a>
+                    </s:else>
                 </td>
             </tr>
         </s:iterator>
