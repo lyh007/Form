@@ -1,6 +1,6 @@
-package com.form.action.user;
+package com.form.web.action.user;
 
-import com.form.action.BaseAction;
+import com.form.web.action.BaseAction;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;

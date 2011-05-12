@@ -1,4 +1,4 @@
-package com.form.action;
+package com.form.web.action;
 
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;

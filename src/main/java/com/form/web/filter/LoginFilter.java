@@ -1,4 +1,4 @@
-package com.form.filter;
+package com.form.web.filter;
 
 import com.form.SystemConstants;
 import com.form.model.User;
@@ -52,14 +52,14 @@ public class LoginFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {    //Need to check the authority to determine whether the user has logged
             User loginUser = (User) httpRequest.getSession().getAttribute(SystemConstants.SESSION_USER);
-            if(loginUser == null){
-				//If it is blocked, then the first record of the request to the address of the last to jump over the next login.
-				httpRequest.getSession().setAttribute(SystemConstants.SESSION_URL, fullUrl);
-				//session expired
-				httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp?wonderUrl=" + wonderUrl);
-				return;
-			}else{
-
+            if (loginUser == null) {
+                //If it is blocked, then the first record of the request to the address of the last to jump over the next login.
+                httpRequest.getSession().setAttribute(SystemConstants.SESSION_URL, fullUrl);
+                //session expired
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp?wonderUrl=" + wonderUrl);
+                return;
+            } else {
+                filterChain.doFilter(httpRequest, httpResponse);
             }
         }
     }

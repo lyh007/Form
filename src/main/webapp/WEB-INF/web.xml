@@ -24,13 +24,34 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>
+            com.form.web.filter.LoginFilter
+        </filter-class>
+        <init-param>
+            <param-name>ignoreUrl</param-name>
+            <param-value>
+                index.action,company!create.action,company!registration.action,
+                company!sign.action,login.action,logout.action,vmRequest
+            </param-value>
+        </init-param>
+    </filter>
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
         <filter-name>struts2</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>*.jsp</url-pattern>
     </filter-mapping>
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -43,6 +64,15 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>
+            com.form.web.listener.FormStartupListener
+        </listener-class>
+    </listener>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
     <!--<error-page>-->
     <!--<error-code>500</error-code>-->
     <!--<location>/common/error.jsp</location>-->

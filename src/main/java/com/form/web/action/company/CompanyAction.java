@@ -1,10 +1,10 @@
-package com.form.action.company;
+package com.form.web.action.company;
 
-import com.form.action.BaseAction;
 import com.form.model.Company;
 import com.form.model.User;
 import com.form.service.CompanyService;
 import com.form.service.UserService;
+import com.form.web.action.BaseAction;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
 @Namespace("/company")
 @Results({
         @Result(name = "success", location = "/WEB-INF/jsp/company/company_welcome.jsp"),
-        @Result(name = "registration", location = "/WEB-INF/jsp/management_index.jsp"),
+        @Result(name = "login", location = "/WEB-INF/jsp/management_index.jsp"),
         @Result(name = "create", location = "/WEB-INF/jsp/company/company_registration.jsp"),
         @Result(name = "preUpdate", location = "/WEB-INF/jsp/company/company_update.jsp")
 })
@@ -31,6 +31,9 @@ public class CompanyAction extends BaseAction {
     private Company company;
     private User user;
     private String rePassword;
+    private String formCreatorId;
+    private String userId;
+    private String password;
 
     @Override
     public String execute() throws Exception {
@@ -39,6 +42,18 @@ public class CompanyAction extends BaseAction {
 
     //Sign in
     public String sign() throws Exception {
+        if (formCreatorId == null || formCreatorId.length() == 0) {
+            addActionError("please input Form Creator Id!");
+            return "login";
+        }
+        if (userId == null || userId.length() == 0) {
+            addActionError("please input User Id!");
+            return "login";
+        }
+        if (password == null || password.length() == 0) {
+            addActionError("please input User Password!");
+            return "login";
+        }
         return execute();
     }
 
@@ -49,7 +64,7 @@ public class CompanyAction extends BaseAction {
 
     //create company and super user
     public String registration() throws Exception {
-         //Don't input company base infomation
+        //Don't input company base infomation
         if (company == null) {
             addActionError("please input company infomation!");
             return "create";
@@ -94,7 +109,7 @@ public class CompanyAction extends BaseAction {
         companyService.saveCompany(company);
         user.setCompanyId(company.getId());
         userService.save(user);
-        return "registration";
+        return "login";
     }
 
     //prepare update company profile
@@ -129,5 +144,29 @@ public class CompanyAction extends BaseAction {
 
     public void setRePassword(String rePassword) {
         this.rePassword = rePassword;
+    }
+
+    public String getFormCreatorId() {
+        return formCreatorId;
+    }
+
+    public void setFormCreatorId(String formCreatorId) {
+        this.formCreatorId = formCreatorId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

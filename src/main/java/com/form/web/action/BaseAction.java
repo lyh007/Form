@@ -1,4 +1,4 @@
-package com.form.action;
+package com.form.web.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.logging.Log;

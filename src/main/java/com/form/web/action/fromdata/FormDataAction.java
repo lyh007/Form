@@ -1,6 +1,6 @@
-package com.form.action.fromdata;
+package com.form.web.action.fromdata;
 
-import com.form.action.BaseAction;
+import com.form.web.action.BaseAction;
 import com.form.base.Page;
 import com.form.base.QueryParams;
 import com.form.model.FormData;
