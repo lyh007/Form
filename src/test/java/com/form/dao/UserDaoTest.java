@@ -61,4 +61,13 @@ public class UserDaoTest extends BaseTestCase {
     public void testDelete() {
         userDao.delete(2L);
     }
+
+    @Test
+    public void testgetByUserId() {
+        String userId = "";
+        User user = userDao.getByUserId(userId);
+        if (user != null) {
+            System.out.println("user information: id:" + user.getId());
+        }
+    }
 }

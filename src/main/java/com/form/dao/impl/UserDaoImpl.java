@@ -12,4 +12,18 @@ import javax.annotation.Resource;
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
     @Resource(name = "sqlSessionFactory")
     private SqlSessionFactory sqlSessionFactory;
+
+    /**
+     * get User information by userId
+     *
+     * @param userId userId
+     * @return user information
+     */
+    public User getByUserId(String userId) {
+        Object obj = sqlSessionFactory.openSession().selectOne(getStatement(), userId);
+        if (obj != null && obj instanceof User) {
+            return (User) obj;
+        }
+        return null;
+    }
 }

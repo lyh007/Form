@@ -54,4 +54,14 @@ public class UserServiceImpl implements UserService {
     public int getTotalCount(Object params) {
         return userDao.getTotalCount(params);
     }
+
+    /**
+     * get User information by userId
+     *
+     * @param userId userId
+     * @return user information
+     */
+    public User getByUserId(String userId) {
+        return userDao.getByUserId(userId);
+    }
 }

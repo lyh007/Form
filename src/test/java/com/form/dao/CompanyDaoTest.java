@@ -43,7 +43,7 @@ public class CompanyDaoTest extends BaseTestCase {
         company.setEmail("hello@gmail.com");
         company.setName("Hello World");
         companyDao.saveCompany(company);
-        System.out.println("companyId:"+company.getId() );
+        System.out.println("companyId:" + company.getId());
     }
 
     @Test
@@ -65,5 +65,14 @@ public class CompanyDaoTest extends BaseTestCase {
     @Test
     public void testDelete() {
         companyDao.delete(1L);
+    }
+
+    @Test
+    public void testGetByCompanyId() {
+        String companyId = "BBC";
+        Company company = companyDao.getByCompanyId(companyId);
+        if (company != null) {
+            System.out.println("company information: id:" + company.getId());
+        }
     }
 }

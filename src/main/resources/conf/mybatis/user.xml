@@ -4,6 +4,9 @@
     <select id="getById" parameterType="int" resultType="User">
           select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL from fp_company_user  where id=#{id}
     </select>
+     <select id="getByUserId" parameterType="String" resultType="User">
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL from fp_company_user  where FP_LOGIN_ID=#{userId}
+    </select>
     <insert id="save" parameterType="User">
         insert into fp_company_user (ID,COMPANY_ID,FIRST_NAME,MIDDLE_INITIAL,LAST_NAME,TITLE,STATUS,TYPE,FP_LOGIN_ID,FP_PASSWORD,EMAIL)
         values (#{id},#{companyId},#{firstName},#{middleInital},#{lastName},#{title},#{status},#{type},#{userId},#{password},#{email})

@@ -4,6 +4,9 @@
     <select id="getById" parameterType="int" resultType="Company">
           select ID,FP_ID as companyId,NAME,EMAIL from fp_company  where id=#{id}
     </select>
+     <select id="getByCompanyId" parameterType="String" resultType="Company">
+          select ID,FP_ID as companyId,NAME,EMAIL from fp_company  where FP_ID=#{companyId}
+    </select>
     <insert id="save" parameterType="Company">
        <![CDATA[
         insert into fp_company (ID,FP_ID,NAME,EMAIL)

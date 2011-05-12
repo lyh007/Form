@@ -10,6 +10,7 @@
 <body>
 <div class="header">Company Registration</div>
 <form action="company/company!registration.action" method="post">
+    <s:actionerror/>
     <div>
         <table border=0>
             <tr>
@@ -53,7 +54,6 @@
     <div>
         <input type="submit" value="submit"/>
     </div>
-    <s:actionerror/>
 </form>
 </body>
 </html>

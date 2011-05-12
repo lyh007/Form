@@ -10,4 +10,11 @@ public interface CompanyDao extends BaseInterface<Company> {
      * @param company
      */
     public void saveCompany(Company company);
+
+    /**
+     * get Comapny information by compnay Id
+     * @param companyId   ID
+     * @return   company information
+     */
+    public Company getByCompanyId(String companyId);
 }

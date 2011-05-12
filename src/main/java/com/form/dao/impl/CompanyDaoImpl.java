@@ -16,9 +16,23 @@ public class CompanyDaoImpl extends BaseDaoImpl<Company> implements CompanyDao {
     /**
      * save an Comany
      *
-     * @param company
+     * @param company company infomation
      */
     public void saveCompany(Company company) {
         sqlSessionFactory.openSession().insert(getStatement(), company);
+    }
+
+    /**
+     * get Comapny information by compnay Id
+     *
+     * @param companyId ID
+     * @return company information
+     */
+    public Company getByCompanyId(String companyId) {
+        Object obj = sqlSessionFactory.openSession().selectOne(getStatement(), companyId);
+        if (obj != null && obj instanceof Company) {
+            return (Company) obj;
+        }
+        return null;
     }
 }

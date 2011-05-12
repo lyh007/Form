@@ -1,5 +1,6 @@
 package com.form.web.action.company;
 
+import com.form.SystemConstants;
 import com.form.model.Company;
 import com.form.model.User;
 import com.form.service.CompanyService;
@@ -12,6 +13,8 @@ import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Scope("prototype")
@@ -28,8 +31,8 @@ public class CompanyAction extends BaseAction {
     private CompanyService companyService;
     @Autowired
     private UserService userService;
-    private Company company;
-    private User user;
+    private Company company = new Company();
+    private User user = new User();
     private String rePassword;
     private String formCreatorId;
     private String userId;
@@ -54,6 +57,23 @@ public class CompanyAction extends BaseAction {
             addActionError("please input User Password!");
             return "login";
         }
+        Company dbCompany = companyService.getByCompanyId(formCreatorId);
+        if (dbCompany == null) {
+            addActionError(formCreatorId + " company is not exist!");
+            return "login";
+        }
+        User dbUser = userService.getByUserId(userId);
+        if (dbUser == null) {
+            addActionError(userId + " User is not exist!");
+            return "login";
+        }
+        if (!dbUser.getPassword().equalsIgnoreCase(password)) {
+            addActionError("password is wrong!");
+            return "login";
+        }
+        HttpSession session = request.getSession();
+        session.setAttribute(SystemConstants.SESSION_USER, dbUser);
+        session.setAttribute(SystemConstants.SESSION_COMPANY, dbCompany);
         return execute();
     }
 
@@ -106,8 +126,19 @@ public class CompanyAction extends BaseAction {
             addActionError("password not match rePassword!");
             return "create";
         }
+        Company dbCompany = companyService.getByCompanyId(company.getCompanyId());
+        if (dbCompany != null) {
+            addActionError("company Id has exist!");
+            return "create";
+        }
+        User dbUser = userService.getByUserId(user.getUserId());
+        if (dbUser != null) {
+            addActionError("user Id has exist!");
+            return "create";
+        }
         companyService.saveCompany(company);
         user.setCompanyId(company.getId());
+        user.setType(1);     //0:Super User 9:Read Only
         userService.save(user);
         return "login";
     }
