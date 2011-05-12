@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @Scope("prototype")
@@ -37,6 +39,7 @@ public class CompanyAction extends BaseAction {
     private String formCreatorId;
     private String userId;
     private String password;
+    private List<User> users = new ArrayList<User>();
 
     @Override
     public String execute() throws Exception {
@@ -69,6 +72,10 @@ public class CompanyAction extends BaseAction {
         }
         if (!dbUser.getPassword().equalsIgnoreCase(password)) {
             addActionError("password is wrong!");
+            return "login";
+        }
+        if (dbUser.getStatus() == 0) {
+            addActionError("User is Disabled!");
             return "login";
         }
         HttpSession session = request.getSession();
@@ -138,18 +145,24 @@ public class CompanyAction extends BaseAction {
         }
         companyService.saveCompany(company);
         user.setCompanyId(company.getId());
-        user.setType(1);     //0:Super User 9:Read Only
+        user.setType(0);     //0:Super User 9:Read Only
+        user.setStatus(1);   //0:Disabled 1:Enabled
         userService.save(user);
         return "login";
     }
 
     //prepare update company profile
     public String preUpdate() throws Exception {
+        HttpSession session = request.getSession();
+        company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
+        user = (User) session.getAttribute(SystemConstants.SESSION_USER);
+        users = userService.getByUsersByCompanyId(company.getId());
         return "preUpdate";
     }
 
     //update company profile
     public String update() throws Exception {
+
         return execute();
     }
 
@@ -199,5 +212,13 @@ public class CompanyAction extends BaseAction {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Repository("userDao")
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
@@ -25,5 +26,15 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
             return (User) obj;
         }
         return null;
+    }
+
+    /**
+     * Get a list of corporate users
+     *
+     * @param id company Id
+     * @return user List
+     */
+    public List<User> getByUsersByCompanyId(Long id) {
+        return sqlSessionFactory.openSession().selectList(getStatement(), id);
     }
 }

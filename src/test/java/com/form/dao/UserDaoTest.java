@@ -70,4 +70,15 @@ public class UserDaoTest extends BaseTestCase {
             System.out.println("user information: id:" + user.getId());
         }
     }
+
+    @Test
+    public void testGetByUsersByCompanyId() {
+        long id = 15L;
+        List<User> users = userDao.getByUsersByCompanyId(id);
+        if (users != null && users.size() > 0) {
+            for (User user : users) {
+                System.out.println("Id:" + user.getId() + " userId:" + user.getUserId());
+            }
+        }
+    }
 }

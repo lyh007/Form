@@ -2,10 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.form.model.User">
     <select id="getById" parameterType="int" resultType="User">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL from fp_company_user  where id=#{id}
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL
+          from fp_company_user  where id=#{id}
     </select>
      <select id="getByUserId" parameterType="String" resultType="User">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL from fp_company_user  where FP_LOGIN_ID=#{userId}
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL
+          from fp_company_user  where FP_LOGIN_ID=#{userId}
     </select>
     <insert id="save" parameterType="User">
         insert into fp_company_user (ID,COMPANY_ID,FIRST_NAME,MIDDLE_INITIAL,LAST_NAME,TITLE,STATUS,TYPE,FP_LOGIN_ID,FP_PASSWORD,EMAIL)
@@ -34,5 +36,9 @@
     </select>
     <select id="queryByPage_count" parameterType="QueryParams" resultType="int">
         select count(*) from fp_company_user
+    </select>
+     <select id="getByUsersByCompanyId" parameterType="long" resultType="User">
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL
+          from fp_company_user  where COMPANY_ID=#{companyId}
     </select>
 </mapper>

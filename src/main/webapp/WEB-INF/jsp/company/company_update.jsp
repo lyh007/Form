@@ -15,24 +15,35 @@
         <table border=0>
             <tr>
                 <th>Company Name:</th>
-                <td><input type="text" value="Boyd School"/></td>
+                <td><input type="text" name="company.name" value="<s:property value="company.name"/>"/></td>
             </tr>
             <tr>
                 <th>Company Email:</th>
-                <td><input type="text" value="contact@bschool.com"/></td>
+                <td><input type="text" name="company.email" value="${company.email}"/></td>
             </tr>
             <tr>
                 <th>Company ID:</th>
-                <td><input type="text" disabled=true value="boldschool"/></td>
+                <td><input type="text" disabled=true name="company.companyId" value="${company.companyId}"/></td>
             </tr>
             <tr>
                 <th>Super User ID:</th>
                 <td>
                     <select>
-                        <option>Existing User1 ID (User1 First Name User1 Last Name)</option>
-                        <option>Existing User2 ID (User2 First Name User2 Last Name)</option>
-                        <option>Existing User3 ID (User3 First Name User3 Last Name)</option>
-                    </select></td>
+                        <s:iterator value="users" status="userStatus">
+                            <s:if test="userId==user.userId">
+                                <option selected="selected" value="<s:property value="userId"/>"><s:property
+                                        value="userId"/>(<s:property value="firstName"/>&nbsp;<s:property
+                                        value="lastName"/>)
+                                </option>
+                            </s:if>
+                            <s:else>
+                                <option value="<s:property value="userId"/>"><s:property value="userId"/>(<s:property
+                                        value="firstName"/>&nbsp;<s:property value="lastName"/>)
+                                </option>
+                            </s:else>
+                        </s:iterator>
+                    </select>
+                </td>
             </tr>
         </table>
     </div>

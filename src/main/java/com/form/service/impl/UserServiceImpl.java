@@ -64,4 +64,14 @@ public class UserServiceImpl implements UserService {
     public User getByUserId(String userId) {
         return userDao.getByUserId(userId);
     }
+
+    /**
+     * Get a list of corporate users
+     *
+     * @param id company Id
+     * @return user List
+     */
+    public List<User> getByUsersByCompanyId(Long id) {
+        return userDao.getByUsersByCompanyId(id);
+    }
 }

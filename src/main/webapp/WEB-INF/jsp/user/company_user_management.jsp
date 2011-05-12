@@ -23,27 +23,24 @@
             <th>Role</th>
             <th>Operation</th>
         </tr>
-        <tr>
-            <td>Default One</td>
-            <td>Jone Doe</td>
-            <td>Enabled</td>
-            <td>Super User</td>
-            <td><a href="user/user!preUpdate.action">Update</a></td>
-        </tr>
-        <tr>
-            <td>Guest</td>
-            <td>Harry Potter</td>
-            <td>Enabled</td>
-            <td>Read Only</td>
-            <td><a href="../">Update|Delete</a></td>
-        </tr>
-        <tr>
-            <td>Guest 2</td>
-            <td>Lucas Skywalker</td>
-            <td>Disabled</td>
-            <td>Read Only</td>
-            <td><a href="../">Update|Delete</a></td>
-        </tr>
+        <s:iterator value="users" status="userStatus">
+            <tr>
+                <td><s:property value="userId"/></td>
+                <td>
+                    <s:property value="firstName"/>&nbsp;<s:property value="lastName"/>
+                </td>
+                <td>
+                    <s:if test="status==0">Disabled</s:if><s:else>Enabled</s:else>
+                </td>
+                <td>
+                    <s:if test="type==0">Super User</s:if><s:else>Read Only</s:else>
+                </td>
+                <td>
+                    <s:if test="type==0"><a href="user/user!preUpdate.action">Update</a></s:if>
+                    <s:else><a href="user/user!preUpdate.action">Update</a>|<a href="user/user!preUpdate.action">Delete</a></s:else>
+                </td>
+            </tr>
+        </s:iterator>
     </table>
 </div>
 
@@ -51,7 +48,8 @@
 
 <hr/>
 
-<div class="footer"><a href="company/company.action">Form Management</a> | <a href="company/company!preUpdate.action">Company Profile
+<div class="footer"><a href="company/company.action">Form Management</a> | <a href="company/company!preUpdate.action">Company
+    Profile
     Update</a></div>
 
 </body>
