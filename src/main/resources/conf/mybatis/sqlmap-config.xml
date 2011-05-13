@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <!-- changes from the defaults -->
+        <setting name="lazyLoadingEnabled" value="false"/>
+    </settings>
     <typeAliases>
         <typeAlias type="com.form.base.QueryParams" alias="QueryParams"/>
         <typeAlias type="com.form.model.FormData" alias="FormData"/>
@@ -8,10 +12,4 @@
         <typeAlias type="com.form.model.User" alias="User"/>
         <typeAlias type="com.form.model.Template" alias="Template"/>
     </typeAliases>
-    <mappers>
-        <mapper resource="conf/mybatis/FormData.xml"/>
-        <mapper resource="conf/mybatis/company.xml"/>
-        <mapper resource="conf/mybatis/user.xml"/>
-        <mapper resource="conf/mybatis/template.xml"/>
-    </mappers>
 </configuration>

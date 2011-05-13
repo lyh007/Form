@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.form.mapper.CompanyMapper">
+    <select id="getById" parameterType="int" resultType="Company">
+          select ID,FP_ID as companyId,NAME,EMAIL from fp_company  where id=#{id}
+    </select>
+     <select id="getByCompanyId" parameterType="String" resultType="Company">
+          select ID,FP_ID as companyId,NAME,EMAIL from fp_company  where FP_ID=#{companyId}
+    </select>
+    <insert id="save" parameterType="Company">
+       <![CDATA[
+        insert into fp_company (ID,FP_ID,NAME,EMAIL)
+        values (#{id},#{companyId},#{name},#{email})
+          ]]>
+         <selectKey keyProperty="id" resultType="long">
+			<![CDATA[
+				SELECT LAST_INSERT_ID() AS VALUE
+			]]>
+		</selectKey>
+    </insert>
+    <insert id="saveCompany" parameterType="Company">
+        <![CDATA[
+        insert into fp_company (ID,FP_ID,NAME,EMAIL)
+        values (#{id},#{companyId},#{name},#{email})
+        ]]>
+        <selectKey keyProperty="id" resultType="long">
+			<![CDATA[
+				SELECT LAST_INSERT_ID() AS VALUE
+			]]>
+		</selectKey>
+    </insert>
+    <update id="update" parameterType="Company">
+        update fp_company set
+            FP_ID=#{companyId},
+            NAME=#{name},
+            EMAIL=#{email}
+            where id=#{id}
+    </update>
+    <delete id="delete" parameterType="int">
+            delete from fp_company where id = #{id}
+    </delete>
+    <select id="queryByPage" parameterType="QueryParams" resultType="Company">
+        select * from fp_company
+        limit #{paging.startRecord},#{paging.pageSize}
+    </select>
+    <select id="queryByPage_count" parameterType="QueryParams" resultType="int">
+        select count(*) from fp_company
+    </select>
+</mapper>

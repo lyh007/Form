@@ -30,7 +30,7 @@ public interface BaseInterface<T> {
     /**
      * batch delete
      */
-    public void deleteByIds(String ids);
+//    public void deleteByIds(String ids);
 
     /**
      * get by id
