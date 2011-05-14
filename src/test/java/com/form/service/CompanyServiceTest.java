@@ -4,15 +4,10 @@ import com.form.base.BaseTestCase;
 import com.form.model.Company;
 import org.junit.Test;
 
-/**
- * @author kevin
- * @version Revision: 1.00 Date: 11-5-13下午1:30
- * @Email liuyuhui007@gmail.com
- */
-public class CompanyDaoTest extends BaseTestCase {
+public class CompanyServiceTest extends BaseTestCase {
     private CompanyService companyService;
 
-    public CompanyDaoTest() {
+    public CompanyServiceTest() {
         companyService = (CompanyService) getApplicationContext().getBean("companyService");
     }
 

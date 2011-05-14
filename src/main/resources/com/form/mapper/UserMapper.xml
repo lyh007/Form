@@ -5,9 +5,13 @@
           select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL
           from fp_company_user  where id=#{id}
     </select>
-     <select id="getByUserId" parameterType="String" resultType="User">
+    <select id="getByUserId" parameterType="String" resultType="User">
           select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL
           from fp_company_user  where FP_LOGIN_ID=#{userId}
+    </select>
+    <select id="getUserByCompanyIdAndUserId" parameterType="User" resultType="User">
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL
+          from fp_company_user  where COMPANY_ID=#{companyId} and FP_LOGIN_ID=#{userId}
     </select>
     <insert id="save" parameterType="User">
         insert into fp_company_user (ID,COMPANY_ID,FIRST_NAME,MIDDLE_INITIAL,LAST_NAME,TITLE,STATUS,TYPE,FP_LOGIN_ID,FP_PASSWORD,EMAIL)
@@ -37,8 +41,12 @@
     <select id="queryByPage_count" parameterType="QueryParams" resultType="int">
         select count(*) from fp_company_user
     </select>
-     <select id="getByUsersByCompanyId" parameterType="long" resultType="User">
+    <select id="getUsersByCompanyId" parameterType="long" resultType="User">
           select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL
           from fp_company_user  where COMPANY_ID=#{companyId}
+    </select>
+    <select id="getSuperUsers" parameterType="long" resultType="User">
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as userId,FP_PASSWORD as password,EMAIL
+          from fp_company_user  where COMPANY_ID=#{companyId} and TYPE=0
     </select>
 </mapper>

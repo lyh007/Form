@@ -86,13 +86,17 @@ public class UserAction extends BaseAction {
             addActionError("password not match Password Re-Type!");
             return "preCreate";
         }
-        User dbUser = userService.getByUserId(user.getUserId());
+        HttpSession session = request.getSession();
+        Company company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
+        User param = new User();
+        param.setCompanyId(company.getId());
+        param.setUserId(user.getUserId());
+        User dbUser = userService.getUserByCompanyIdAndUserId(param);
         if (dbUser != null) {
             addActionError("user Id has exist!");
             return "preCreate";
         }
-        HttpSession session = request.getSession();
-        Company company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
+
         user.setCompanyId(company.getId());
         userService.save(user);
         return execute();
@@ -158,6 +162,7 @@ public class UserAction extends BaseAction {
         dbUser.setLastName(user.getLastName());
         dbUser.setTitle(user.getTitle());
         dbUser.setStatus(user.getStatus());
+        dbUser.setType(user.getType());
         dbUser.setTitle(user.getTitle());
         dbUser.setPassword(user.getPassword());
         userService.update(dbUser);

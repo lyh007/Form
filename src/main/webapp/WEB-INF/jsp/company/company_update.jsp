@@ -10,6 +10,7 @@
 <body>
 
 <div class="header">Company Profile Update</div>
+<s:actionerror/>
 <form action="company/company!update.action" method="post">
     <div>
         <table border=0>
@@ -23,7 +24,7 @@
             </tr>
             <tr>
                 <th>Company ID:</th>
-                <td><input type="text" disabled=true name="company.companyId" value="${company.companyId}"/></td>
+                <td><input type="text" readonly="readonly" name="company.companyId" value="${company.companyId}"/></td>
             </tr>
             <tr>
                 <th>Super User ID:</th>

@@ -9,7 +9,7 @@
 <center>
     <div>
         <s:text name="%{exception.errorCode}"/><br>
-        <input name="" type="button" class="gx_w_bn all_butt" value="返 回" onclick="javascript:history.go(-1);"/>
+        <input name="" type="button" class="gx_w_bn all_butt" value="Return" onclick="javascript:history.go(-1);"/>
     </div>
 </center>
 </body>

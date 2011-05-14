@@ -28,4 +28,12 @@
     <select id="queryByPage_count" parameterType="QueryParams" resultType="int">
         select count(*) from fp_form_template
     </select>
+    <select id="getTemplatesByCompanyId" parameterType="Long" resultType="Template">
+          select ID,COMPANY_ID as companyId,CREATED_BY as createdBy,LAST_MODIFIED_BY as lastModifiedBy,FORM_TITLE as title,FORM_DESCRIPTION as description,STATUS
+          from fp_form_template  where COMPANY_ID=#{companyId}
+    </select>
+    <select id="getTemplateByCompanyIdAndTemplateTitle" parameterType="Long" resultType="Template">
+          select ID,COMPANY_ID as companyId,CREATED_BY as createdBy,LAST_MODIFIED_BY as lastModifiedBy,FORM_TITLE as title,FORM_DESCRIPTION as description,STATUS
+          from fp_form_template  where COMPANY_ID=#{companyId} and FORM_TITLE=#{title}
+    </select>
 </mapper>

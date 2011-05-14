@@ -6,12 +6,16 @@
     <base href="<%=basePath%>"/>
     <link rel="stylesheet" type="text/css" href="css/general.css"/>
     <title>Form Management</title>
+    <script type="text/javascript">
+        function delete_confirm(id) {
+            window.location = "<%=basePath%>/user/user!delete.action?user.id=" + id;
+        }
+    </script>
 </head>
 <body>
 
 <div class="header">
-
-    Boyd School User Management
+    <s:property value="#session.session_company_name"/> User Management
 </div>
 
 <div>
@@ -50,9 +54,9 @@
 
 <hr/>
 
-<div class="footer"><a href="company/company.action">Form Management</a> | <a href="company/company!preUpdate.action">Company
-    Profile
-    Update</a></div>
+<div class="footer"><a href="company/company.action">Form Management</a> |
+    <a href="company/company!preUpdate.action">Company Profile Update</a> |
+    <a href="logout.action">Logout System</a></div>
 
 </body>
 </html>

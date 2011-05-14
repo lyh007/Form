@@ -94,6 +94,26 @@ public class UserService {
      * @return user List
      */
     public List<User> getByUsersByCompanyId(Long id) {
-        return userMapper.getByUsersByCompanyId(id);
+        return userMapper.getUsersByCompanyId(id);
+    }
+
+    /**
+     * get company User
+     *
+     * @param user company id and userId
+     * @return user
+     */
+    public User getUserByCompanyIdAndUserId(User user) {
+        return userMapper.getUserByCompanyIdAndUserId(user);
+    }
+
+    /**
+     * get company All SuperUsers
+     *
+     * @param id company id
+     * @return user List
+     */
+    public List<User> getSuperUsers(Long id) {
+        return userMapper.getSuperUsers(id);
     }
 }

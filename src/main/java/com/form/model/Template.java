@@ -11,7 +11,7 @@ public class Template extends DomainObject {
     private long lastModifiedBy;
     private String title;
     private String description;
-    private  int status;
+    private  int status;  //add by dev 1:Active
 
     public Template() {
     }

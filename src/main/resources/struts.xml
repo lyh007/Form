@@ -10,11 +10,11 @@
 
     <package name="default" namespace="/" extends="struts-default">
         <global-results>
-            <result name="exception">/WEB-INF/jsps/common/exception.jsp</result>
+            <result name="exception">/common/exception.jsp</result>
         </global-results>
         <global-exception-mappings>
             <exception-mapping exception="com.form.base.OceanRuntimeException" result="exception"/>
-            <!--<exception-mapping exception="java.lang.Exception" result="exception"/>-->
+            <exception-mapping exception="java.lang.Exception" result="exception"/>
         </global-exception-mappings>
     </package>
 </struts>
