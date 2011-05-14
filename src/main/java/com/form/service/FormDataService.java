@@ -79,4 +79,14 @@ public class FormDataService {
     public int getTotalCount(Object params) {
         return formDataMapper.getTotalCount(params);
     }
+
+    /**
+     * query Formdata List
+     *
+     * @param id template id
+     * @return FormData List
+     */
+    public List<FormData> queryByTemplate(long id) {
+        return formDataMapper.queryByTemplate(id);
+    }
 }

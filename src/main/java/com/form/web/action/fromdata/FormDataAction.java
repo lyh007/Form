@@ -1,10 +1,12 @@
 package com.form.web.action.fromdata;
 
-import com.form.web.action.BaseAction;
 import com.form.base.Page;
 import com.form.base.QueryParams;
 import com.form.model.FormData;
+import com.form.model.Template;
 import com.form.service.FormDataService;
+import com.form.service.TemplateService;
+import com.form.web.action.BaseAction;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -31,12 +33,16 @@ import java.util.List;
 public class FormDataAction extends BaseAction {
     @Autowired
     private FormDataService formDataService;
+    @Autowired
+    private TemplateService templateService;
     private FormData formData = new FormData();
     private List<FormData> formDataList = new ArrayList<FormData>();
     private String[] text_20_1;
     private String[] text_20_12;
     private String[] text_50_14;
     private int submitType; //submit type: 1,Save & Exit;2,Save & Continue
+    private long templateId;
+    private Template template = new Template();
     //first step
 
     public String step1() {
@@ -49,6 +55,7 @@ public class FormDataAction extends BaseAction {
             formData.setText_20_1(arrayToString(text_20_1));
             formData.setText_20_12(arrayToString(text_20_12));
             formData.setText_50_14(arrayToString(text_50_14));
+            formData.setTemplateId(templateId);
             formDataService.save(formData);
         }
         if (submitType == 2) {
@@ -60,11 +67,14 @@ public class FormDataAction extends BaseAction {
 
     //save
     public String save() {
-      //  return "result";
+        //  return "result";
         return list();
     }
 
     public String list() {
+        if (templateId != 0L) {
+            template = templateService.getById(templateId);
+        }
         QueryParams<String> queryParams = new QueryParams<String>();
         if (records == 0) {
             records = formDataService.getTotalCount(null);
@@ -163,5 +173,21 @@ public class FormDataAction extends BaseAction {
 
     public void setSubmitType(int submitType) {
         this.submitType = submitType;
+    }
+
+    public long getTemplateId() {
+        return templateId;
+    }
+
+    public void setTemplateId(long templateId) {
+        this.templateId = templateId;
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 }

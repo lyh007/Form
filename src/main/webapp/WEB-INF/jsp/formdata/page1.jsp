@@ -11,18 +11,20 @@
     <meta name="keywords" content="">
     <title>The Boyd School</title>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>css/boyd.css"/>
-     <script>
-         function submitForm(submitType){
-             var form=document.getElementById("formId");
-             document.getElementById("submitType").value=submitType;
-             form.submit();
-         }
-     </script>
+    <script>
+        function submitForm(submitType) {
+            var form = document.getElementById("formId");
+            document.getElementById("submitType").value = submitType;
+            form.submit();
+        }
+    </script>
 </head>
 <body>
 <div class="outline">
     <form action="formdata/form-data!step2.action" method="POST" id="formId">
+        <input type="hidden" name="templateId" value="${templateId}">
         <input type="hidden" name="submitType" value=1 id="submitType">
+
         <div class="floatRight">
             <div class="topRightHeader"> Admissions Contract</div>
             <div><strong>CAMPUS:</strong>
@@ -110,18 +112,23 @@
                 <div class="floatRight">
                     Date of birth<input class="bottom" name="formData.text_50_8" type="text" size="75"><br/>
                     Date certificate issued<input class="bottom" name="formData.text_50_9" type="text" size="63"><br/>
-                    State and country of birth<input class="bottom" name="formData.text_50_10" type="text" size="61"><br/>
+                    State and country of birth<input class="bottom" name="formData.text_50_10" type="text"
+                                                     size="61"><br/>
                     Certificate number<input class="bottom" name="formData.text_50_11" type="text" size="68"><br/>
                     Hospital<input class="bottom" name="formData.text_50_12" type="text" size="80"><br/>
                     Physician / Midwife <input class="bottom" name="formData.text_50_13" type="text" size="67"><br/>
                 </div>
                 <div>
-                    <input class="checkbox" name="text_50_14" type="checkbox" value="ccbc">Certified copy of birth certificate</input>
+                    <input class="checkbox" name="text_50_14" type="checkbox" value="ccbc">Certified copy of birth
+                    certificate</input>
                     <br/>
-                    <input class="checkbox" name="text_50_14" type="checkbox" value="brc">Birth registration Card</input><br/>
-                    <input class="checkbox" name="text_50_14" type="checkbox" value="nob">Notification of birth</input><br/>
+                    <input class="checkbox" name="text_50_14" type="checkbox" value="brc">Birth registration
+                    Card</input><br/>
+                    <input class="checkbox" name="text_50_14" type="checkbox" value="nob">Notification of birth</input>
+                    <br/>
                     <input class="checkbox" name="text_50_14" type="checkbox" value="pass">Passport</input><br/>
-                    <input class="checkbox" name="text_50_14" type="checkbox" value="paoop">Placement agreement or other placement
+                    <input class="checkbox" name="text_50_14" type="checkbox" value="paoop">Placement agreement or other
+                    placement
                     proof</input><br/>
                 </div>
             </div>
@@ -130,11 +137,14 @@
 
             <div style="clear:both;" style="margin:0px 20px;"></div>
             <div style="line-height:100%;margin:0px 20px;">
-                <div class="floatRight"><input class="bottom" name="formData.text_50_15" type="text" size="30"><br/>Date</div>
-                <div class="floatRight"><input class="bottom" name="formData.text_50_16" type="text" size="64"><br/>Director / Director
+                <div class="floatRight"><input class="bottom" name="formData.text_50_15" type="text" size="30"><br/>Date
+                </div>
+                <div class="floatRight"><input class="bottom" name="formData.text_50_16" type="text" size="64"><br/>Director
+                    / Director
                     Designee Signature
                 </div>
-                <div class="floatRight"><input class="bottom" name="formData.text_50_17" type="text" size="64"><br/>Director / Director
+                <div class="floatRight"><input class="bottom" name="formData.text_50_17" type="text" size="64"><br/>Director
+                    / Director
                     Designee(PRINT)
                 </div>
             </div>
@@ -149,7 +159,9 @@
             </div>
         </div>
         <hr/>
-        <div><input type="button" value="Save & Exit" onclick="submitForm(1)"/><input type="submit" value="Save & Continue"  onclick="submitForm(2)"/></div>
+        <div><input type="button" value="Save & Exit" onclick="submitForm(1)"/><input type="submit"
+                                                                                      value="Save & Continue"
+                                                                                      onclick="submitForm(2)"/></div>
     </form>
 </div>
 </body>

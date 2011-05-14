@@ -34,7 +34,7 @@
                     <s:else>inActive</s:else>
                 </td>
                 <td>0</td>
-                <td><a href="../">View Records</a>|
+                <td><a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">View Records</a>|
                     <a href="template/template!preUpdate.action?template.id=<s:property value="id"/>">Update
                         Template</a> |
                     <a href="template/template!delete.action?template.id=<s:property value="id"/>">Delete Template</a>
@@ -44,7 +44,6 @@
     </table>
 </div>
 <div class="header">
-    <a href="../">Create A New Form</a>|
     <a href="template/template!preCreate.action">Create a New Form Template</a>
 </div>
 <hr/>

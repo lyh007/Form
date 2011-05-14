@@ -6,6 +6,7 @@ import com.form.base.DomainObject;
  * Form Persist Object
  */
 public class FormData extends DomainObject {
+    private long templateId;
     private String text_20_1;
     private String text_20_2;
     private String text_20_3;
@@ -680,5 +681,13 @@ public class FormData extends DomainObject {
 
     public void setText_2000_5(String text_2000_5) {
         this.text_2000_5 = text_2000_5;
+    }
+
+    public long getTemplateId() {
+        return templateId;
+    }
+
+    public void setTemplateId(long templateId) {
+        this.templateId = templateId;
     }
 }
