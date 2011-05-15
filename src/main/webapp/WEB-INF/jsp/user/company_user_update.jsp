@@ -12,6 +12,7 @@
 <s:actionerror/>
 <form action="user/user!update.action" method="post">
     <input type="hidden" name="user.id" value="${user.id}">
+
     <div>
         <table border=0>
             <tr>
@@ -34,44 +35,52 @@
                 <th>Login ID:</th>
                 <td><input type="text" readonly="readonly" name="user.userId" value="${user.userId}"/></td>
             </tr>
-            <tr>
-                <th>Status:</th>
-                <td>
-                    <select name="user.status">
-                        <s:if test="user.status==0">
-                            <option value="0" selected="selected">Disabled</option>
-                        </s:if>
-                        <s:else>
-                            <option value="0">Disabled</option>
-                        </s:else>
-                        <s:if test="user.status==1">
-                            <option value="1" selected="selected">Enabled</option>
-                        </s:if>
-                        <s:else>
-                            <option value="1">Enabled</option>
-                        </s:else>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Type:</th>
-                <td>
-                    <select name="user.type">
-                        <s:if test="user.type==0">
-                            <option value="0" selected="selected">Super User</option>
-                        </s:if>
-                        <s:else>
-                            <option value="0">Super User</option>
-                        </s:else>
-                        <s:if test="user.type==9">
-                            <option value="9" selected="selected">Read Only</option>
-                        </s:if>
-                        <s:else>
-                            <option value="9">Read Only</option>
-                        </s:else>
-                    </select>
-                </td>
-            </tr>
+            <s:if test="#session.session_user_loginId==user.userId">
+            </s:if>
+            <s:else>
+                <tr>
+                    <th>Status:</th>
+                    <td>
+                        <select name="user.status">
+                            <s:if test="user.status==0">
+                                <option value="0" selected="selected">Disabled</option>
+                            </s:if>
+                            <s:else>
+                                <option value="0">Disabled</option>
+                            </s:else>
+                            <s:if test="user.status==1">
+                                <option value="1" selected="selected">Enabled</option>
+                            </s:if>
+                            <s:else>
+                                <option value="1">Enabled</option>
+                            </s:else>
+                        </select>
+                    </td>
+                </tr>
+            </s:else>
+            <s:if test="#session.session_user_loginId==user.userId">
+            </s:if>
+            <s:else>
+                <tr>
+                    <th>Type:</th>
+                    <td>
+                        <select name="user.type">
+                            <s:if test="user.type==0">
+                                <option value="0" selected="selected">Super User</option>
+                            </s:if>
+                            <s:else>
+                                <option value="0">Super User</option>
+                            </s:else>
+                            <s:if test="user.type==9">
+                                <option value="9" selected="selected">Read Only</option>
+                            </s:if>
+                            <s:else>
+                                <option value="9">Read Only</option>
+                            </s:else>
+                        </select>
+                    </td>
+                </tr>
+            </s:else>
             <tr>
                 <th>Password:</th>
                 <td><input type="password" name="user.password" value="${user.password}"/></td>

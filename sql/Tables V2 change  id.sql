@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : cloud
+Source Server         : form
 Source Server Version : 50145
 Source Host           : localhost:3306
 Source Database       : form
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50145
 File Encoding         : 65001
 
-Date: 2011-05-12 01:53:38
+Date: 2011-05-15 10:41:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,8 +24,7 @@ CREATE TABLE `fp_company` (
   `NAME` varchar(50) NOT NULL,
   `EMAIL` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
-
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for `fp_company_user`
@@ -46,13 +45,14 @@ CREATE TABLE `fp_company_user` (
   PRIMARY KEY (`ID`),
   KEY `FP_USER_COMPANY_ID_IDX` (`COMPANY_ID`),
   CONSTRAINT `fp_company_user_ibfk_1` FOREIGN KEY (`COMPANY_ID`) REFERENCES `fp_company` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+
 -- ----------------------------
 -- Table structure for `fp_form_data`
 -- ----------------------------
 DROP TABLE IF EXISTS `fp_form_data`;
 CREATE TABLE `fp_form_data` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `TEMPLATE_ID` bigint(20) unsigned DEFAULT NULL,
   `text_20_1` varchar(20) DEFAULT NULL,
   `text_20_2` varchar(20) DEFAULT NULL,
@@ -69,6 +69,31 @@ CREATE TABLE `fp_form_data` (
   `text_20_13` varchar(20) DEFAULT NULL,
   `text_20_14` varchar(20) DEFAULT NULL,
   `text_20_15` varchar(20) DEFAULT NULL,
+  `text_20_16` varchar(20) DEFAULT NULL,
+  `text_20_17` varchar(20) DEFAULT NULL,
+  `text_20_18` varchar(20) DEFAULT NULL,
+  `text_20_19` varchar(20) DEFAULT NULL,
+  `text_20_20` varchar(20) DEFAULT NULL,
+  `text_50_1` varchar(50) DEFAULT NULL,
+  `text_50_2` varchar(50) DEFAULT NULL,
+  `text_50_3` varchar(50) DEFAULT NULL,
+  `text_50_4` varchar(50) DEFAULT NULL,
+  `text_50_5` varchar(50) DEFAULT NULL,
+  `text_50_6` varchar(50) DEFAULT NULL,
+  `text_50_7` varchar(50) DEFAULT NULL,
+  `text_50_8` varchar(50) DEFAULT NULL,
+  `text_50_9` varchar(50) DEFAULT NULL,
+  `text_50_10` varchar(50) DEFAULT NULL,
+  `text_50_11` varchar(50) DEFAULT NULL,
+  `text_50_12` varchar(50) DEFAULT NULL,
+  `text_50_13` varchar(50) DEFAULT NULL,
+  `text_50_14` varchar(50) DEFAULT NULL,
+  `text_50_15` varchar(50) DEFAULT NULL,
+  `text_50_16` varchar(50) DEFAULT NULL,
+  `text_50_17` varchar(50) DEFAULT NULL,
+  `text_50_18` varchar(50) DEFAULT NULL,
+  `text_50_19` varchar(50) DEFAULT NULL,
+  `text_50_20` varchar(50) DEFAULT NULL,
   `text_100_1` varchar(100) DEFAULT NULL,
   `text_100_2` varchar(100) DEFAULT NULL,
   `text_100_3` varchar(100) DEFAULT NULL,
@@ -84,6 +109,11 @@ CREATE TABLE `fp_form_data` (
   `text_100_13` varchar(100) DEFAULT NULL,
   `text_100_14` varchar(100) DEFAULT NULL,
   `text_100_15` varchar(100) DEFAULT NULL,
+  `text_100_16` varchar(100) DEFAULT NULL,
+  `text_100_17` varchar(100) DEFAULT NULL,
+  `text_100_18` varchar(100) DEFAULT NULL,
+  `text_100_19` varchar(100) DEFAULT NULL,
+  `text_100_20` varchar(100) DEFAULT NULL,
   `text_500_1` varchar(500) DEFAULT NULL,
   `text_500_2` varchar(500) DEFAULT NULL,
   `text_500_3` varchar(500) DEFAULT NULL,
@@ -99,15 +129,10 @@ CREATE TABLE `fp_form_data` (
   `text_2000_3` varchar(2000) DEFAULT NULL,
   `text_2000_4` varchar(2000) DEFAULT NULL,
   `text_2000_5` varchar(2000) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
+  PRIMARY KEY (`id`),
   KEY `FP_FORM_DATA_IDX` (`TEMPLATE_ID`),
   CONSTRAINT `fp_form_data_ibfk_1` FOREIGN KEY (`TEMPLATE_ID`) REFERENCES `fp_form_template` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of fp_form_data
--- ----------------------------
-
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Table structure for `fp_form_template`
 -- ----------------------------
@@ -127,5 +152,4 @@ CREATE TABLE `fp_form_template` (
   CONSTRAINT `fp_form_template_ibfk_1` FOREIGN KEY (`COMPANY_ID`) REFERENCES `fp_company` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `fp_form_template_ibfk_2` FOREIGN KEY (`CREATED_BY`) REFERENCES `fp_company_user` (`ID`),
   CONSTRAINT `fp_form_template_ibfk_3` FOREIGN KEY (`LAST_MODIFIED_BY`) REFERENCES `fp_company_user` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
