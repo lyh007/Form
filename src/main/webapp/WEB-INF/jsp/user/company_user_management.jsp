@@ -8,7 +8,9 @@
     <title>Form Management</title>
     <script type="text/javascript">
         function delete_confirm(id) {
-            window.location = "<%=basePath%>/user/user!delete.action?user.id=" + id;
+           if(confirm("Are your sure delete user?")){
+                 location.href = "<%=basePath%>/user/user!delete.action?user.id="+id;
+           }
         }
     </script>
 </head>
@@ -42,7 +44,7 @@
                 <td>
                     <s:if test="type==0"><a href="user/user!preUpdate.action?user.id=${id}">Update</a></s:if>
                     <s:else>
-                        <a href="user/user!preUpdate.action?user.id=${id}">Update</a>|<a href="user/user!delete.action?user.id=${id}">Delete</a>
+                        <a href="user/user!preUpdate.action?user.id=${id}">Update</a>|<a href="javascript:void(0);" onclick="delete_confirm(${id});">Delete</a>
                     </s:else>
                 </td>
             </tr>

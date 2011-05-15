@@ -8,8 +8,8 @@
     <title>Form Management</title>
     <script type="text/javascript">
         function delete_confirm(id) {
-            alert(id);
-            window.location.href = "<%=request.getContextPath()%>/template/template!delete.action?template.id="+id;
+            if(confirm("Are you sure delete template?"))
+            window.location.href = "<%=basePath%>/template/template!delete.action?template.id="+id;
         }
     </script>
 </head>
@@ -37,7 +37,7 @@
                 <td><a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">View Records</a>|
                     <a href="template/template!preUpdate.action?template.id=<s:property value="id"/>">Update
                         Template</a> |
-                    <a href="template/template!delete.action?template.id=<s:property value="id"/>">Delete Template</a>
+                    <a href="javascript:void(0)" onclick="delete_confirm(<s:property value="id"/>);">Delete Template</a>
                 </td>
             </tr>
         </s:iterator>
