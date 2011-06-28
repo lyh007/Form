@@ -5,8 +5,15 @@
           select ID,COMPANY_ID as companyId,CREATED_BY as createdBy,LAST_MODIFIED_BY as lastModifiedBy,FORM_TITLE as title,FORM_DESCRIPTION as description,STATUS from fp_form_template  where id=#{id}
     </select>
     <insert id="save" parameterType="Template">
+        <![CDATA[
         insert into fp_form_template (ID,COMPANY_ID,CREATED_BY,LAST_MODIFIED_BY,FORM_TITLE,FORM_DESCRIPTION,STATUS)
         values (#{id},#{companyId},#{createdBy},#{lastModifiedBy},#{title},#{description},#{status})
+        ]]>
+         <selectKey keyProperty="id" resultType="long">
+			<![CDATA[
+				SELECT LAST_INSERT_ID() AS VALUE
+			]]>
+		</selectKey>
     </insert>
     <update id="update" parameterType="Template">
         update fp_form_template set
