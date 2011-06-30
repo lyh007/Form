@@ -1,7 +1,7 @@
 package com.form.web.filter;
 
 import com.form.SystemConstants;
-import com.form.model.User;
+import com.form.model.CompanyUser;
 import org.apache.commons.lang.xwork.StringUtils;
 
 import javax.servlet.*;
@@ -39,8 +39,8 @@ public class LoginFilter implements Filter {
             buffer.append("?");
             buffer.append(queryString);
         }
-        String fullUrl = buffer.toString();//client user Browser request full URL
-        //Need to check whether the user is logged in, there is no need to check requests, such as requests for pictures, request CSS, JS or JVM internal requests initiated the request for the page
+        String fullUrl = buffer.toString();//client companyuser Browser request full URL
+        //Need to check whether the companyuser is logged in, there is no need to check requests, such as requests for pictures, request CSS, JS or JVM internal requests initiated the request for the page
         boolean checkPermission = true;
         for (String ingoreUrl : ingoreUrls) {
             if (fullUrl.indexOf(ingoreUrl) != -1) {//Client requests the URL string, including the need to check whether the login string fragments do not need to check permissions
@@ -50,8 +50,8 @@ public class LoginFilter implements Filter {
         }
         if (!checkPermission) {//Do not need to check login, direct release
             filterChain.doFilter(servletRequest, servletResponse);
-        } else {    //Need to check the authority to determine whether the user has logged
-            User loginUser = (User) httpRequest.getSession().getAttribute(SystemConstants.SESSION_USER);
+        } else {    //Need to check the authority to determine whether the companyuser has logged
+            CompanyUser loginUser = (CompanyUser) httpRequest.getSession().getAttribute(SystemConstants.SESSION_USER);
             if (loginUser == null) {
                 //If it is blocked, then the first record of the request to the address of the last to jump over the next login.
                 httpRequest.getSession().setAttribute(SystemConstants.SESSION_URL, fullUrl);

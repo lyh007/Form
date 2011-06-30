@@ -1,0 +1,168 @@
+<?xml version="1.0"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="form" product="MySQL" version="5.1.45-community" jdbc-version="3.0" driver-version="mysql-connector-java-5.1.13 ( Revision: ${bzr.revision-id} )" uuid="6504409e-8fd6-4c4b-b0f4-982d1b7912f1">
+    <extra-name-characters>#@</extra-name-characters>
+    <identifier-quote-string>`</identifier-quote-string>
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://localhost:3306/form</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>df9bdf9bdf9bdf9bdf9bdf9b</user-password>
+    <default-dialect>MySQL</default-dialect>
+    <libraries>
+      <library>
+        <url>file://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.13/mysql-connector-java-5.1.13.jar</url>
+      </library>
+    </libraries>
+    <table name="fp_company" schema="" catalog="form" type="TABLE">
+      <column name="ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
+      <column name="FP_ID" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <column name="NAME" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" />
+      <column name="EMAIL" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="REF_NUMBER" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="id" />
+    </table>
+    <table name="fp_company_user" schema="" catalog="form" type="TABLE">
+      <column name="ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
+      <column name="COMPANY_ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="FIRST_NAME" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <column name="MIDDLE_INITIAL" sqlType="VARCHAR" length="5" precision="0" nullable="true" jdbcType="12" />
+      <column name="LAST_NAME" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <column name="TITLE" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="STATUS" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" />
+      <column name="TYPE" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" />
+      <column name="FP_LOGIN_ID" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <column name="FP_PASSWORD" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <column name="EMAIL" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="id" />
+      <foreign-key name="fp_company_user_ibfk_1" columns="COMPANY_ID" ref-table="fp_company" ref-schema="" ref-catalog="form" ref-columns="ID" cascade-remove="true" />
+      <index name="FP_USER_COMPANY_ID_IDX" unique="false" columns="COMPANY_ID" />
+    </table>
+    <table name="fp_complete_request" schema="" catalog="form" type="TABLE">
+      <column name="ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
+      <column name="REF_NUMBER" sqlType="VARCHAR" length="12" precision="0" nullable="false" jdbcType="12" />
+      <column name="FORM_ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="COMPANY_ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="COMPANY_USER_ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="CONSUMER_ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="FP_FORM_DATA_ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="true" jdbcType="-5" />
+      <column name="NOTE" sqlType="VARCHAR" length="200" precision="0" nullable="true" jdbcType="12" />
+      <column name="STATUS" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" />
+      <column name="REQUEST_DATE" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91" />
+      <primary-key name="PRIMARY" columns="id" />
+      <index name="fp_request_unique" unique="true" columns="FORM_ID" />
+      <index name="fp_request_unique" unique="true" columns="COMPANY_ID" />
+      <index name="fp_request_unique" unique="true" columns="COMPANY_USER_ID" />
+      <index name="fp_request_unique" unique="true" columns="CONSUMER_ID" />
+    </table>
+    <table name="fp_form_data" schema="" catalog="form" type="TABLE">
+      <column name="id" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
+      <column name="TEMPLATE_ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="true" jdbcType="-5" />
+      <column name="text_20_1" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_2" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_3" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_4" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_5" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_6" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_7" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_8" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_9" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_10" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_11" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_12" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_13" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_14" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_15" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_16" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_17" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_18" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_19" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_20_20" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_1" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_2" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_3" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_4" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_5" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_6" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_7" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_8" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_9" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_10" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_11" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_12" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_13" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_14" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_15" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_16" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_17" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_18" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_19" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_50_20" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_1" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_2" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_3" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_4" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_5" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_6" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_7" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_8" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_9" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_10" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_11" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_12" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_13" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_14" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_15" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_16" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_17" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_18" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_19" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_100_20" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_1" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_2" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_3" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_4" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_5" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_6" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_7" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_8" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_9" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_500_10" sqlType="VARCHAR" length="500" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_2000_1" sqlType="VARCHAR" length="2000" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_2000_2" sqlType="VARCHAR" length="2000" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_2000_3" sqlType="VARCHAR" length="2000" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_2000_4" sqlType="VARCHAR" length="2000" precision="0" nullable="true" jdbcType="12" />
+      <column name="text_2000_5" sqlType="VARCHAR" length="2000" precision="0" nullable="true" jdbcType="12" />
+      <column name="consumer_id" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <primary-key name="PRIMARY" columns="id" />
+      <foreign-key name="fp_form_data_ibfk_1" columns="TEMPLATE_ID" ref-table="fp_form_template" ref-schema="" ref-catalog="form" ref-columns="ID" />
+      <index name="FP_FORM_DATA_IDX" unique="false" columns="TEMPLATE_ID" />
+    </table>
+    <table name="fp_form_template" schema="" catalog="form" type="TABLE">
+      <column name="ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
+      <column name="COMPANY_ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="CREATED_BY" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="LAST_MODIFIED_BY" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" />
+      <column name="FORM_TITLE" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" />
+      <column name="FORM_DESCRIPTION" sqlType="VARCHAR" length="300" precision="0" nullable="true" jdbcType="12" />
+      <column name="STATUS" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" />
+      <primary-key name="PRIMARY" columns="id" />
+      <foreign-key name="fp_form_template_ibfk_1" columns="COMPANY_ID" ref-table="fp_company" ref-schema="" ref-catalog="form" ref-columns="ID" cascade-remove="true" />
+      <foreign-key name="fp_form_template_ibfk_2" columns="CREATED_BY" ref-table="fp_company_user" ref-schema="" ref-catalog="form" ref-columns="ID" />
+      <foreign-key name="fp_form_template_ibfk_3" columns="LAST_MODIFIED_BY" ref-table="fp_company_user" ref-schema="" ref-catalog="form" ref-columns="ID" />
+      <index name="FP_FORM_COMPANY_ID_IDX" unique="false" columns="COMPANY_ID" />
+      <index name="FP_FORM_CREATED_BY_IDX" unique="false" columns="CREATED_BY" />
+      <index name="FP_FORM_LST_MOD_BY_IDX" unique="false" columns="LAST_MODIFIED_BY" />
+    </table>
+    <table name="fp_user" schema="" catalog="form" type="TABLE">
+      <column name="ID" sqlType="BIGINT UNSIGNED" length="20" precision="0" nullable="false" jdbcType="-5" autoIncrement="true" />
+      <column name="REF_NUMBER" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12" />
+      <column name="FIRST_NAME" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <column name="MIDDLE_INITIAL" sqlType="VARCHAR" length="5" precision="0" nullable="false" jdbcType="12" />
+      <column name="LAST_NAME" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12" />
+      <column name="EMAIL" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12" />
+      <column name="STATUS" sqlType="TINYINT" length="3" precision="0" nullable="false" jdbcType="-6" />
+      <column name="FP_LOGIN_ID" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <column name="FP_PASSWORD" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="id" />
+    </table>
+  </data-source>
+</component>

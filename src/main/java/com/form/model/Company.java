@@ -9,6 +9,7 @@ public class Company extends DomainObject {
     private String companyId; //db companyId
     private String name;   //company name
     private String email; //company Email
+    private String refNumber; //REF Number now Generate by Tool Class
 
     public Company() {
     }
@@ -35,5 +36,13 @@ public class Company extends DomainObject {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRefNumber() {
+        return refNumber;
+    }
+
+    public void setRefNumber(String refNumber) {
+        this.refNumber = refNumber;
     }
 }

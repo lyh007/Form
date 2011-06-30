@@ -14,14 +14,14 @@
 </head>
 <body onload="onLoad()">
 <div class="header">
-    Sign in as form creator
+   Sign in as Company
 </div>
 <form action="company/company!sign.action" method="post">
     <div>
         <s:actionerror/>
         <table border=0>
             <tr>
-                <td>Form Creator Id</td>
+                <td>Company Id</td>
                 <td><input type="text" name="formCreatorId" value="${formCreatorId}" id="formCreatorId"/></td>
             </tr>
             <tr>
@@ -39,6 +39,7 @@
         <input type="submit" value="SUBMIT"> &nbsp; <input type="reset" value="Reset">
     </div>
 </form>
-<div class="footer"><a href="company/company!create.action">Create a New Form Creator</a></div>
+<div class="footer"><a href="company/company!create.action">New Company Sign Upr</a></div>
+<div class="footer"><a href="user_index.htm">Not a company, switch to single user login</a></div>
 </body>
 </html>

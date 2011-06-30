@@ -1,7 +1,7 @@
 package com.form.web.action;
 
 import com.form.SystemConstants;
-import com.form.model.User;
+import com.form.model.CompanyUser;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -24,7 +24,7 @@ public class LogoutAction extends BaseAction {
         HttpSession session = request.getSession();
         if (session != null) {
             //删除Session中的用户信息
-            User user = (User) session.getAttribute(SystemConstants.SESSION_USER);
+            CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
             if (user != null) {
                 //ss.logout(admin.getName()); TODO:这里暂不需要设置用户的在线状态
                 session.removeAttribute(SystemConstants.SESSION_USER);

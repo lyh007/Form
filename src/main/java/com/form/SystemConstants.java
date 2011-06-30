@@ -2,11 +2,11 @@ package com.form;
 
 public interface SystemConstants {
     /**
-     * User key, stored in the HttpSession object reference User
+     * CompanyUser key, stored in the HttpSession object reference CompanyUser
      */
     public final static String SESSION_USER = "session_user";
     /**
-     * User Name, stored in the HttpSession
+     * CompanyUser Name, stored in the HttpSession
      */
     public final static String SESSION_USER_LOGINID = "session_user_loginId";
     /**

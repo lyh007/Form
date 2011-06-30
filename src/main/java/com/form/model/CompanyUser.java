@@ -3,27 +3,37 @@ package com.form.model;
 import com.form.base.DomainObject;
 
 /**
- * common user
+ * CompanyUser Persist Object
  */
-public class User extends DomainObject {
-    private String refNumber;//number and characters generated
+public class CompanyUser extends DomainObject {
+    private long companyId;   //Company Id
     private String firstName;
     private String middleInital;
     private String lastName;
-    private String email;
-    private int status; //1 ( enabled), 0 (disabled)
-    private String loginId;
+    private String title;
+    private int status; //0:Disabled 1:Enabled
+    private int type; //0:Super CompanyUser 9:Read Only
+     private String userId; //db FP_LOGIN_ID
     private String password;
+    private String email;
 
-    public User() {
+    public CompanyUser() {
     }
 
-    public String getRefNumber() {
-        return refNumber;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setRefNumber(String refNumber) {
-        this.refNumber = refNumber;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(long companyId) {
+        this.companyId = companyId;
     }
 
     public String getFirstName() {
@@ -50,12 +60,12 @@ public class User extends DomainObject {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getTitle() {
+        return title;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getStatus() {
@@ -66,12 +76,12 @@ public class User extends DomainObject {
         this.status = status;
     }
 
-    public String getLoginId() {
-        return loginId;
+    public int getType() {
+        return type;
     }
 
-    public void setLoginId(String loginId) {
-        this.loginId = loginId;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String getPassword() {
@@ -80,5 +90,13 @@ public class User extends DomainObject {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

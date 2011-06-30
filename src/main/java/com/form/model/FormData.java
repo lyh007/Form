@@ -7,6 +7,7 @@ import com.form.base.DomainObject;
  */
 public class FormData extends DomainObject {
     private long templateId;
+    private long consumerId;
     private String text_20_1;
     private String text_20_2;
     private String text_20_3;
@@ -689,5 +690,13 @@ public class FormData extends DomainObject {
 
     public void setTemplateId(long templateId) {
         this.templateId = templateId;
+    }
+
+    public long getConsumerId() {
+        return consumerId;
+    }
+
+    public void setConsumerId(long consumerId) {
+        this.consumerId = consumerId;
     }
 }

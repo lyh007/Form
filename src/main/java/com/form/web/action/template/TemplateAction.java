@@ -3,8 +3,8 @@ package com.form.web.action.template;
 import com.form.SystemConstants;
 import com.form.base.OceanRuntimeException;
 import com.form.model.Company;
+import com.form.model.CompanyUser;
 import com.form.model.Template;
-import com.form.model.User;
 import com.form.service.TemplateService;
 import com.form.web.action.BaseAction;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -38,7 +38,7 @@ public class TemplateAction extends BaseAction {
     public String execute() throws Exception {
         HttpSession session = request.getSession();
         Company sessionCompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        User user = (User) session.getAttribute(SystemConstants.SESSION_USER);
+        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
         templates = templateService.getTemplatesByCompanyId(sessionCompany.getId());
         return SUCCESS;
     }
@@ -50,7 +50,7 @@ public class TemplateAction extends BaseAction {
     public String create() throws Exception {
         HttpSession session = request.getSession();
         Company company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        User user = (User) session.getAttribute(SystemConstants.SESSION_USER);
+        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
         if (template == null) {
             addActionError("please input template infomation!");
             return "create";
@@ -88,11 +88,11 @@ public class TemplateAction extends BaseAction {
         return "preUpdate";
     }
 
-    //update template User
+    //update template CompanyUser
     public String update() throws Exception {
         HttpSession session = request.getSession();
         Company company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        User user = (User) session.getAttribute(SystemConstants.SESSION_USER);
+        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
         if (template == null) {
             addActionError("please input template infomation!");
             return "preCreate";
@@ -118,7 +118,7 @@ public class TemplateAction extends BaseAction {
         return execute();
     }
 
-    //delete template User
+    //delete template CompanyUser
     public String delete() throws Exception {
         if (template == null || template.getId() == 0L) {
             throw new OceanRuntimeException("delete Template paramter is wrong!");

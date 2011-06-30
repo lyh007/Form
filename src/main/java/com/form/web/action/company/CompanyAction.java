@@ -2,11 +2,11 @@ package com.form.web.action.company;
 
 import com.form.SystemConstants;
 import com.form.model.Company;
+import com.form.model.CompanyUser;
 import com.form.model.Template;
-import com.form.model.User;
 import com.form.service.CompanyService;
 import com.form.service.TemplateService;
-import com.form.service.UserService;
+import com.form.service.CompanyUserService;
 import com.form.web.action.BaseAction;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -34,24 +34,24 @@ public class CompanyAction extends BaseAction {
     @Autowired
     private CompanyService companyService;
     @Autowired
-    private UserService userService;
+    private CompanyUserService companyUserService;
     @Autowired
     private TemplateService templateService;
 
     private List<Template> templates = new ArrayList<Template>();
     private Company company = new Company();
-    private User user = new User();
+    private CompanyUser user = new CompanyUser();
     private String rePassword;
     private String formCreatorId;
     private String userId;
     private String password;
-    private List<User> users = new ArrayList<User>();
+    private List<CompanyUser> users = new ArrayList<CompanyUser>();
 
     @Override
     public String execute() throws Exception {
         HttpSession session = request.getSession();
         Company sessionCompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        User user = (User) session.getAttribute(SystemConstants.SESSION_USER);
+        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
         templates = templateService.getTemplatesByCompanyId(sessionCompany.getId());
         return SUCCESS;
     }
@@ -63,11 +63,11 @@ public class CompanyAction extends BaseAction {
             return "login";
         }
         if (userId == null || userId.length() == 0) {
-            addActionError("please input User Id!");
+            addActionError("please input CompanyUser Id!");
             return "login";
         }
         if (password == null || password.length() == 0) {
-            addActionError("please input User Password!");
+            addActionError("please input CompanyUser Password!");
             return "login";
         }
         company = companyService.getByCompanyId(formCreatorId);
@@ -75,12 +75,12 @@ public class CompanyAction extends BaseAction {
             addActionError(formCreatorId + " company is not exist!");
             return "login";
         }
-        User param = new User();
+        CompanyUser param = new CompanyUser();
         param.setCompanyId(company.getId());
         param.setUserId(userId);
-        User dbUser = userService.getUserByCompanyIdAndUserId(param);
+        CompanyUser dbUser = companyUserService.getUserByCompanyIdAndUserId(param);
         if (dbUser == null) {
-            addActionError(userId + " User is not exist!");
+            addActionError(userId + " CompanyUser is not exist!");
             return "login";
         }
         if (!dbUser.getPassword().equalsIgnoreCase(password)) {
@@ -88,7 +88,7 @@ public class CompanyAction extends BaseAction {
             return "login";
         }
         if (dbUser.getStatus() == 0) {
-            addActionError("User is Disabled!");
+            addActionError("CompanyUser is Disabled!");
             return "login";
         }
         templates = templateService.getTemplatesByCompanyId(company.getId());
@@ -105,7 +105,7 @@ public class CompanyAction extends BaseAction {
         return "create";
     }
 
-    //create company and super user
+    //create company and super companyuser
     public String registration() throws Exception {
         //Don't input company base infomation
         if (company == null) {
@@ -129,20 +129,20 @@ public class CompanyAction extends BaseAction {
             return "create";
         }
         if (user.getUserId() == null || user.getUserId().length() == 0) {
-            addActionError("please input User Id!");
+            addActionError("please input CompanyUser Id!");
             return "create";
         }
         if (user.getFirstName() == null || user.getFirstName().length() == 0) {
-            addActionError("please input User FirstName!");
+            addActionError("please input CompanyUser FirstName!");
             return "create";
 
         }
         if (user.getPassword() == null || user.getPassword().length() == 0) {
-            addActionError("please input User password!");
+            addActionError("please input CompanyUser password!");
             return "create";
         }
         if (rePassword == null || rePassword.length() == 0) {
-            addActionError("please input user  rePassword!");
+            addActionError("please input companyuser  rePassword!");
             return "create";
         }
         if (!user.getPassword().equals(rePassword)) {
@@ -156,9 +156,9 @@ public class CompanyAction extends BaseAction {
         }
         companyService.saveCompany(company);
         user.setCompanyId(company.getId());
-        user.setType(0);     //0:Super User 9:Read Only
+        user.setType(0);     //0:Super CompanyUser 9:Read Only
         user.setStatus(1);   //0:Disabled 1:Enabled
-        userService.save(user);
+        companyUserService.save(user);
 
         HttpSession session = request.getSession();
         session.setAttribute(SystemConstants.SESSION_USER, user);
@@ -172,10 +172,10 @@ public class CompanyAction extends BaseAction {
     public String preUpdate() throws Exception {
         HttpSession session = request.getSession();
         Company sessioncompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        user = (User) session.getAttribute(SystemConstants.SESSION_USER);
+        user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
         //update from DB
         company = companyService.getByCompanyId(sessioncompany.getCompanyId());
-        users = userService.getSuperUsers(company.getId());
+        users = companyUserService.getSuperUsers(company.getId());
         return "preUpdate";
     }
 
@@ -186,25 +186,25 @@ public class CompanyAction extends BaseAction {
         if (company == null) {
             addActionError("please input company infomation!");
             Company dbCompany = companyService.getByCompanyId(sessionCompany.getCompanyId());
-            users = userService.getSuperUsers(dbCompany.getId());
+            users = companyUserService.getSuperUsers(dbCompany.getId());
             return "preUpdate";
         }
         if (company.getName() == null || company.getName().length() == 0) {
             addActionError("please input company name!");
             Company dbCompany = companyService.getByCompanyId(sessionCompany.getCompanyId());
-            users = userService.getSuperUsers(dbCompany.getId());
+            users = companyUserService.getSuperUsers(dbCompany.getId());
             return "preUpdate";
         }
         if (company.getEmail() == null || company.getEmail().length() == 0) {
             addActionError("please input company Email!");
             Company dbCompany = companyService.getByCompanyId(sessionCompany.getCompanyId());
-            users = userService.getSuperUsers(dbCompany.getId());
+            users = companyUserService.getSuperUsers(dbCompany.getId());
             return "preUpdate";
         }
         if (company.getCompanyId() == null || company.getCompanyId().length() == 0) {
             addActionError("please input company Id!");
             Company dbCompany = companyService.getByCompanyId(sessionCompany.getCompanyId());
-            users = userService.getSuperUsers(dbCompany.getId());
+            users = companyUserService.getSuperUsers(dbCompany.getId());
             return "preUpdate";
         }
 
@@ -226,11 +226,11 @@ public class CompanyAction extends BaseAction {
         this.company = company;
     }
 
-    public User getUser() {
+    public CompanyUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(CompanyUser user) {
         this.user = user;
     }
 
@@ -266,11 +266,11 @@ public class CompanyAction extends BaseAction {
         this.password = password;
     }
 
-    public List<User> getUsers() {
+    public List<CompanyUser> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<CompanyUser> users) {
         this.users = users;
     }
 

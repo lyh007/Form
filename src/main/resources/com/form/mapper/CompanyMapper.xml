@@ -9,8 +9,8 @@
     </select>
     <insert id="save" parameterType="Company">
        <![CDATA[
-        insert into fp_company (ID,FP_ID,NAME,EMAIL)
-        values (#{id},#{companyId},#{name},#{email})
+        insert into fp_company (ID,FP_ID,NAME,EMAIL,REF_NUMBER)
+        values (#{id},#{companyId},#{name},#{email},#{refNumber})
           ]]>
          <selectKey keyProperty="id" resultType="long">
 			<![CDATA[
@@ -21,7 +21,7 @@
     <insert id="saveCompany" parameterType="Company">
         <![CDATA[
         insert into fp_company (ID,FP_ID,NAME,EMAIL)
-        values (#{id},#{companyId},#{name},#{email})
+        values (#{id},#{companyId},#{name},#{email},#{refNumber})
         ]]>
         <selectKey keyProperty="id" resultType="long">
 			<![CDATA[
