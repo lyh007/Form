@@ -2,21 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.form.mapper.CompanyUserMapper">
     <select id="getById" parameterType="int" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as loginId,FP_PASSWORD as password,EMAIL
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
           from fp_company_user  where id=#{id}
     </select>
     <select id="getByUserId" parameterType="String" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as loginId,FP_PASSWORD as password,EMAIL
-          from fp_company_user  where FP_LOGIN_ID=#{loginId}
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
+          from fp_company_user  where FP_LOGIN_ID=#{companyUserLoginId}
     </select>
     <select id="getUserByCompanyIdAndUserId" parameterType="CompanyUser" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as loginId,FP_PASSWORD as password,EMAIL
-          from fp_company_user  where COMPANY_ID=#{companyId} and FP_LOGIN_ID=#{loginId}
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
+          from fp_company_user  where COMPANY_ID=#{companyId} and FP_LOGIN_ID=#{companyUserLoginId}
     </select>
     <insert id="save" parameterType="CompanyUser">
         <![CDATA[
         insert into fp_company_user (ID,COMPANY_ID,FIRST_NAME,MIDDLE_INITIAL,LAST_NAME,TITLE,STATUS,TYPE,FP_LOGIN_ID,FP_PASSWORD,EMAIL)
-        values (#{id},#{companyId},#{firstName},#{middleInital},#{lastName},#{title},#{status},#{type},#{loginId},#{password},#{email})
+        values (#{id},#{companyId},#{firstName},#{middleInital},#{lastName},#{title},#{status},#{type},#{companyUserLoginId},#{password},#{email})
         ]]>
          <selectKey keyProperty="id" resultType="long">
 			<![CDATA[
@@ -33,7 +33,7 @@
             TITLE =#{title},
             STATUS =#{status},
             TYPE =#{type},
-            FP_LOGIN_ID =#{loginId},
+            FP_LOGIN_ID =#{companyUserLoginId},
             FP_PASSWORD =#{password},
             EMAIL =#{email}
             where id=#{id}
@@ -49,11 +49,11 @@
         select count(*) from fp_company_user
     </select>
     <select id="getUsersByCompanyId" parameterType="long" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as loginId,FP_PASSWORD as password,EMAIL
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
           from fp_company_user  where COMPANY_ID=#{companyId}
     </select>
     <select id="getSuperUsers" parameterType="long" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as loginId,FP_PASSWORD as password,EMAIL
+          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
           from fp_company_user  where COMPANY_ID=#{companyId} and TYPE=0
     </select>
 </mapper>

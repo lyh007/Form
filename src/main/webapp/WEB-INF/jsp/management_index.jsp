@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td>User Id</td>
-                <td><input type="text" name="userId" value="${userId}"/></td>
+                <td><input type="text" name="companyUserLoginId" value="${companyUserLoginId}"/></td>
             </tr>
             <tr>
                 <td>Password</td>
@@ -39,7 +39,7 @@
         <input type="submit" value="SUBMIT"> &nbsp; <input type="reset" value="Reset">
     </div>
 </form>
-<div class="footer"><a href="company/company!create.action">New Company Sign Upr</a></div>
+<div class="footer"><a href="company/company!create.action">New Company Sign Up</a></div>
 <div class="footer"><a href="user_index.htm">Not a company, switch to single user login</a></div>
 </body>
 </html>

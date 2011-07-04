@@ -13,19 +13,19 @@ public class CompanyUser extends DomainObject {
     private String title;
     private int status; //0:Disabled 1:Enabled
     private int type; //0:Super CompanyUser 9:Read Only
-     private String userId; //db FP_LOGIN_ID
+     private String loginId; //db FP_LOGIN_ID
     private String password;
     private String email;
 
     public CompanyUser() {
     }
 
-    public String getUserId() {
-        return userId;
+    public String getLoginId() {
+        return loginId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
     public long getCompanyId() {

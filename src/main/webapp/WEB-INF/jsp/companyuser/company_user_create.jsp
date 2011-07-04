@@ -11,33 +11,33 @@
 
 <div class="header">Company User Create</div>
 <s:actionerror/>
-<form action="user/user!create.action" method="post">
+<form action="companyuser/company-user!create.action" method="post">
     <div>
         <table border=0>
             <tr>
                 <th>First Name:</th>
-                <td><input type="text" name="user.firstName" value="${user.firstName}"></td>
+                <td><input type="text" name="companyUser.firstName" value="${companyUser.firstName}"></td>
             </tr>
             <tr>
                 <th>Middle Initial:</th>
-                <td><input type="text" name="user.middleInital" value="${user.middleInital}"/></td>
+                <td><input type="text" name="companyUser.middleInital" value="${companyUser.middleInital}"/></td>
             </tr>
             <tr>
                 <th>Last Name:</th>
-                <td><input type="text" name="user.lastName" value="${user.lastName}"/></td>
+                <td><input type="text" name="companyUser.lastName" value="${companyUser.lastName}"/></td>
             </tr>
             <tr>
                 <th>Title:</th>
-                <td><input type="text" name="user.title" value="${user.title}"/></td>
+                <td><input type="text" name="companyUser.title" value="${companyUser.title}"/></td>
             </tr>
             <tr>
                 <th>Login ID:</th>
-                <td><input type="text" name="user.userId" value="${user.userId}"/></td>
+                <td><input type="text" name="companyUser.loginId" value="${companyUser.loginId}"/></td>
             </tr>
             <tr>
                 <th>Status:</th>
                 <td>
-                    <select name="user.status">
+                    <select name="companyUser.status">
                         <option value="0">Disabled</option>
                         <option value="1" selected>Enabled</option>
                     </select></td>
@@ -45,14 +45,14 @@
             <tr>
                 <th>Type:</th>
                 <td>
-                    <select name="user.type">
+                    <select name="companyUser.type">
                         <option value="0">Super User</option>
                         <option value="9">Read Only</option>
                     </select></td>
             </tr>
             <tr>
                 <th>Password:</th>
-                <td><input type="password" name="user.password" value="${user.password}"/></td>
+                <td><input type="password" name="companyUser.password" value="${companyUser.password}"/></td>
             </tr>
             <tr>
                 <th>Password Re-Type:</th>
@@ -65,7 +65,7 @@
     </div>
 </form>
 <div>
-    <a href="user/user.action">Back To User Management</a>
+    <a href="companyuser/company-user.action">Back To User Management</a>
 </div>
 
 </body>

@@ -47,7 +47,7 @@
     <a href="template/template!preCreate.action">Create a New Form Template</a>
 </div>
 <hr/>
-<div class="footer"><a href="user/user.action">Company User Management</a> |
+<div class="footer"><a href="companyuser/company-user.action">Company User Management</a> |
     <a href="company/company!preUpdate.action">Company Profile Update</a> |
     <a href="logout.action">Logout System</a>
 </div>

@@ -28,7 +28,7 @@
             <tr>
                 <th>Status:</th>
                 <td>
-                    <select name="user.status">
+                    <select name="template.status">
                         <option value="1" selected>Active</option>
                         <option value="0">inActive</option>
                     </select></td>

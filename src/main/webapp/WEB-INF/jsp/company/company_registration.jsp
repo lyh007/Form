@@ -31,19 +31,19 @@
         <table>
             <tr>
                 <th>Super User ID:</th>
-                <td><input type="text" name="user.userId" value="<s:property value="user.userId"/>"/></td>
+                <td><input type="text" name="companyUser.loginId" value="<s:property value="companyUser.loginId"/>"/></td>
             </tr>
             <tr>
                 <th>Super User First Name:</th>
-                <td><input type="text" name="user.firstName" value="${user.firstName}"/></td>
+                <td><input type="text" name="companyUser.firstName" value="${companyUser.firstName}"/></td>
             </tr>
             <tr>
                 <th>Super User Last Name:</th>
-                <td><input type="text" name="user.lastName" value="${user.lastName}"/></td>
+                <td><input type="text" name="companyUser.lastName" value="${companyUser.lastName}"/></td>
             </tr>
             <tr>
                 <th>Super User Password:</th>
-                <td><input type="password" name="user.password" value="${user.password}"/></td>
+                <td><input type="password" name="companyUser.password" value="${companyUser.password}"/></td>
             </tr>
             <tr>
                 <th>Super User Password Re-Type:</th>

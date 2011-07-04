@@ -1,6 +1,6 @@
 www.formphile.com/www.formphila.com
 
-Use view to link user data to generic table.
+Use view to link companyUser data to generic table.
 
 Jsp define which table to use.
 

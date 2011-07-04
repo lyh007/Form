@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.form.mapper.CompanyMapper">
     <select id="getById" parameterType="int" resultType="Company">
-          select ID,FP_ID as companyId,NAME,EMAIL from fp_company  where id=#{id}
+          select ID,FP_ID as companyId,NAME,EMAIL,REF_NUMBER AS refNumber from fp_company  where id=#{id}
     </select>
      <select id="getByCompanyId" parameterType="String" resultType="Company">
-          select ID,FP_ID as companyId,NAME,EMAIL from fp_company  where FP_ID=#{companyId}
+          select ID,FP_ID as companyId,NAME,EMAIL,REF_NUMBER AS refNumber from fp_company  where FP_ID=#{companyId}
     </select>
     <insert id="save" parameterType="Company">
        <![CDATA[
@@ -20,7 +20,7 @@
     </insert>
     <insert id="saveCompany" parameterType="Company">
         <![CDATA[
-        insert into fp_company (ID,FP_ID,NAME,EMAIL)
+        insert into fp_company (ID,FP_ID,NAME,EMAIL,REF_NUMBER)
         values (#{id},#{companyId},#{name},#{email},#{refNumber})
         ]]>
         <selectKey keyProperty="id" resultType="long">
@@ -33,7 +33,8 @@
         update fp_company set
             FP_ID=#{companyId},
             NAME=#{name},
-            EMAIL=#{email}
+            EMAIL=#{email},
+            REF_NUMBER=#{refNumber}
             where id=#{id}
     </update>
     <delete id="delete" parameterType="int">

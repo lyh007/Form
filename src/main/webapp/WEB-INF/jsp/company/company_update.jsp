@@ -30,15 +30,15 @@
                 <th>Super User ID:</th>
                 <td>
                     <select>
-                        <s:iterator value="users" status="userStatus">
-                            <s:if test="userId==user.userId">
-                                <option selected="selected" value="<s:property value="userId"/>"><s:property
-                                        value="userId"/>(<s:property value="firstName"/>&nbsp;<s:property
+                        <s:iterator value="companyUsers" status="companyUserStatus">
+                            <s:if test="companyUserLoginId==companyUser.companyUserLoginId">
+                                <option selected="selected" value="<s:property value="companyUserLoginId"/>"><s:property
+                                        value="companyUserLoginId"/>(<s:property value="firstName"/>&nbsp;<s:property
                                         value="lastName"/>)
                                 </option>
                             </s:if>
                             <s:else>
-                                <option value="<s:property value="userId"/>"><s:property value="userId"/>(<s:property
+                                <option value="<s:property value="companyUserLoginId"/>"><s:property value="companyUserLoginId"/>(<s:property
                                         value="firstName"/>&nbsp;<s:property value="lastName"/>)
                                 </option>
                             </s:else>
@@ -52,7 +52,7 @@
         <input type="submit" value="SUBMIT">
     </div>
 </form>
-<div class="footer"><a href="company/company.action">Form Management</a> | <a href="user/user.action">Company
+<div class="footer"><a href="company/company.action">Form Management</a> | <a href="companyuser/company-user.action">Company
     User Management</a></div>
 </body>
 </html>

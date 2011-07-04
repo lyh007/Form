@@ -11,5 +11,7 @@
         <typeAlias type="com.form.model.Company" alias="Company"/>
         <typeAlias type="com.form.model.CompanyUser" alias="CompanyUser"/>
         <typeAlias type="com.form.model.Template" alias="Template"/>
+        <typeAlias type="com.form.model.User" alias="User"/>
+        <typeAlias type="com.form.model.CompleteRequest" alias="CompleteRequest"/>
     </typeAliases>
 </configuration>

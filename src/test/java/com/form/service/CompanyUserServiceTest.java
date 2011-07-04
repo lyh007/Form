@@ -19,7 +19,7 @@ public class CompanyUserServiceTest extends BaseTestCase {
     @Test
     public void testGetUserByCompanyIdAndUserId() {
         CompanyUser param = new CompanyUser();
-        param.setUserId("lyh007");
+        param.setLoginId("lyh007");
         param.setCompanyId(15L);
         CompanyUser user = companyUserService.getUserByCompanyIdAndUserId(param);
         if (user != null) {
@@ -34,7 +34,7 @@ public class CompanyUserServiceTest extends BaseTestCase {
         List<CompanyUser> users = companyUserService.getSuperUsers(id);
         if (users != null && users.size() > 0) {
             for (CompanyUser user : users) {
-                System.out.println("ID:" + user.getId() + " userId:" + user.getUserId());
+                System.out.println("ID:" + user.getId() + " userId:" + user.getLoginId());
             }
         }
 

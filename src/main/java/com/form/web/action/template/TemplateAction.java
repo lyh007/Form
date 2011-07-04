@@ -71,7 +71,6 @@ public class TemplateAction extends BaseAction {
         template.setCompanyId(company.getId());
         template.setCreatedBy(user.getId());
         template.setLastModifiedBy(user.getId());
-        template.setStatus(1);
         templateService.save(template);
         return execute();
     }

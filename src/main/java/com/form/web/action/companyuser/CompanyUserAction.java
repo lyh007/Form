@@ -31,15 +31,15 @@ import java.util.List;
 public class CompanyUserAction extends BaseAction {
     @Autowired
     private CompanyUserService companyUserService;
-    private List<CompanyUser> users = new ArrayList<CompanyUser>();
+    private List<CompanyUser> companyUsers = new ArrayList<CompanyUser>();
     private String confirmPsw;
-    private CompanyUser user = new CompanyUser();
+    private CompanyUser companyUser = new CompanyUser();
 
     @Override //CompanyUser Manager
     public String execute() throws Exception {
         HttpSession session = request.getSession();
         Company company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        users = companyUserService.getByUsersByCompanyId(company.getId());
+        companyUsers = companyUserService.getByUsersByCompanyId(company.getId());
         return SUCCESS;
     }
 
@@ -50,31 +50,31 @@ public class CompanyUserAction extends BaseAction {
 
     // create company CompanyUser
     public String create() throws Exception {
-        if (user == null) {
+        if (companyUser == null) {
             addActionError("please input company infomation!");
             return "preCreate";
         }
-        if (user.getFirstName() == null || user.getFirstName().length() == 0) {
+        if (companyUser.getFirstName() == null || companyUser.getFirstName().length() == 0) {
             addActionError("please input CompanyUser FirstName!");
             return "preCreate";
         }
-        if (user.getMiddleInital() == null || user.getMiddleInital().length() == 0) {
+        if (companyUser.getMiddleInital() == null || companyUser.getMiddleInital().length() == 0) {
             addActionError("please input CompanyUser MiddleInita!");
             return "preCreate";
         }
-        if (StringUtils.isEmpty(user.getLastName())) {
+        if (StringUtils.isEmpty(companyUser.getLastName())) {
             addActionError("please input CompanyUser lastName!");
             return "preCreate";
         }
-        if (StringUtils.isEmpty(user.getTitle())) {
+        if (StringUtils.isEmpty(companyUser.getTitle())) {
             addActionError("please input CompanyUser title!");
             return "preCreate";
         }
-        if (user.getUserId() == null || user.getUserId().length() == 0) {
+        if (companyUser.getLoginId() == null || companyUser.getLoginId().length() == 0) {
             addActionError("please input CompanyUser Login Id!");
             return "preCreate";
         }
-        if (user.getPassword() == null || user.getPassword().length() == 0) {
+        if (companyUser.getPassword() == null || companyUser.getPassword().length() == 0) {
             addActionError("please input CompanyUser password!");
             return "preCreate";
         }
@@ -82,7 +82,7 @@ public class CompanyUserAction extends BaseAction {
             addActionError("please input companyuser  rePassword!");
             return "preCreate";
         }
-        if (!user.getPassword().equals(confirmPsw)) {
+        if (!companyUser.getPassword().equals(confirmPsw)) {
             addActionError("password not match Password Re-Type!");
             return "preCreate";
         }
@@ -90,25 +90,25 @@ public class CompanyUserAction extends BaseAction {
         Company company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
         CompanyUser param = new CompanyUser();
         param.setCompanyId(company.getId());
-        param.setUserId(user.getUserId());
+        param.setLoginId(companyUser.getLoginId());
         CompanyUser dbUser = companyUserService.getUserByCompanyIdAndUserId(param);
         if (dbUser != null) {
             addActionError("companyuser Id has exist!");
             return "preCreate";
         }
 
-        user.setCompanyId(company.getId());
-        companyUserService.save(user);
+        companyUser.setCompanyId(company.getId());
+        companyUserService.save(companyUser);
         return execute();
     }
 
     //prepare update CompanyUser
     public String preUpdate() throws Exception {
-        if (user == null || user.getId() == 0L) {
+        if (companyUser == null || companyUser.getId() == 0L) {
             throw new OceanRuntimeException("delete companyuser paramter is wrong!");
         }
-        user = companyUserService.getById(user.getId());
-        if (user == null) {
+        companyUser = companyUserService.getById(companyUser.getId());
+        if (companyUser == null) {
             throw new OceanRuntimeException("delete companyuser not exists!");
         }
         return "preUpdate";
@@ -116,31 +116,31 @@ public class CompanyUserAction extends BaseAction {
 
     //update company CompanyUser
     public String update() throws Exception {
-        if (user == null) {
+        if (companyUser == null) {
             addActionError("please input company infomation!");
             return "preCreate";
         }
-        if (user.getFirstName() == null || user.getFirstName().length() == 0) {
+        if (companyUser.getFirstName() == null || companyUser.getFirstName().length() == 0) {
             addActionError("please input CompanyUser FirstName!");
             return "preCreate";
         }
-        if (user.getMiddleInital() == null || user.getMiddleInital().length() == 0) {
+        if (companyUser.getMiddleInital() == null || companyUser.getMiddleInital().length() == 0) {
             addActionError("please input CompanyUser MiddleInita!");
             return "preCreate";
         }
-        if (StringUtils.isEmpty(user.getLastName())) {
+        if (StringUtils.isEmpty(companyUser.getLastName())) {
             addActionError("please input CompanyUser lastName!");
             return "preCreate";
         }
-        if (StringUtils.isEmpty(user.getTitle())) {
+        if (StringUtils.isEmpty(companyUser.getTitle())) {
             addActionError("please input CompanyUser title!");
             return "preCreate";
         }
-        if (user.getUserId() == null || user.getUserId().length() == 0) {
+        if (companyUser.getLoginId() == null || companyUser.getLoginId().length() == 0) {
             addActionError("please input CompanyUser Login Id!");
             return "preCreate";
         }
-        if (user.getPassword() == null || user.getPassword().length() == 0) {
+        if (companyUser.getPassword() == null || companyUser.getPassword().length() == 0) {
             addActionError("please input CompanyUser password!");
             return "preCreate";
         }
@@ -148,46 +148,46 @@ public class CompanyUserAction extends BaseAction {
             addActionError("please input companyuser  rePassword!");
             return "preCreate";
         }
-        if (!user.getPassword().equals(confirmPsw)) {
+        if (!companyUser.getPassword().equals(confirmPsw)) {
             addActionError("password not match Password Re-Type!");
             return "preCreate";
         }
-        CompanyUser dbUser = companyUserService.getById(user.getId());
+        CompanyUser dbUser = companyUserService.getById(companyUser.getId());
         if (dbUser == null) {
             addActionError("modify companyuser not exist!!");
             return "preCreate";
         }
-        dbUser.setFirstName(user.getFirstName());
-        dbUser.setMiddleInital(user.getMiddleInital());
-        dbUser.setLastName(user.getLastName());
-        dbUser.setTitle(user.getTitle());
-        dbUser.setStatus(user.getStatus());
-        dbUser.setType(user.getType());
-        dbUser.setTitle(user.getTitle());
-        dbUser.setPassword(user.getPassword());
+        dbUser.setFirstName(companyUser.getFirstName());
+        dbUser.setMiddleInital(companyUser.getMiddleInital());
+        dbUser.setLastName(companyUser.getLastName());
+        dbUser.setTitle(companyUser.getTitle());
+        dbUser.setStatus(companyUser.getStatus());
+        dbUser.setType(companyUser.getType());
+        dbUser.setTitle(companyUser.getTitle());
+        dbUser.setPassword(companyUser.getPassword());
         companyUserService.update(dbUser);
         return execute();
     }
 
     //delete company CompanyUser
     public String delete() throws Exception {
-        if (user == null || user.getId() == 0L) {
+        if (companyUser == null || companyUser.getId() == 0L) {
             throw new OceanRuntimeException("delete companyuser paramter is wrong!");
         }
-        user = companyUserService.getById(user.getId());
-        if (user == null) {
+        companyUser = companyUserService.getById(companyUser.getId());
+        if (companyUser == null) {
             throw new OceanRuntimeException("delete companyuser not exists!");
         }
-        companyUserService.delete(user.getId());
+        companyUserService.delete(companyUser.getId());
         return execute();
     }
 
-    public List<CompanyUser> getUsers() {
-        return users;
+    public List<CompanyUser> getCompanyUsers() {
+        return companyUsers;
     }
 
-    public void setUsers(List<CompanyUser> users) {
-        this.users = users;
+    public void setCompanyUsers(List<CompanyUser> companyUsers) {
+        this.companyUsers = companyUsers;
     }
 
     public String getConfirmPsw() {
@@ -198,11 +198,11 @@ public class CompanyUserAction extends BaseAction {
         this.confirmPsw = confirmPsw;
     }
 
-    public CompanyUser getUser() {
-        return user;
+    public CompanyUser getCompanyUser() {
+        return companyUser;
     }
 
-    public void setUser(CompanyUser user) {
-        this.user = user;
+    public void setCompanyUser(CompanyUser companyUser) {
+        this.companyUser = companyUser;
     }
 }

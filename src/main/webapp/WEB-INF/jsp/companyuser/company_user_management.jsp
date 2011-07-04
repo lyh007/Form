@@ -9,7 +9,7 @@
     <script type="text/javascript">
         function delete_confirm(id) {
            if(confirm("Are your sure delete user?")){
-                 location.href = "<%=basePath%>/user/user!delete.action?user.id="+id;
+                 location.href = "<%=basePath%>/companyuser/company-user!delete.action?companyUser.id="+id;
            }
         }
     </script>
@@ -29,9 +29,9 @@
             <th>Role</th>
             <th>Operation</th>
         </tr>
-        <s:iterator value="users" status="userStatus">
+        <s:iterator value="companyUsers" status="companyUserStatus">
             <tr>
-                <td><s:property value="userId"/></td>
+                <td><s:property value="loginId"/></td>
                 <td>
                     <s:property value="firstName"/>&nbsp;<s:property value="lastName"/>
                 </td>
@@ -42,9 +42,9 @@
                     <s:if test="type==0">Super User</s:if><s:else>Read Only</s:else>
                 </td>
                 <td>
-                    <s:if test="type==0"><a href="user/user!preUpdate.action?user.id=${id}">Update</a></s:if>
+                    <s:if test="type==0"><a href="companyuser/company-user!preUpdate.action?companyUser.id=${id}">Update</a></s:if>
                     <s:else>
-                        <a href="user/user!preUpdate.action?user.id=${id}">Update</a>|<a href="javascript:void(0);" onclick="delete_confirm(${id});">Delete</a>
+                        <a href="companyuser/company-user!preUpdate.action?companyUser.id=${id}">Update</a>|<a href="javascript:void(0);" onclick="delete_confirm(${id});">Delete</a>
                     </s:else>
                 </td>
             </tr>
@@ -52,7 +52,7 @@
     </table>
 </div>
 
-<div class="header"><a href="user/user!preCreate.action">Create A New User</a></div>
+<div class="header"><a href="companyuser/company-user!preCreate.action">Create A New User</a></div>
 
 <hr/>
 
