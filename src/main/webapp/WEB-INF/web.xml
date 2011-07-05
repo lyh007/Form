@@ -33,7 +33,9 @@
             <param-name>ignoreUrl</param-name>
             <param-value>
                 index.action,company!create.action,company!registration.action,
-                company!sign.action,login.action,logout.action,vmRequest
+                company!sign.action,login.action,logout.action,user!userLogin.action,
+                user!companyUserLogin.action,user!preRegistration.action,user!create.action,user!sign.action,
+                vmRequest
             </param-value>
         </init-param>
     </filter>

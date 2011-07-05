@@ -14,7 +14,7 @@
 </head>
 <body onload="onLoad()">
 <div class="header">
-   Sign in as Company
+    Sign in as Company
 </div>
 <form action="company/company!sign.action" method="post">
     <div>
@@ -40,6 +40,6 @@
     </div>
 </form>
 <div class="footer"><a href="company/company!create.action">New Company Sign Up</a></div>
-<div class="footer"><a href="user_index.htm">Not a company, switch to single user login</a></div>
+<div class="footer"><a href="user/user!userLogin.action">Not a company, switch to single user login</a></div>
 </body>
 </html>

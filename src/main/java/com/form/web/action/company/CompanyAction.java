@@ -52,7 +52,7 @@ public class CompanyAction extends BaseAction {
     public String execute() throws Exception {
         HttpSession session = request.getSession();
         Company sessionCompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
+        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
         templates = templateService.getTemplatesByCompanyId(sessionCompany.getId());
         return SUCCESS;
     }
@@ -94,9 +94,10 @@ public class CompanyAction extends BaseAction {
         }
         templates = templateService.getTemplatesByCompanyId(company.getId());
         HttpSession session = request.getSession();
-        session.setAttribute(SystemConstants.SESSION_USER, dbUser);
+        session.setAttribute(SystemConstants.LOGIN_TYPE, SystemConstants.LoginType.COMPANY_USER_LOGIN.toString());
+        session.setAttribute(SystemConstants.SESSION_COMPANY_USER, dbUser);
         session.setAttribute(SystemConstants.SESSION_COMPANY, company);
-        session.setAttribute(SystemConstants.SESSION_USER_LOGINID, dbUser.getLoginId());
+        session.setAttribute(SystemConstants.SESSION_COMPANY_USER_LOGINID, dbUser.getLoginId());
         session.setAttribute(SystemConstants.SESSION_COMPANY_NAME, company.getName());
         return execute();
     }
@@ -163,9 +164,10 @@ public class CompanyAction extends BaseAction {
         companyUserService.save(companyUser);
 
         HttpSession session = request.getSession();
-        session.setAttribute(SystemConstants.SESSION_USER, companyUser);
+        session.setAttribute(SystemConstants.LOGIN_TYPE, SystemConstants.LoginType.COMPANY_USER_LOGIN.toString());
+        session.setAttribute(SystemConstants.SESSION_COMPANY_USER, companyUser);
         session.setAttribute(SystemConstants.SESSION_COMPANY, company);
-        session.setAttribute(SystemConstants.SESSION_USER_LOGINID, companyUser.getLoginId());
+        session.setAttribute(SystemConstants.SESSION_COMPANY_USER_LOGINID, companyUser.getLoginId());
         session.setAttribute(SystemConstants.SESSION_COMPANY_NAME, company.getName());
         return "success";
     }
@@ -174,7 +176,7 @@ public class CompanyAction extends BaseAction {
     public String preUpdate() throws Exception {
         HttpSession session = request.getSession();
         Company sessioncompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        companyUser = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
+        companyUser = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
         //update from DB
         company = companyService.getByCompanyId(sessioncompany.getCompanyId());
         companyUsers = companyUserService.getSuperUsers(company.getId());

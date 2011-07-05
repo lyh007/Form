@@ -38,7 +38,7 @@ public class TemplateAction extends BaseAction {
     public String execute() throws Exception {
         HttpSession session = request.getSession();
         Company sessionCompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
+        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
         templates = templateService.getTemplatesByCompanyId(sessionCompany.getId());
         return SUCCESS;
     }
@@ -50,7 +50,7 @@ public class TemplateAction extends BaseAction {
     public String create() throws Exception {
         HttpSession session = request.getSession();
         Company company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
+        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
         if (template == null) {
             addActionError("please input template infomation!");
             return "create";
@@ -91,7 +91,7 @@ public class TemplateAction extends BaseAction {
     public String update() throws Exception {
         HttpSession session = request.getSession();
         Company company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_USER);
+        CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
         if (template == null) {
             addActionError("please input template infomation!");
             return "preCreate";
