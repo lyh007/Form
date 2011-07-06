@@ -6,50 +6,32 @@
     <base href="<%=basePath%>"/>
     <link rel="stylesheet" type="text/css" href="css/general.css"/>
     <title>Form Management</title>
-    <script type="text/javascript">
-        function delete_confirm(id) {
-            if(confirm("Are you sure delete template?"))
-            window.location.href = "<%=basePath%>/template/template!delete.action?template.id="+id;
-        }
-    </script>
 </head>
 <body>
-<div class="header">
-    Welcome to use Company <s:property value="#session.session_company_name"/>'s form management
-</div>
-
-<div>
-    <table>
-        <tr>
-            <th>Template Name</th>
-            <th>Status</th>
-            <th>Form Records</th>
-            <th>Operation</th>
-        </tr>
-        <s:iterator value="templates" status="templateStatus">
-            <tr>
-                <td><s:property value="title"/></td>
-                <td>
-                    <s:if test="status==1">Active</s:if>
-                    <s:else>inActive</s:else>
-                </td>
-                <td>0</td>
-                <td><a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">View Records</a>|
-                    <a href="template/template!preUpdate.action?template.id=<s:property value="id"/>">Update
-                        Template</a> |
-                    <a href="javascript:void(0)" onclick="delete_confirm(<s:property value="id"/>);">Delete Template</a>
-                </td>
-            </tr>
-        </s:iterator>
-    </table>
-</div>
-<div class="header">
-    <a href="template/template!preCreate.action">Create a New Form Template</a>
-</div>
-<hr/>
-<div class="footer"><a href="companyuser/company-user.action">Company User Management</a> |
-    <a href="company/company!preUpdate.action">Company Profile Update</a> |
-    <a href="logout.action">Logout System</a>
+<div id="page-wrapper">
+    <div class="header">
+         Welcome to use Company <s:property value="#session.session_company_name"/>'s form management
+    </div>
+    <div id="content-wrapper">
+        <div id="sidebar">
+            <ul class="menu">
+                <li class=""><a href="inbox/inbox.action">Request Inbox</a></li>
+                <li class=""><a href="outbox/outbox.action">Request Outbox</a></li>
+                <li class=""><a href="template/template.action">Form Templates</a></li>
+                <li class="last"><a href="autoclone.htm">Form Records</a></li>
+            </ul>
+        </div>
+        <div id="main-content">
+            You have 23 new Incomming Form Requests! <br>
+            You have 1021 new records collected for your form!
+        </div>
+    </div>
+    <div id="footer-wrapper">
+        <a href="companyuser/company-user.action">Company User Management</a> |
+        <a href="company/company!preUpdate.action">Company Profile Update</a> |
+        <a href="logout.action">Logout System</a>
+         <p id="copyright">IDD LLC. &copy; 2011. All rights reserved.</p>
+    </div>
 </div>
 </body>
 </html>

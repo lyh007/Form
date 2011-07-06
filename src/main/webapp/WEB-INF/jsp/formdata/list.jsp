@@ -45,7 +45,7 @@
 <hr/>
 <div class="footer">
     <a href="company/company.action">Form Management</a> |
-    <a href="user/user.action">Company User Management</a> |
+    <a href="companyuser/company-user.action">Company User Management</a> |
     <a href="company/company!preUpdate.action">Company Profile Update</a> |
     <a href="logout.action">Logout System</a>
 </div>

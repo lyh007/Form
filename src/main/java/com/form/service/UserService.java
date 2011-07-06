@@ -81,4 +81,14 @@ public class UserService {
     public User getByLoginId(String loginId) {
         return userMapper.getByLoginId(loginId);
     }
+
+    /**
+     * get User by refNumber
+     *
+     * @param refNumber REF Number
+     * @return User info
+     */
+    public User getByREFNumber(String refNumber) {
+        return userMapper.getByREFNumber(refNumber);
+    }
 }

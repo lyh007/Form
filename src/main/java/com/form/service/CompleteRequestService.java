@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("completeRequest")
+@Service("completeRequestService")
 @Transactional
 public class CompleteRequestService {
     @Autowired

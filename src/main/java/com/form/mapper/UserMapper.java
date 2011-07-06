@@ -11,4 +11,11 @@ public interface UserMapper extends BaseInterface<User> {
      * @return User info
      */
     public User getByLoginId(String loginId);
+     /**
+     * get User by refNumber
+     *
+     * @param refNumber REF Number
+     * @return User info
+     */
+    public User getByREFNumber(String refNumber);
 }

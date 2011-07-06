@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.form.mapper.UserMapper">
+    <sql id="userColumns">
+        ID,REF_NUMBER as refNumber,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,EMAIL,STATUS,FP_LOGIN_ID as loginId,FP_PASSWORD as password
+    </sql>
     <select id="getById" parameterType="int" resultType="User">
-          SELECT ID,REF_NUMBER as refNumber,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,EMAIL,STATUS,FP_LOGIN_ID as loginId,FP_PASSWORD as password
-          FROM fp_user  WHERE id=#{id}
+        SELECT
+        <include refid="userColumns"/>
+        FROM fp_user WHERE id=#{id}
     </select>
     <select id="getByLoginId" parameterType="String" resultType="User">
-        SELECT ID,REF_NUMBER as refNumber,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,EMAIL,STATUS,FP_LOGIN_ID as loginId,FP_PASSWORD as password
-          FROM fp_user  WHERE FP_LOGIN_ID=#{loginId}
+        SELECT
+        <include refid="userColumns"/>
+        FROM fp_user WHERE FP_LOGIN_ID=#{loginId}
     </select>
     <insert id="save" parameterType="User">
         <![CDATA[
        INSERT INTO fp_user(ID,REF_NUMBER,FIRST_NAME,MIDDLE_INITIAL,LAST_NAME,EMAIL,STATUS,FP_LOGIN_ID,FP_PASSWORD)
        VALUES (#{id},#{refNumber} ,#{firstName} ,#{middleInital} ,#{lastName} ,#{email} ,#{status} ,#{loginId} ,#{password} )
         ]]>
-         <selectKey keyProperty="id" resultType="long">
-			<![CDATA[
+        <selectKey keyProperty="id" resultType="long">
+            <![CDATA[
 				SELECT LAST_INSERT_ID() AS VALUE
 			]]>
-		</selectKey>
+        </selectKey>
     </insert>
     <update id="update" parameterType="User">
         update fp_user set
@@ -41,5 +46,10 @@
     </select>
     <select id="queryByPage_count" parameterType="QueryParams" resultType="int">
         select count(*) from fp_user
+    </select>
+    <select id="getByREFNumber" parameterType="String" resultType="User">
+        SELECT
+        <include refid="userColumns"/>
+        FROM fp_user WHERE REF_NUMBER=#{refNumber}
     </select>
 </mapper>

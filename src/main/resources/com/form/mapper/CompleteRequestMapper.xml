@@ -1,59 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.form.mapper.CompanyUserMapper">
-    <select id="getById" parameterType="int" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
-          from fp_company_user  where id=#{id}
+<mapper namespace="com.form.mapper.CompleteRequestMapper">
+    <sql id="completeRequestColumns">
+         ID,REF_NUMBER as refNumber,FORM_ID as formId,COMPANY_ID as companyId,COMPANY_USER_ID as companyUserId,CONSUMER_ID as consumerId,FP_FORM_DATA_ID as formDataId,NOTE,STATUS,REQUEST_DATE as requestDate
+    </sql>
+    <select id="getById" parameterType="int" resultType="CompleteRequest">
+        select <include refid="completeRequestColumns"/>
+        from fp_complete_request where id=#{id}
     </select>
-    <select id="getByUserId" parameterType="String" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
-          from fp_company_user  where FP_LOGIN_ID=#{companyUserLoginId}
-    </select>
-    <select id="getUserByCompanyIdAndUserId" parameterType="CompanyUser" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
-          from fp_company_user  where COMPANY_ID=#{companyId} and FP_LOGIN_ID=#{companyUserLoginId}
-    </select>
-    <insert id="save" parameterType="CompanyUser">
+    <insert id="save" parameterType="CompleteRequest">
         <![CDATA[
-        insert into fp_company_user (ID,COMPANY_ID,FIRST_NAME,MIDDLE_INITIAL,LAST_NAME,TITLE,STATUS,TYPE,FP_LOGIN_ID,FP_PASSWORD,EMAIL)
-        values (#{id},#{companyId},#{firstName},#{middleInital},#{lastName},#{title},#{status},#{type},#{companyUserLoginId},#{password},#{email})
+        insert into fp_complete_request (ID,REF_NUMBER,FORM_ID,COMPANY_ID,COMPANY_USER_ID,CONSUMER_ID,FP_FORM_DATA_ID,NOTE,STATUS,REQUEST_DATE)
+        values (#{id},#{refNumber},#{formId},#{companyId},#{companyUserId},#{consumerId},#{formDataId},#{note},#{status},#{requestDate})
         ]]>
-         <selectKey keyProperty="id" resultType="long">
-			<![CDATA[
+        <selectKey keyProperty="id" resultType="long">
+            <![CDATA[
 				SELECT LAST_INSERT_ID() AS VALUE
 			]]>
-		</selectKey>
+        </selectKey>
     </insert>
-    <update id="update" parameterType="CompanyUser">
-        update fp_company_user set
+    <update id="update" parameterType="CompleteRequest">
+        update fp_complete_request set
+            ID=#{id},
+            REF_NUMBER=#{refNumber},
+            FORM_ID=#{formId},
             COMPANY_ID=#{companyId},
-            FIRST_NAME=#{firstName},
-            MIDDLE_INITIAL=#{middleInital},
-            LAST_NAME =#{lastName},
-            TITLE =#{title},
-            STATUS =#{status},
-            TYPE =#{type},
-            FP_LOGIN_ID =#{companyUserLoginId},
-            FP_PASSWORD =#{password},
-            EMAIL =#{email}
+            COMPANY_USER_ID=#{companyUserId},
+            CONSUMER_ID=#{consumerId},
+            FP_FORM_DATA_ID=#{formDataId},
+            NOTE=#{note},
+            STATUS=#{status},
+            REQUEST_DATE=#{requestDate}
             where id=#{id}
     </update>
     <delete id="delete" parameterType="int">
-            delete from fp_company_user where id = #{id}
+            delete from fp_complete_request where id = #{id}
     </delete>
-    <select id="queryByPage" parameterType="QueryParams" resultType="CompanyUser">
-        select * from fp_company_user
+    <select id="queryByPage" parameterType="QueryParams" resultType="CompleteRequest">
+        select <include refid="completeRequestColumns"/> from fp_complete_request
         limit #{paging.startRecord},#{paging.pageSize}
     </select>
-    <select id="queryByPage_count" parameterType="QueryParams" resultType="int">
-        select count(*) from fp_company_user
-    </select>
-    <select id="getUsersByCompanyId" parameterType="long" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
-          from fp_company_user  where COMPANY_ID=#{companyId}
-    </select>
-    <select id="getSuperUsers" parameterType="long" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as companyUserLoginId,FP_PASSWORD as password,EMAIL
-          from fp_company_user  where COMPANY_ID=#{companyId} and TYPE=0
-    </select>
+
 </mapper>

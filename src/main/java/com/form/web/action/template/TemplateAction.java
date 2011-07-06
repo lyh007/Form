@@ -24,7 +24,8 @@ import java.util.List;
 @ParentPackage(value = "struts-default")
 @Namespace("/template")
 @Results({
-        @Result(name = "success", location = "/WEB-INF/jsp/company/company_welcome.jsp"),
+       // @Result(name = "success", location = "/WEB-INF/jsp/company/company_welcome.jsp"),
+        @Result(name = "success", location = "/WEB-INF/jsp/template/template_list.jsp"),
         @Result(name = "create", location = "/WEB-INF/jsp/template/template_create.jsp"),
         @Result(name = "preUpdate", location = "/WEB-INF/jsp/template/template_update.jsp")
 })
