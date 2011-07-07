@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.form.mapper.CompanyMapper">
+    <sql id="companyColumns">
+        ID,FP_ID as companyId,NAME,EMAIL,REF_NUMBER AS refNumber
+    </sql>
     <select id="getById" parameterType="int" resultType="Company">
-          select ID,FP_ID as companyId,NAME,EMAIL,REF_NUMBER AS refNumber from fp_company  where id=#{id}
+          select <include refid="companyColumns"/> from fp_company  where id=#{id}
     </select>
      <select id="getByCompanyId" parameterType="String" resultType="Company">
           select ID,FP_ID as companyId,NAME,EMAIL,REF_NUMBER AS refNumber from fp_company  where FP_ID=#{companyId}

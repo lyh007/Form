@@ -23,7 +23,7 @@
         <div id="sidebar">
             <ul class="menu">
                 <li><a href="request_inbox.htm">Request Inbox</li>
-                <li><a href="request_outbox.htm">Request Outbox</a></li>
+                <li><a href="outbox/outbox.action">Request Outbox</a></li>
                 <li><a class="active-link" href="template/template.action">Form Templates</a></li>
                 <li><a href="form_records.htm">Form Records</a></li>
             </ul>

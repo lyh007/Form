@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.form.mapper.TemplateMapper">
+    <sql id="templateColumns">
+          ID,COMPANY_ID as companyId,CREATED_BY as createdBy,LAST_MODIFIED_BY as lastModifiedBy,FORM_TITLE as title,FORM_DESCRIPTION as description,STATUS
+    </sql>
     <select id="getById" parameterType="int" resultType="Template">
-          select ID,COMPANY_ID as companyId,CREATED_BY as createdBy,LAST_MODIFIED_BY as lastModifiedBy,FORM_TITLE as title,FORM_DESCRIPTION as description,STATUS from fp_form_template  where id=#{id}
+          select <include refid="templateColumns"/> from fp_form_template  where id=#{id}
     </select>
     <insert id="save" parameterType="Template">
         <![CDATA[

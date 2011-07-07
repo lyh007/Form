@@ -43,17 +43,21 @@ public class OutboxAction extends BaseAction {
     @Override    //List
     public String execute() throws Exception {
         HttpSession session = request.getSession();
-        Company sessionCompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
-        CompanyUser companyUser = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
-        templates = templateService.getTemplatesByCompanyId(sessionCompany.getId());
-
+        SystemConstants.LoginType loginType = SystemConstants.LoginType.getValueOf((String) session.getAttribute(SystemConstants.LOGIN_TYPE));
         //if company user login
-        QueryParams<CompleteRequest> queryParams = new QueryParams<CompleteRequest>();
-        CompleteRequest completeRequestParam = new CompleteRequest();
-        completeRequestParam.setCompanyId(sessionCompany.getId());
-        completeRequestParam.setCompanyUserId(companyUser.getId());
-        queryParams.setEntity(completeRequestParam);
-        completeRequests = completeRequestService.queryByPage(queryParams);
+        if (loginType == SystemConstants.LoginType.COMPANY_USER_LOGIN) {
+            Company sessionCompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
+            CompanyUser companyUser = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
+            templates = templateService.getTemplatesByCompanyId(sessionCompany.getId());
+            QueryParams<CompleteRequest> queryParams = new QueryParams<CompleteRequest>();
+            CompleteRequest completeRequestParam = new CompleteRequest();
+            completeRequestParam.setCompanyId(sessionCompany.getId());
+            completeRequestParam.setCompanyUserId(companyUser.getId());
+            queryParams.setEntity(completeRequestParam);
+            completeRequests = completeRequestService.queryByPage(queryParams);
+        } else if (loginType == SystemConstants.LoginType.COMMON_USER_LOGIN) {   //common user login
+
+        }
         return SUCCESS;
     }
 

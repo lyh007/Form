@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.form.mapper.CompanyUserMapper">
+    <sql id="companyUserColumns">
+            ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as loginId,FP_PASSWORD as password,EMAIL
+    </sql>
     <select id="getById" parameterType="int" resultType="CompanyUser">
-          select ID,COMPANY_ID as companyId,FIRST_NAME as firstName,MIDDLE_INITIAL as middleInital,LAST_NAME as lastName,TITLE,STATUS,TYPE,FP_LOGIN_ID as loginId,FP_PASSWORD as password,EMAIL
+          select  <include refid="companyUserColumns"/>
           from fp_company_user  where id=#{id}
     </select>
     <select id="getByUserId" parameterType="String" resultType="CompanyUser">

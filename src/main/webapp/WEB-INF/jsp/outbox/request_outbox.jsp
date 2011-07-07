@@ -35,7 +35,7 @@
             <ul class="menu">
                 <li><a href="request_inbox.htm">Request Inbox</a></li>
                 <li><a class="active-link" href="outbox/outbox.action">Request Outbox</a></li>
-                <li><a href="form_template.htm">Form Templates</a></li>
+                <li><a href="template/template.action">Form Templates</a></li>
                 <li><a href="form_records">Form Records</a></li>
             </ul>
         </div>
@@ -54,10 +54,10 @@
                 <s:iterator value="completeRequests" status="completeRequestStatus">
                     <tr>
                         <td><s:property value="refNumber"/></td>
-                        <td><s:property value="formId"/></td>
-                        <td><s:property value="consumerId"/></td>
+                        <td><s:property value="template.title"/></td>
+                        <td><s:property value="consumer.loginId"/></td>
                         <td>
-                            <s:date name="requestDate" format="yyyy-MM-dd HH:mm:ss"/>
+                            <s:date name="requestDate" format="yyyy-MM-dd"/>
                         </td>
                         <td>
                             <s:if test="status==1">

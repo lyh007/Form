@@ -4,8 +4,29 @@
     <sql id="completeRequestColumns">
          ID,REF_NUMBER as refNumber,FORM_ID as formId,COMPANY_ID as companyId,COMPANY_USER_ID as companyUserId,CONSUMER_ID as consumerId,FP_FORM_DATA_ID as formDataId,NOTE,STATUS,REQUEST_DATE as requestDate
     </sql>
+
+    <select id="selectTemplate" parameterType="int" resultType="Template">
+          select <include refid="templateColumns"/> from fp_form_template  where id=#{id}
+    </select>
+    <select id="selectCompany" parameterType="int" resultType="Company">
+          select <include refid="companyColumns"/> from fp_company  where id=#{id}
+    </select>
+    <select id="selectCompanyUser" parameterType="int" resultType="CompanyUser">
+          select <include refid="companyUserColumns"/>  from fp_company_user  where id=#{id}
+    </select>
+    <select id="selectUser" parameterType="int" resultType="User">
+        SELECT <include refid="userColumns"/>  FROM fp_user WHERE id=#{id}
+    </select>
+    <resultMap id="outboxResult" type="CompleteRequest">
+        <association property="template" column="formId" javaType="Template" select="selectTemplate"/>
+        <association property="company" column="companyId" javaType="Company" select="selectCompany"/>
+        <association property="companyUser" column="companyUserId" javaType="CompanyUser" select="selectCompanyUser"/>
+        <association property="consumer" column="consumerId" javaType="User" select="selectUser"/>
+    </resultMap>
+
     <select id="getById" parameterType="int" resultType="CompleteRequest">
-        select <include refid="completeRequestColumns"/>
+        select
+        <include refid="completeRequestColumns"/>
         from fp_complete_request where id=#{id}
     </select>
     <insert id="save" parameterType="CompleteRequest">
@@ -36,8 +57,10 @@
     <delete id="delete" parameterType="int">
             delete from fp_complete_request where id = #{id}
     </delete>
-    <select id="queryByPage" parameterType="QueryParams" resultType="CompleteRequest">
-        select <include refid="completeRequestColumns"/> from fp_complete_request
+    <select id="queryByPage" parameterType="QueryParams" resultMap="outboxResult">
+        select
+        <include refid="completeRequestColumns"/>
+        from fp_complete_request
         limit #{paging.startRecord},#{paging.pageSize}
     </select>
 

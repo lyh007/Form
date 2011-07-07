@@ -9,14 +9,20 @@ import java.util.Date;
  */
 public class CompleteRequest extends DomainObject {
     private String refNumber; //generate ten bit
-    private long formId; //FormData id
+    private long formId; //  Template id
     private long companyId; //Company id
     private long companyUserId; //Company User Id
     private long consumerId; //Consumer id
-    private long formDataId;//FP_FORM_DATA_ID todo table
+    private long formDataId;//FP_FORM_DATA_ID todo table     FormData id
     private String note; //Note
     private int status; //1 (pending), 2 (accept), 3 (rejected)
     private Date requestDate; //Request Date
+
+    private Template template;
+    private Company company;
+    private CompanyUser companyUser;
+    private User consumer;
+    private FormData formData;
 
     public CompleteRequest() {
     }
@@ -91,5 +97,45 @@ public class CompleteRequest extends DomainObject {
 
     public void setRequestDate(Date requestDate) {
         this.requestDate = requestDate;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public CompanyUser getCompanyUser() {
+        return companyUser;
+    }
+
+    public void setCompanyUser(CompanyUser companyUser) {
+        this.companyUser = companyUser;
+    }
+
+    public User getConsumer() {
+        return consumer;
+    }
+
+    public void setConsumer(User consumer) {
+        this.consumer = consumer;
+    }
+
+    public FormData getFormData() {
+        return formData;
+    }
+
+    public void setFormData(FormData formData) {
+        this.formData = formData;
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 }
