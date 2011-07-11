@@ -1,8 +1,10 @@
 package com.form.service;
 
 import com.form.base.BaseTestCase;
+import com.form.base.Page;
 import com.form.base.QueryParams;
 import com.form.model.CompleteRequest;
+import com.form.model.CompleteRequestStatus;
 import org.junit.Test;
 
 import java.util.List;
@@ -30,7 +32,12 @@ public class CompleteRequestTest extends BaseTestCase {
         CompleteRequest completeRequestParam = new CompleteRequest();
         completeRequestParam.setCompanyId(1L);
         completeRequestParam.setCompanyUserId(1L);
+        completeRequestParam.setStatus(CompleteRequestStatus.PENDING.getValue());
         queryParams.setEntity(completeRequestParam);
+        Page paging = new Page();
+        paging.setPageSize(8); //每页显示10条
+        paging.setCurrentPage(1);
+        queryParams.setPaging(paging);
         List<CompleteRequest> completeRequests = completeRequestService.queryByPage(queryParams);
         if (completeRequests != null) {
             System.out.println(completeRequests.size());

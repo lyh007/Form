@@ -22,6 +22,10 @@
                 $("#new_request_fields").hide();
             });
         });
+           function delete_confirm(id) {
+            if(confirm("Are you sure delete this request?"))
+            window.location.href = "<%=basePath%>/outbox/outbox!delete.action?completeRequest.id="+id;
+        }
     </script>
 </head>
 <body>
@@ -33,15 +37,16 @@
     <div id="content-wrapper">
         <div id="sidebar">
             <ul class="menu">
-                <li><a href="request_inbox.htm">Request Inbox</a></li>
+                <li><a href="inbox/inbox.action">Request Inbox</a></li>
                 <li><a class="active-link" href="outbox/outbox.action">Request Outbox</a></li>
                 <li><a href="template/template.action">Form Templates</a></li>
-                <li><a href="form_records">Form Records</a></li>
+                <li><a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">Form Records</a></li>
             </ul>
         </div>
         <div id="main-content">
             <table>
                 <tr>
+                    <th>Index</th>
                     <th>REF Number</th>
                     <th>Form Name</th>
                     <th>Form Consumer</th>
@@ -53,6 +58,7 @@
                 </tr>
                 <s:iterator value="completeRequests" status="completeRequestStatus">
                     <tr>
+                        <td>${completeRequestStatus.index+1}</td>
                         <td><s:property value="refNumber"/></td>
                         <td><s:property value="template.title"/></td>
                         <td><s:property value="consumer.loginId"/></td>
@@ -70,9 +76,9 @@
                                 REJECTED
                             </s:elseif>
                         </td>
-                        <td></td>
+                        <td> <s:date name="decisionDate" format="yyyy-MM-dd"/></td>
                         <td><s:property value="note"/></td>
-                        <td><a href="###">Del</a> | <a href="###">Resend</a></td>
+                        <td><a href="javascript:void(0);" onclick="delete_confirm(<s:property value="id"/>);">Del</a> | <a href="javascript:void(0);" onclick="alert('not implement!');">Resend</a></td>
                     </tr>
                 </s:iterator>
             </table>

@@ -2,20 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.form.mapper.CompleteRequestMapper">
     <sql id="completeRequestColumns">
-         ID,REF_NUMBER as refNumber,FORM_ID as formId,COMPANY_ID as companyId,COMPANY_USER_ID as companyUserId,CONSUMER_ID as consumerId,FP_FORM_DATA_ID as formDataId,NOTE,STATUS,REQUEST_DATE as requestDate
+         ID,REF_NUMBER as refNumber,FORM_ID as formId,COMPANY_ID as companyId,COMPANY_USER_ID as companyUserId,CONSUMER_ID as consumerId,FP_FORM_DATA_ID as formDataId,NOTE,STATUS,REQUEST_DATE as requestDate,DECISION_DATE as decisionDate
     </sql>
 
     <select id="selectTemplate" parameterType="int" resultType="Template">
-          select <include refid="templateColumns"/> from fp_form_template  where id=#{id}
+        select
+        <include refid="templateColumns"/>
+        from fp_form_template where id=#{id}
     </select>
     <select id="selectCompany" parameterType="int" resultType="Company">
-          select <include refid="companyColumns"/> from fp_company  where id=#{id}
+        select
+        <include refid="companyColumns"/>
+        from fp_company where id=#{id}
     </select>
     <select id="selectCompanyUser" parameterType="int" resultType="CompanyUser">
-          select <include refid="companyUserColumns"/>  from fp_company_user  where id=#{id}
+        select
+        <include refid="companyUserColumns"/>
+        from fp_company_user where id=#{id}
     </select>
     <select id="selectUser" parameterType="int" resultType="User">
-        SELECT <include refid="userColumns"/>  FROM fp_user WHERE id=#{id}
+        SELECT
+        <include refid="userColumns"/>
+        FROM fp_user WHERE id=#{id}
     </select>
     <resultMap id="outboxResult" type="CompleteRequest">
         <association property="template" column="formId" javaType="Template" select="selectTemplate"/>
@@ -60,7 +68,27 @@
     <select id="queryByPage" parameterType="QueryParams" resultMap="outboxResult">
         select
         <include refid="completeRequestColumns"/>
-        from fp_complete_request
+        from fp_complete_request where 1=1
+        <choose>
+            <when test="entity.status==1">
+                AND status=1
+            </when>
+            <when test="entity.status==2">
+                AND status=2
+            </when>
+            <when test="entity.status==3">
+                AND status=3
+            </when>
+        </choose>
+        <if test="entity.companyId!=null and entity.companyId!=0">
+            AND company_id=#{entity.companyId}
+            <if test="entity.companyUserId!=null and entity.companyUserId!=0">
+                AND company_user_id=#{entity.companyUserId}
+            </if>
+        </if>
+        <if test="entity.consumerId!=null and entity.consumerId!=0">
+            AND consumer_id=#{entity.consumerId}
+        </if>
         limit #{paging.startRecord},#{paging.pageSize}
     </select>
 

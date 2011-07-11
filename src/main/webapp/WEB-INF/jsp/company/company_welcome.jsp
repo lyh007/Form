@@ -22,8 +22,8 @@
             </ul>
         </div>
         <div id="main-content">
-            You have 23 new Incomming Form Requests! <br>
-            You have 1021 new records collected for your form!
+            You have 0 new Incomming Form Requests! <br>
+            You have 0 new records collected for your form!
         </div>
     </div>
     <div id="footer-wrapper">

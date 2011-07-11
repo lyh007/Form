@@ -3,7 +3,8 @@ package com.form.model;
 import java.io.Serializable;
 
 public enum CompleteRequestStatus implements Serializable {
-    //1 (pending), 2 (accept), 3 (rejected)
+    //1 (pending), 2 (accept), 3 (rejected)    -1(ALL)
+    ALL(-1),
     PENDING(1),
     ACCEPT(2),
     REJECTED(3);
@@ -12,6 +13,7 @@ public enum CompleteRequestStatus implements Serializable {
     CompleteRequestStatus(int value) {
         this.value = value;
     }
+
     public static CompleteRequestStatus getValueOf(int completeRequestStatus) {
         for (CompleteRequestStatus completeRequestStatusEnum : values()) {
             if (completeRequestStatusEnum.ordinal() == completeRequestStatus) {
@@ -32,5 +34,7 @@ public enum CompleteRequestStatus implements Serializable {
     public static void main(String[] args) {
         System.out.println(CompleteRequestStatus.ACCEPT.value);
         System.out.println(CompleteRequestStatus.ACCEPT.ordinal());
+        System.out.println(CompleteRequestStatus.ALL.value);
+        System.out.println(CompleteRequestStatus.ALL.ordinal());
     }
 }

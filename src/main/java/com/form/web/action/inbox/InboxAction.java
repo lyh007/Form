@@ -1,7 +1,6 @@
 package com.form.web.action.inbox;
 
 import com.form.SystemConstants;
-import com.form.base.QueryParams;
 import com.form.model.Company;
 import com.form.model.CompanyUser;
 import com.form.model.CompleteRequest;
@@ -24,12 +23,13 @@ import java.util.List;
 @ParentPackage(value = "struts-default")
 @Namespace("/inbox")
 @Results({
-        @Result(name = "success", location = "/WEB-INF/jsp/company/company_welcome.jsp")
+        @Result(name = "success", location = "/WEB-INF/jsp/inbox/request_inbox.jsp")
 })
 public class InboxAction extends BaseAction {
-      @Autowired
+    @Autowired
     private CompleteRequestService completeRequestService;
-     private List<CompleteRequest> completeRequests = new ArrayList<CompleteRequest>();
+    private List<CompleteRequest> completeRequests = new ArrayList<CompleteRequest>();
+
     @Override    //List
     public String execute() throws Exception {
         HttpSession session = request.getSession();
@@ -39,12 +39,7 @@ public class InboxAction extends BaseAction {
             Company sessionCompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
             CompanyUser companyUser = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
 
-            QueryParams<CompleteRequest> queryParams = new QueryParams<CompleteRequest>();
-            CompleteRequest completeRequestParam = new CompleteRequest();
-            completeRequestParam.setCompanyId(sessionCompany.getId());
-            completeRequestParam.setCompanyUserId(companyUser.getId());
-            queryParams.setEntity(completeRequestParam);
-            completeRequests = completeRequestService.queryByPage(queryParams);
+            //todo: common user can't send reqest to company
         } else if (loginType == SystemConstants.LoginType.COMMON_USER_LOGIN) {   //common user login
 
         }

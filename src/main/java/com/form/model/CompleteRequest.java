@@ -17,6 +17,7 @@ public class CompleteRequest extends DomainObject {
     private String note; //Note
     private int status; //1 (pending), 2 (accept), 3 (rejected)
     private Date requestDate; //Request Date
+    private Date decisionDate; //Decision  Date
 
     private Template template;
     private Company company;
@@ -137,5 +138,13 @@ public class CompleteRequest extends DomainObject {
 
     public void setTemplate(Template template) {
         this.template = template;
+    }
+
+    public Date getDecisionDate() {
+        return decisionDate;
+    }
+
+    public void setDecisionDate(Date decisionDate) {
+        this.decisionDate = decisionDate;
     }
 }

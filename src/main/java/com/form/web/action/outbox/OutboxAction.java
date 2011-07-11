@@ -1,6 +1,8 @@
 package com.form.web.action.outbox;
 
 import com.form.SystemConstants;
+import com.form.base.OceanRuntimeException;
+import com.form.base.Page;
 import com.form.base.QueryParams;
 import com.form.model.*;
 import com.form.service.CompleteRequestService;
@@ -53,9 +55,15 @@ public class OutboxAction extends BaseAction {
             CompleteRequest completeRequestParam = new CompleteRequest();
             completeRequestParam.setCompanyId(sessionCompany.getId());
             completeRequestParam.setCompanyUserId(companyUser.getId());
+            Page paging = new Page();
+            paging.setPageSize(100); //每页显示10条
+            paging.setCurrentPage(1);
+            queryParams.setPaging(paging);
             queryParams.setEntity(completeRequestParam);
             completeRequests = completeRequestService.queryByPage(queryParams);
         } else if (loginType == SystemConstants.LoginType.COMMON_USER_LOGIN) {   //common user login
+            //comon user login List All Accepted  status request
+            //refNumber for company
 
         }
         return SUCCESS;
@@ -84,7 +92,7 @@ public class OutboxAction extends BaseAction {
             return execute();
         }
         completeRequest.setCompanyId(company.getId());
-        completeRequest.setCompanyUserId(companyUser.getCompanyId());
+        completeRequest.setCompanyUserId(companyUser.getId());
         completeRequest.setConsumerId(user.getId());
         completeRequest.setRequestDate(new Date());
         completeRequest.setStatus(CompleteRequestStatus.PENDING.getValue());
@@ -94,6 +102,14 @@ public class OutboxAction extends BaseAction {
 
     //Delete Objects
     public String delete() throws Exception {
+        if (completeRequest == null || completeRequest.getId() == 0L) {
+            throw new OceanRuntimeException("delete completeRequest paramter is wrong!");
+        }
+        completeRequest = completeRequestService.getById(completeRequest.getId());
+        if (completeRequest == null) {
+            throw new OceanRuntimeException("delete completeRequest  not exists!");
+        }
+        completeRequestService.delete(completeRequest.getId());
         return execute();
     }
 

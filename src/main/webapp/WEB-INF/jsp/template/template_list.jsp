@@ -22,10 +22,10 @@
     <div id="content-wrapper">
         <div id="sidebar">
             <ul class="menu">
-                <li><a href="request_inbox.htm">Request Inbox</li>
+                <li><a href="inbox/inbox.action">Request Inbox</li>
                 <li><a href="outbox/outbox.action">Request Outbox</a></li>
                 <li><a class="active-link" href="template/template.action">Form Templates</a></li>
-                <li><a href="form_records.htm">Form Records</a></li>
+                <li><a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">Form Records</a></li>
             </ul>
         </div>
         <div id="main-content">

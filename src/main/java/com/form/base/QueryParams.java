@@ -51,4 +51,5 @@ public class QueryParams<T> {
     public void setLimit(int limit) {
         this.limit = limit;
     }
+
 }
