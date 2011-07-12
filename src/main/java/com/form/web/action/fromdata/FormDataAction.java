@@ -1,9 +1,12 @@
 package com.form.web.action.fromdata;
 
+import com.form.SystemConstants;
+import com.form.base.OceanRuntimeException;
 import com.form.base.Page;
 import com.form.base.QueryParams;
 import com.form.model.FormData;
 import com.form.model.Template;
+import com.form.model.User;
 import com.form.service.FormDataService;
 import com.form.service.TemplateService;
 import com.form.web.action.BaseAction;
@@ -15,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,13 +55,23 @@ public class FormDataAction extends BaseAction {
     //third step
 
     public String step2() {
-        if (formData != null) {
-            formData.setText_20_1(arrayToString(text_20_1));
-            formData.setText_20_12(arrayToString(text_20_12));
-            formData.setText_50_14(arrayToString(text_50_14));
-            formData.setTemplateId(templateId);
-            formDataService.save(formData);
+        HttpSession session = request.getSession();
+        SystemConstants.LoginType loginType = SystemConstants.LoginType.getValueOf((String) session.getAttribute(SystemConstants.LOGIN_TYPE));
+        if (formData == null) {
+            throw new OceanRuntimeException("form data is null!");
         }
+        //if company user login
+        if (loginType == SystemConstants.LoginType.COMPANY_USER_LOGIN) {
+
+        } else if (loginType == SystemConstants.LoginType.COMMON_USER_LOGIN) {   //common user login
+            User commonUser = (User) session.getAttribute(SystemConstants.SESSION_USER);
+            formData.setConsumerId(commonUser.getId());
+        }
+        formData.setText_20_1(arrayToString(text_20_1));
+        formData.setText_20_12(arrayToString(text_20_12));
+        formData.setText_50_14(arrayToString(text_50_14));
+        formData.setTemplateId(templateId);
+        formDataService.save(formData);
         if (submitType == 2) {
             return "step2";
         } else {

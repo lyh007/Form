@@ -45,26 +45,29 @@ public class OutboxAction extends BaseAction {
     @Override    //List
     public String execute() throws Exception {
         HttpSession session = request.getSession();
+        QueryParams<CompleteRequest> queryParams = new QueryParams<CompleteRequest>();
+        CompleteRequest completeRequestParam = new CompleteRequest();
+        Page paging = new Page();
+        paging.setPageSize(100); //每页显示10条
+        paging.setCurrentPage(1);
         SystemConstants.LoginType loginType = SystemConstants.LoginType.getValueOf((String) session.getAttribute(SystemConstants.LOGIN_TYPE));
         //if company user login
         if (loginType == SystemConstants.LoginType.COMPANY_USER_LOGIN) {
             Company sessionCompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
             CompanyUser companyUser = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
             templates = templateService.getTemplatesByCompanyId(sessionCompany.getId());
-            QueryParams<CompleteRequest> queryParams = new QueryParams<CompleteRequest>();
-            CompleteRequest completeRequestParam = new CompleteRequest();
             completeRequestParam.setCompanyId(sessionCompany.getId());
             completeRequestParam.setCompanyUserId(companyUser.getId());
-            Page paging = new Page();
-            paging.setPageSize(100); //每页显示10条
-            paging.setCurrentPage(1);
             queryParams.setPaging(paging);
             queryParams.setEntity(completeRequestParam);
             completeRequests = completeRequestService.queryByPage(queryParams);
         } else if (loginType == SystemConstants.LoginType.COMMON_USER_LOGIN) {   //common user login
-            //comon user login List All Accepted  status request
-            //refNumber for company
-
+            User commonUser = (User) session.getAttribute(SystemConstants.SESSION_USER);
+            completeRequestParam.setConsumerId(commonUser.getId());
+            templates = completeRequestService.queryCommonUserTemplates(commonUser.getId());
+            queryParams.setPaging(paging);
+            queryParams.setEntity(completeRequestParam);
+          //  completeRequests = completeRequestService.queryByPage(queryParams);
         }
         return SUCCESS;
     }

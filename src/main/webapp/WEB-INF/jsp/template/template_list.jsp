@@ -22,10 +22,14 @@
     <div id="content-wrapper">
         <div id="sidebar">
             <ul class="menu">
-                <li><a href="inbox/inbox.action">Request Inbox</li>
+                <li><a href="inbox/inbox.action">Request Inbox</a></li>
                 <li><a href="outbox/outbox.action">Request Outbox</a></li>
-                <li><a class="active-link" href="template/template.action">Form Templates</a></li>
-                <li><a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">Form Records</a></li>
+                 <s:if test="#session.loginType=='COMPANY_USER_LOGIN'">
+                      <li><a class="active-link" href="template/template.action">Form Templates</a></li>
+                </s:if>
+                <s:elseif test="#session.loginType=='COMMON_USER_LOGIN'">
+                    <li class="last"><a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">Form Records</a></li>
+                </s:elseif>
             </ul>
         </div>
         <div id="main-content">
@@ -58,8 +62,13 @@
         </div>
     </div>
     <div id="footer-wrapper">
-        <a href="companyuser/company-user.action">Company User Management</a> |
-        <a href="company/company!preUpdate.action">Company Profile Update</a> |
+        <s:if test="#session.loginType=='COMPANY_USER_LOGIN'">
+            <a href="companyuser/company-user.action">Company User Management</a> |
+            <a href="company/company!preUpdate.action">Company Profile Update</a> |
+        </s:if>
+        <s:elseif test="#session.loginType=='COMMON_USER_LOGIN'">
+            <a href="user/user!preUpdate.action">User Profile Update</a> |
+        </s:elseif>
         <a href="logout.action">Logout System</a>
 
         <p id="copyright">IDD LLC. &copy; 2011. All rights reserved.</p>

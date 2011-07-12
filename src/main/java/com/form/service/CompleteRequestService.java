@@ -3,6 +3,7 @@ package com.form.service;
 import com.form.base.QueryParams;
 import com.form.mapper.CompleteRequestMapper;
 import com.form.model.CompleteRequest;
+import com.form.model.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,5 +71,22 @@ public class CompleteRequestService {
      */
     public int getTotalCount(Object params) {
         return completeRequestMapper.getTotalCount(params);
+    }
+
+    /**
+     * change request status
+     *
+     * @param completeRequest id,status
+     */
+    public void changeStatus(CompleteRequest completeRequest) {
+        completeRequestMapper.changeStatus(completeRequest);
+    }
+    /**
+     * query user accept request form templates
+     * @param userId common user Id
+     * @return Template List
+     */
+    public List<Template> queryCommonUserTemplates(long userId){
+        return  completeRequestMapper.queryCommonUserTemplates(userId);
     }
 }

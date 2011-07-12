@@ -27,7 +27,8 @@ import java.util.List;
         @Result(name = "companyUserLogin", location = "/WEB-INF/jsp/management_index.jsp"),
         @Result(name = "userLogin", location = "/WEB-INF/jsp/user/user_index.jsp"),
         @Result(name = "preRegistration", location = "/WEB-INF/jsp/user/user_registration.jsp"),
-        @Result(name = "loginMainPage", location = "/WEB-INF/jsp/company/company_welcome.jsp")
+        @Result(name = "loginMainPage", location = "/WEB-INF/jsp/company/company_welcome.jsp"),
+        @Result(name = "update", location = "/WEB-INF/jsp/user/user_update.jsp")
 })
 public class UserAction extends BaseAction {
     @Autowired
@@ -38,7 +39,8 @@ public class UserAction extends BaseAction {
 
     @Override
     public String execute() throws Exception {
-        return SUCCESS;
+        //todo:inbox count
+        return "loginMainPage";
     }
 
     //Company User Login page
@@ -148,6 +150,51 @@ public class UserAction extends BaseAction {
         session.setAttribute(SystemConstants.SESSION_USER, dbUser);
         session.setAttribute(SystemConstants.SESSION_USER_LOGINID, dbUser.getLoginId());
         return loginMainPage();
+    }
+
+    //load user info for update
+    public String preUpdate() {
+        HttpSession session = request.getSession();
+        SystemConstants.LoginType loginType = SystemConstants.LoginType.getValueOf((String) session.getAttribute(SystemConstants.LOGIN_TYPE));
+        if (loginType == SystemConstants.LoginType.COMMON_USER_LOGIN) {
+            User sessionUser = (User) session.getAttribute(SystemConstants.SESSION_USER);
+            if (sessionUser != null) {
+                //update information from db
+                user = userService.getById(sessionUser.getId());
+            }
+        }
+        return "update";
+    }
+
+    //update user info
+    public String update() throws Exception {
+        if (user == null) {
+            addActionError("please input user infomation!");
+            return "update";
+        }
+        if (user.getPassword() == null || user.getPassword().length() == 0) {
+            addActionError("please input user login Password!");
+            return "update";
+        }
+        if (confirmPsw == null || confirmPsw.length() == 0) {
+            addActionError("please input user rePassword!");
+            return "update";
+        }
+        User dbUser = userService.getByLoginId(user.getLoginId());
+        if (dbUser == null) {
+            addActionError("user is not exist!");
+            return "update";
+        }
+        if (!dbUser.getPassword().equalsIgnoreCase(user.getPassword())) {
+            addActionError("password is wrong!");
+            return "update";
+        }
+        dbUser.setFirstName(user.getFirstName());
+        dbUser.setMiddleInital(user.getMiddleInital());
+        dbUser.setLastName(user.getLastName());
+        dbUser.setPassword(user.getPassword());
+        userService.update(dbUser);
+        return execute();
     }
 
     public User getUser() {

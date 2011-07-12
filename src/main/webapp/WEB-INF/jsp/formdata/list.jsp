@@ -30,10 +30,10 @@
             <tr>
                 <td><a href="formdata/form-data!view.action?formData.id=<s:property value="id"/>"> <s:property
                         value="id"/></a></td>
-                <td><s:property value="text_20_18"/></td>
-                <td><s:property value="text_20_19"/></td>
-                <td><s:property value="text_20_20"/></td>
-                <td><s:property value="text_50_1"/></td>
+                <td><s:property value="text_20_13"/></td>
+                <td><s:property value="text_20_14"/></td>
+                <td><s:property value="text_20_15"/></td>
+                <td><s:property value="text_20_16"/></td>
             </tr>
         </s:iterator>
     </table>
@@ -44,9 +44,14 @@
 </div>
 <hr/>
 <div class="footer">
-    <a href="company/company.action">Form Management</a> |
-    <a href="companyuser/company-user.action">Company User Management</a> |
-    <a href="company/company!preUpdate.action">Company Profile Update</a> |
+    <s:if test="#session.loginType=='COMPANY_USER_LOGIN'">
+        <a href="company/company.action">Form Management</a> |
+        <a href="companyuser/company-user.action">Company User Management</a> |
+        <a href="company/company!preUpdate.action">Company Profile Update</a> |
+     </s:if>
+     <s:elseif test="#session.loginType=='COMMON_USER_LOGIN'">
+        <a href="user/user!preUpdate.action">User Profile Update</a>   |
+    </s:elseif>
     <a href="logout.action">Logout System</a>
 </div>
 </body>
