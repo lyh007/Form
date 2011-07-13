@@ -1,0 +1,50 @@
+Hailong,
+
+Please make following table changes for new tasks (will be in
+different email) 2011.06.19.*:
+
+I have comment below for the status explanation on enumerable values
+(ex status).
+For fp_form_template table (already exist):
+the status for form template will be: 1(Initiative), 2 (In
+Estimation), 3 (In Development), 4 (In Review), 5 (Active), 6
+(Inactive).
+
+==========================
+CREATE TABLE fp_user (
+ID bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+REF_NUMBER varchar(10) NOT NULL, -- number and characters generated AX123232
+ex.ABCX123456
+FIRST_NAME varchar(20) NOT NULL,
+MIDDLE_INITIAL varchar(5) NOT NULL,
+LAST_NAME varchar(50) NOT NULL,
+EMAIL varchar(50) DEFAULT NULL,
+STATUS tinyint(4) NOT NULL, -- 1 ( enabled), 0 (disabled)
+FP_LOGIN_ID varchar(20) NOT NULL,
+FP_PASSWORD varchar(20) NOT NULL,
+PRIMARY KEY (ID)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+ALTER TABLE fp_form_data ADD consumer_id bigint(20) unsigned NOT NULL ;
+
+
+ALTER TABLE fp_company ADD REF_NUMBER varchar(10) NOT NULL;
+
+
+CREATE TABLE fp_complete_request (
+ID bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+REF_NUMBER varchar(12) NOT NULL, -- number 228932012222
+FORM_ID bigint(20) unsigned NOT NULL,
+COMPANY_ID bigint(20) unsigned NOT NULL,
+COMPANY_USER_ID bigint(20) unsigned NOT NULL,
+CONSUMER_ID bigint(20) unsigned NOT NULL,
+FP_FORM_DATA_ID bigint(20) unsigned,
+NOTE varchar(200),
+STATUS tinyint(4) NOT NULL, -- 1 (pending), 2 (accept), 3 (rejected)
+REQUEST_DATE DATE,
+PRIMARY KEY (ID)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+ALTER TABLE fp_complete_request
+ADD CONSTRAINT fp_request_unique UNIQUE
+(FORM_ID,COMPANY_ID,COMPANY_USER_ID,CONSUMER_ID);

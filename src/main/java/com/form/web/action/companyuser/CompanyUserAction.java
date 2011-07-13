@@ -21,7 +21,7 @@ import java.util.List;
 
 @Controller
 @Scope("prototype")
-@ParentPackage(value = "struts-default")
+@ParentPackage(value = "default")
 @Namespace("/companyuser")
 @Results({
         @Result(name = "success", location = "/WEB-INF/jsp/companyuser/company_user_management.jsp"),

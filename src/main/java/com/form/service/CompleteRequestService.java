@@ -89,4 +89,22 @@ public class CompleteRequestService {
     public List<Template> queryCommonUserTemplates(long userId){
         return  completeRequestMapper.queryCommonUserTemplates(userId);
     }
+    /**
+     * query all user records count
+     *
+     * @param userId common user id
+     * @return records count
+     */
+    public long getCommonUserRecordCount(long userId){
+        return completeRequestMapper.getCommonUserRecordCount(userId);
+    }
+     /**
+     * get common user incomming count
+     *
+     * @param userId user id
+     * @return common user incomming count
+     */
+    public long getCommonUserIncommingCount(long userId){
+        return completeRequestMapper.getCommonUserIncommingCount(userId);
+    }
 }

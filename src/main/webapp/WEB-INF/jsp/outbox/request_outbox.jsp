@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="/common/error.jsp"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@include file="/common/taglibs.jsp" %>
 <html>
@@ -104,7 +104,12 @@
                     </div>
                     <div><label>Description</label>: <br/>
                         <textarea name="completeRequest.note">${completeRequest.note}</textarea></div>
-                    <div><input type="submit" value="Submit" id="submit_new_request"/>
+                    <div>
+                         <s:if test="#session.loginType=='COMPANY_USER_LOGIN'">
+                              <input type="submit" value="Submit" id="submit_new_request"/>
+                         </s:if>
+                         <s:elseif test="#session.loginType=='COMMON_USER_LOGIN'">
+                         </s:elseif>
                         <input type="reset" value="Cancel" id="cancel_new_request"/>
                     </div>
                 </div>
@@ -114,10 +119,12 @@
     </div>
     <div id="footer-wrapper">
          <s:if test="#session.loginType=='COMPANY_USER_LOGIN'">
+            <a href="company/company.action">Form Management</a> |
             <a href="companyuser/company-user.action">Company User Management</a> |
             <a href="company/company!preUpdate.action">Company Profile Update</a> |
         </s:if>
         <s:elseif test="#session.loginType=='COMMON_USER_LOGIN'">
+            <a href="user/user.action">Main Page</a>   |
             <a href="user/user!preUpdate.action">User Profile Update</a> |
         </s:elseif>
         <a href="logout.action">Logout System</a>

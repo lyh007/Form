@@ -6,6 +6,7 @@ import com.form.model.CompanyUser;
 import com.form.model.Template;
 import com.form.service.CompanyService;
 import com.form.service.CompanyUserService;
+import com.form.service.FormDataService;
 import com.form.service.TemplateService;
 import com.form.util.REFNumberUtil;
 import com.form.web.action.BaseAction;
@@ -23,7 +24,7 @@ import java.util.List;
 
 @Controller
 @Scope("prototype")
-@ParentPackage(value = "struts-default")
+@ParentPackage(value = "default")
 @Namespace("/company")
 @Results({
         @Result(name = "success", location = "/WEB-INF/jsp/company/company_welcome.jsp"),
@@ -38,6 +39,8 @@ public class CompanyAction extends BaseAction {
     private CompanyUserService companyUserService;
     @Autowired
     private TemplateService templateService;
+    @Autowired
+    private FormDataService formDataService;
 
     private List<Template> templates = new ArrayList<Template>();
     private Company company = new Company();
@@ -48,12 +51,16 @@ public class CompanyAction extends BaseAction {
     private String password;
     private List<CompanyUser> companyUsers = new ArrayList<CompanyUser>();
 
+    private long incomingCount;
+    private long recordCount;
+
     @Override
     public String execute() throws Exception {
+        incomingCount = 0;
         HttpSession session = request.getSession();
         Company sessionCompany = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
         CompanyUser user = (CompanyUser) session.getAttribute(SystemConstants.SESSION_COMPANY_USER);
-        templates = templateService.getTemplatesByCompanyId(sessionCompany.getId());
+        recordCount = formDataService.getCompanyRecordCount(sessionCompany.getId());
         return SUCCESS;
     }
 
@@ -284,5 +291,21 @@ public class CompanyAction extends BaseAction {
 
     public void setTemplates(List<Template> templates) {
         this.templates = templates;
+    }
+
+    public long getIncomingCount() {
+        return incomingCount;
+    }
+
+    public void setIncomingCount(long incomingCount) {
+        this.incomingCount = incomingCount;
+    }
+
+    public long getRecordCount() {
+        return recordCount;
+    }
+
+    public void setRecordCount(long recordCount) {
+        this.recordCount = recordCount;
     }
 }

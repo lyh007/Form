@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @Scope("prototype")
-@ParentPackage(value = "struts-default")
+@ParentPackage(value = "default")
 @Namespace("/record")
 @Results({
         @Result(name = "success", location = "/WEB-INF/jsp/record/form_records.jsp")

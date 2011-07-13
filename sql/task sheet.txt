@@ -1,0 +1,27 @@
+1.Decision Date 字段在db Changes.txt中没有
+
+DECISION_DATE decisionDate
+
+2.Form Records改变
+ 列出一个公司下所有的模板产生的记录，consumer_id 无主外键关联不知道如何确定
+(暂定consumer_id代表fp_user.id)
+公司用户登录上来，看不到Form Records菜单，普通用户登录上来才能看得到
+
+
+3.Request Inbox
+  complete_request表中的RefNumber要和当前登录用户的REFNumber相同的记录列出
+
+4.Request Outbox 列表Action中的resend暂不实现
+
+
+2011-07-12
+还需完善的地方
+1.返回主界面user/user.action  --pass
+2.  --pass
+You have 0 new Incomming Form Requests! 
+You have 0 new records collected for your form! 
+3.Form Records里面的DateReceived和Date Accepted
+4.MySQLIntegrityConstraintViolationException 异常捕获 重复添加outbox请求
+5.Create New Request 普通用户，应该隐藏掉，防止出现异常页面  --pass
+
+Duplicate entry '6-1-2-2' for key 'fp_request_unique' --pass

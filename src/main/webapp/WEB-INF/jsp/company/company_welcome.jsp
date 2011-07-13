@@ -14,7 +14,7 @@
          Welcome to use Company <s:property value="#session.session_company_name"/>'s form management
         </s:if>
         <s:elseif test="#session.loginType=='COMMON_USER_LOGIN'">
-             Hi,common user <s:property value="#session.session_user_loginId"/>,   Welcome to use form management!
+             Hi,common user <s:property value="#session.session_user_loginId"/>, You REF Number is "<s:property value="#session.session_user.refNumber"/>",  Welcome to use form management!
         </s:elseif>
     </div>
     <div id="content-wrapper">
@@ -31,8 +31,8 @@
             </ul>
         </div>
         <div id="main-content">
-            You have 0 new Incomming Form Requests! <br>
-            You have 0 new records collected for your form!
+            You have <s:property value="incomingCount"/> new Incomming Form Requests! <br>
+            You have <s:property value="recordCount"/> new records collected for your form!
         </div>
     </div>
     <div id="footer-wrapper">

@@ -3,6 +3,7 @@ package com.form.web.action.user;
 import com.form.SystemConstants;
 import com.form.model.User;
 import com.form.model.UserStatus;
+import com.form.service.CompleteRequestService;
 import com.form.service.UserService;
 import com.form.util.REFNumberUtil;
 import com.form.web.action.BaseAction;
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Controller
 @Scope("prototype")
-@ParentPackage(value = "struts-default")
+@ParentPackage(value = "default")
 @Namespace("/user")
 @Results({
         @Result(name = "companyUserLogin", location = "/WEB-INF/jsp/management_index.jsp"),
@@ -33,13 +34,24 @@ import java.util.List;
 public class UserAction extends BaseAction {
     @Autowired
     private UserService userService;
+    @Autowired
+    private CompleteRequestService completeRequestService;
     private User user;
     private List<User> users = new ArrayList<User>();
     private String confirmPsw;
 
+    private long incomingCount;
+    private long recordCount;
+
     @Override
     public String execute() throws Exception {
-        //todo:inbox count
+        HttpSession session = request.getSession();
+        SystemConstants.LoginType loginType = SystemConstants.LoginType.getValueOf((String) session.getAttribute(SystemConstants.LOGIN_TYPE));
+        if (loginType == SystemConstants.LoginType.COMMON_USER_LOGIN) {
+            User commonUser = (User) session.getAttribute(SystemConstants.SESSION_USER);
+            incomingCount = completeRequestService.getCommonUserIncommingCount(commonUser.getId());
+            recordCount = completeRequestService.getCommonUserRecordCount(commonUser.getId());
+        }
         return "loginMainPage";
     }
 
@@ -115,6 +127,13 @@ public class UserAction extends BaseAction {
     }
 
     public String loginMainPage() {
+        HttpSession session = request.getSession();
+        SystemConstants.LoginType loginType = SystemConstants.LoginType.getValueOf((String) session.getAttribute(SystemConstants.LOGIN_TYPE));
+        if (loginType == SystemConstants.LoginType.COMMON_USER_LOGIN) {
+            User commonUser = (User) session.getAttribute(SystemConstants.SESSION_USER);
+            incomingCount = completeRequestService.getCommonUserIncommingCount(commonUser.getId());
+            recordCount = completeRequestService.getCommonUserRecordCount(commonUser.getId());
+        }
         return "loginMainPage";
     }
 
@@ -219,5 +238,21 @@ public class UserAction extends BaseAction {
 
     public void setConfirmPsw(String confirmPsw) {
         this.confirmPsw = confirmPsw;
+    }
+
+    public long getIncomingCount() {
+        return incomingCount;
+    }
+
+    public void setIncomingCount(long incomingCount) {
+        this.incomingCount = incomingCount;
+    }
+
+    public long getRecordCount() {
+        return recordCount;
+    }
+
+    public void setRecordCount(long recordCount) {
+        this.recordCount = recordCount;
     }
 }

@@ -24,7 +24,7 @@ import java.util.List;
 
 @Controller
 @Scope("prototype")
-@ParentPackage(value = "struts-default")
+@ParentPackage(value = "default")
 @Namespace("/formdata")
 @Results({
         @Result(name = "step1", location = "/WEB-INF/jsp/formdata/page1.jsp"),
@@ -86,16 +86,23 @@ public class FormDataAction extends BaseAction {
     }
 
     public String list() {
-        if (templateId != 0L) {
-            template = templateService.getById(templateId);
+        if (templateId == 0L) {
+            throw new OceanRuntimeException("template id paramter is error!");
         }
-        QueryParams<String> queryParams = new QueryParams<String>();
+        template = templateService.getById(templateId);
+        if(template==null || template.getId()==0L){
+            throw new OceanRuntimeException("Template is not found!");
+        }
+        QueryParams<FormData> queryParams = new QueryParams<FormData>();
+        FormData formDataParam=new FormData();
+        formDataParam.setTemplateId(template.getId());
         if (records == 0) {
             records = formDataService.getTotalCount(null);
         }
         Page paging = new Page(currentPage, pageSize, records);
         queryParams.setPaging(paging);
         records = queryParams.getPaging().getRecords();
+        queryParams.setEntity(formDataParam);
         formDataList = formDataService.queryByPage(queryParams);
         records = queryParams.getPaging().getRecords();
         return "list";

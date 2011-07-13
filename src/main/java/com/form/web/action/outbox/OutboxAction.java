@@ -25,7 +25,7 @@ import java.util.List;
 
 @Controller
 @Scope("prototype")
-@ParentPackage(value = "struts-default")
+@ParentPackage(value = "default")
 @Namespace("/outbox")
 @Results({
         @Result(name = "success", location = "/WEB-INF/jsp/outbox/request_outbox.jsp")
@@ -67,7 +67,7 @@ public class OutboxAction extends BaseAction {
             templates = completeRequestService.queryCommonUserTemplates(commonUser.getId());
             queryParams.setPaging(paging);
             queryParams.setEntity(completeRequestParam);
-          //  completeRequests = completeRequestService.queryByPage(queryParams);
+            //  completeRequests = completeRequestService.queryByPage(queryParams);
         }
         return SUCCESS;
     }
@@ -99,7 +99,15 @@ public class OutboxAction extends BaseAction {
         completeRequest.setConsumerId(user.getId());
         completeRequest.setRequestDate(new Date());
         completeRequest.setStatus(CompleteRequestStatus.PENDING.getValue());
-        completeRequestService.save(completeRequest);
+        try {
+            completeRequestService.save(completeRequest);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+           if(ex.getCause().getMessage().startsWith("Duplicate")){
+                 throw new OceanRuntimeException("request already exist!");
+            }
+        }
+
         return execute();
     }
 

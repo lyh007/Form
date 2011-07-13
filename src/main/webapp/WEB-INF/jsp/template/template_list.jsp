@@ -63,10 +63,12 @@
     </div>
     <div id="footer-wrapper">
         <s:if test="#session.loginType=='COMPANY_USER_LOGIN'">
+            <a href="company/company.action">Form Management</a> |
             <a href="companyuser/company-user.action">Company User Management</a> |
             <a href="company/company!preUpdate.action">Company Profile Update</a> |
         </s:if>
         <s:elseif test="#session.loginType=='COMMON_USER_LOGIN'">
+            <a href="user/user.action">Main Page</a>   |
             <a href="user/user!preUpdate.action">User Profile Update</a> |
         </s:elseif>
         <a href="logout.action">Logout System</a>

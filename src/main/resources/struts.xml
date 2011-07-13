@@ -7,7 +7,7 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
     <constant name="struts.multipart.saveDir" value="c:/struts2tmp"/>
     <constant name="struts.devMode" value="true"/>
-
+    <include file="struts-default.xml"/>
     <package name="default" namespace="/" extends="struts-default">
         <global-results>
             <result name="exception">/common/exception.jsp</result>

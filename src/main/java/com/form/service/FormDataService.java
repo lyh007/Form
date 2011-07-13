@@ -89,4 +89,13 @@ public class FormDataService {
     public List<FormData> queryByTemplate(long id) {
         return formDataMapper.queryByTemplate(id);
     }
+       /**
+     * Get Company records count
+     *
+     * @param companyId company id
+     * @return records count
+     */
+    public long getCompanyRecordCount(long companyId){
+        return formDataMapper.getCompanyRecordCount(companyId);
+    }
 }

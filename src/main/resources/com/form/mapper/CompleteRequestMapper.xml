@@ -101,4 +101,16 @@
         FROM fp_complete_request request,fp_form_template template
         WHERE request.form_id=template.id AND request.STATUS=2 AND request.consumer_id=#{id};
     </select>
+    <select id="getCommonUserIncommingCount" parameterType="long" resultType="long">
+        select
+        count(*)
+        from fp_complete_request where 1=1
+        AND consumer_id=#{id}
+    </select>
+    <select id="getCommonUserRecordCount" parameterType="long" resultType="long">
+        select count(*) from fp_form_data  formdata  where template_id in (
+        SELECT DISTINCT template.ID
+        FROM fp_complete_request request,fp_form_template template
+        WHERE request.form_id=template.id AND request.STATUS=2 AND request.consumer_id=#{id})  and formdata.consumer_id=#{id}
+    </select>
 </mapper>
