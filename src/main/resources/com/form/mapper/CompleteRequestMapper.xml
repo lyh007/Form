@@ -96,10 +96,13 @@
             DECISION_DATE=#{decisionDate}
         WHERE id=#{id}
     </update>
-    <select id="queryCommonUserTemplates" resultType="Template" parameterType="long">
-        SELECT DISTINCT template.ID,template.COMPANY_ID as companyId,template.CREATED_BY as createdBy,template.LAST_MODIFIED_BY as lastModifiedBy,template.FORM_TITLE as title,template.FORM_DESCRIPTION as description,template.STATUS
+    <resultMap id="queryCommonUserTemplatesResultMap" type="Template">
+        <association property="company" column="companyId" javaType="Company" select="selectCompany"/>
+    </resultMap>
+    <select id="queryCommonUserTemplates" resultMap="queryCommonUserTemplatesResultMap" parameterType="long">
+        SELECT DISTINCT template.ID,template.COMPANY_ID as companyId,template.CREATED_BY as createdBy,template.LAST_MODIFIED_BY as lastModifiedBy,template.FORM_TITLE as title,template.FORM_DESCRIPTION as description,template.STATUS,request.DECISION_DATE as decisionDate
         FROM fp_complete_request request,fp_form_template template
-        WHERE request.form_id=template.id AND request.STATUS=2 AND request.consumer_id=#{id};
+        WHERE request.form_id=template.id AND request.STATUS=2 AND request.consumer_id=#{id}
     </select>
     <select id="getCommonUserIncommingCount" parameterType="long" resultType="long">
         select

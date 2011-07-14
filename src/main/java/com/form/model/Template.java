@@ -2,16 +2,22 @@ package com.form.model;
 
 import com.form.base.DomainObject;
 
+import java.util.Date;
+
 /**
  * Template Persist Object
  */
 public class Template extends DomainObject {
-    private  long companyId;
-    private long   createdBy;
+    private long companyId;
+    private Company company;
+    private long createdBy;
     private long lastModifiedBy;
     private String title;
     private String description;
-    private  int status;  //add by dev 1:Active
+    private int status;  //add by dev 1:Active
+
+    //vo property
+     private Date decisionDate; //Decision  Date
 
     public Template() {
     }
@@ -62,5 +68,21 @@ public class Template extends DomainObject {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Date getDecisionDate() {
+        return decisionDate;
+    }
+
+    public void setDecisionDate(Date decisionDate) {
+        this.decisionDate = decisionDate;
     }
 }

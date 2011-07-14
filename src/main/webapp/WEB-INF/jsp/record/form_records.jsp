@@ -58,13 +58,13 @@
                 <s:iterator value="templates" status="templateStatus">
                     <td>${templateStatus.index+1}</td>
                     <td><s:property value="title"/></td>
-                    <td><s:property value="companyId"/></td>
+                    <td><s:property value="company.name"/></td>
                     <td>
                         <s:if test="status==1">Active</s:if>
                         <s:else>inActive</s:else>
                     </td>
                     <td></td>
-                    <td></td>
+                    <td><s:date name="decisionDate" format="yyyy-MM-dd"/> </td>
                     <td>
                         <a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">Edit Data</a>|
                         <a href="javascript:void(0);" onclick="alert('not implements!');">Delete</a>
