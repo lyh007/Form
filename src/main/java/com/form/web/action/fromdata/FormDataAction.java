@@ -86,16 +86,28 @@ public class FormDataAction extends BaseAction {
     }
 
     public String list() {
+        long consumerId = 0;
+        HttpSession session = request.getSession();
+        SystemConstants.LoginType loginType = SystemConstants.LoginType.getValueOf((String) session.getAttribute(SystemConstants.LOGIN_TYPE));
         if (templateId == 0L) {
             throw new OceanRuntimeException("template id paramter is error!");
         }
         template = templateService.getById(templateId);
-        if(template==null || template.getId()==0L){
+        if (template == null || template.getId() == 0L) {
             throw new OceanRuntimeException("Template is not found!");
         }
+        //if company user login
+        if (loginType == SystemConstants.LoginType.COMPANY_USER_LOGIN) {
+
+        } else if (loginType == SystemConstants.LoginType.COMMON_USER_LOGIN) {   //common user login
+            User commonUser = (User) session.getAttribute(SystemConstants.SESSION_USER);
+            consumerId=commonUser.getId();
+        }
+
         QueryParams<FormData> queryParams = new QueryParams<FormData>();
-        FormData formDataParam=new FormData();
+        FormData formDataParam = new FormData();
         formDataParam.setTemplateId(template.getId());
+        formDataParam.setConsumerId(consumerId);
         if (records == 0) {
             records = formDataService.getTotalCount(null);
         }

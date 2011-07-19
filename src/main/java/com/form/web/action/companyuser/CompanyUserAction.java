@@ -26,7 +26,8 @@ import java.util.List;
 @Results({
         @Result(name = "success", location = "/WEB-INF/jsp/companyuser/company_user_management.jsp"),
         @Result(name = "preCreate", location = "/WEB-INF/jsp/companyuser/company_user_create.jsp"),
-        @Result(name = "preUpdate", location = "/WEB-INF/jsp/companyuser/company_user_update.jsp")
+        @Result(name = "preUpdate", location = "/WEB-INF/jsp/companyuser/company_user_update.jsp"),
+        @Result(name = "list", location = "/companyuser/company-user.action",type = "redirect")
 })
 public class CompanyUserAction extends BaseAction {
     @Autowired
@@ -99,7 +100,7 @@ public class CompanyUserAction extends BaseAction {
 
         companyUser.setCompanyId(company.getId());
         companyUserService.save(companyUser);
-        return execute();
+        return "list";
     }
 
     //prepare update CompanyUser
@@ -166,7 +167,7 @@ public class CompanyUserAction extends BaseAction {
         dbUser.setTitle(companyUser.getTitle());
         dbUser.setPassword(companyUser.getPassword());
         companyUserService.update(dbUser);
-        return execute();
+        return "list";
     }
 
     //delete company CompanyUser
@@ -179,7 +180,7 @@ public class CompanyUserAction extends BaseAction {
             throw new OceanRuntimeException("delete companyuser not exists!");
         }
         companyUserService.delete(companyUser.getId());
-        return execute();
+        return "list";
     }
 
     public List<CompanyUser> getCompanyUsers() {

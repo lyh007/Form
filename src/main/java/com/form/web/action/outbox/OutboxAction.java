@@ -28,7 +28,8 @@ import java.util.List;
 @ParentPackage(value = "default")
 @Namespace("/outbox")
 @Results({
-        @Result(name = "success", location = "/WEB-INF/jsp/outbox/request_outbox.jsp")
+        @Result(name = "success", location = "/WEB-INF/jsp/outbox/request_outbox.jsp"),
+        @Result(name = "list", location = "/outbox/outbox.action", type = "redirect")
 })
 public class OutboxAction extends BaseAction {
     @Autowired
@@ -72,7 +73,7 @@ public class OutboxAction extends BaseAction {
         return SUCCESS;
     }
 
-    //Delete Objects
+    //create Objects
     public String create() throws Exception {
         HttpSession session = request.getSession();
         Company company = (Company) session.getAttribute(SystemConstants.SESSION_COMPANY);
@@ -103,8 +104,8 @@ public class OutboxAction extends BaseAction {
             completeRequestService.save(completeRequest);
         } catch (Exception ex) {
             ex.printStackTrace();
-           if(ex.getCause().getMessage().startsWith("Duplicate")){
-                 throw new OceanRuntimeException("request already exist!");
+            if (ex.getCause().getMessage().startsWith("Duplicate")) {
+                throw new OceanRuntimeException("request already exist!");
             }
         }
 
@@ -121,7 +122,7 @@ public class OutboxAction extends BaseAction {
             throw new OceanRuntimeException("delete completeRequest  not exists!");
         }
         completeRequestService.delete(completeRequest.getId());
-        return execute();
+        return "list";
     }
 
     public CompleteRequest getCompleteRequest() {

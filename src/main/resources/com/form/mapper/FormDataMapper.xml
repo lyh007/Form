@@ -30,11 +30,12 @@
         SELECT <include refid="formDataColumns"/>
         FROM fp_form_data
         WHERE 1=1
-         <choose>
-               <when test="entity.templateId!=0">
+             <if test="entity.templateId!=0">
                 AND TEMPLATE_ID=#{entity.templateId}
-            </when>
-         </choose>
+            </if>
+             <if test="entity.consumerId!=0">
+                 AND consumer_id=#{entity.consumerId}
+             </if>
         limit #{paging.startRecord},#{paging.pageSize}
     </select>
     <select id="queryByPage_count" parameterType="QueryParams" resultType="int">

@@ -27,7 +27,8 @@ import java.util.List;
 @ParentPackage(value = "default")
 @Namespace("/inbox")
 @Results({
-        @Result(name = "success", location = "/WEB-INF/jsp/inbox/request_inbox.jsp")
+        @Result(name = "success", location = "/WEB-INF/jsp/inbox/request_inbox.jsp"),
+        @Result(name = "list", location = "/inbox/inbox.action", type = "redirect")
 })
 public class InboxAction extends BaseAction {
     @Autowired
@@ -69,7 +70,7 @@ public class InboxAction extends BaseAction {
         completeRequest.setDecisionDate(new Date());
         completeRequest.setStatus(CompleteRequestStatus.REJECTED.getValue());
         completeRequestService.changeStatus(completeRequest);
-        return execute();
+        return "list";
     }
 
     //accept
@@ -84,12 +85,12 @@ public class InboxAction extends BaseAction {
         completeRequest.setDecisionDate(new Date());
         completeRequest.setStatus(CompleteRequestStatus.ACCEPT.getValue());
         completeRequestService.changeStatus(completeRequest);
-        return execute();
+        return "list";
     }
 
     //Delete Objects
     public String delete() throws Exception {
-        return execute();
+        return "list";
     }
 
     public List<CompleteRequest> getCompleteRequests() {

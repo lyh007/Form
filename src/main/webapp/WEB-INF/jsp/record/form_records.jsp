@@ -33,10 +33,10 @@
     <div id="content-wrapper">
         <div id="sidebar">
             <ul class="menu">
-               <li><a class="active-link" href="inbox/inbox.action">Request Inbox</a></li>
-               <li><a href="outbox/outbox.action">Request Outbox</a></li>
+                <li><a class="active-link" href="inbox/inbox.action">Request Inbox</a></li>
+                <li><a href="outbox/outbox.action">Request Outbox</a></li>
                 <s:if test="#session.loginType=='COMPANY_USER_LOGIN'">
-                     <li><a href="template/template.action">Form Templates</a></li>
+                    <li><a href="template/template.action">Form Templates</a></li>
                 </s:if>
                 <s:elseif test="#session.loginType=='COMMON_USER_LOGIN'">
                     <li class="last"><a href="record/record.action">Form Records</a></li>
@@ -56,19 +56,21 @@
                     <th>Action</th>
                 </tr>
                 <s:iterator value="templates" status="templateStatus">
-                    <td>${templateStatus.index+1}</td>
-                    <td><s:property value="title"/></td>
-                    <td><s:property value="company.name"/></td>
-                    <td>
-                        <s:if test="status==1">Active</s:if>
-                        <s:else>inActive</s:else>
-                    </td>
-                    <td></td>
-                    <td><s:date name="decisionDate" format="yyyy-MM-dd"/> </td>
-                    <td>
-                        <a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">Edit Data</a>|
-                        <a href="javascript:void(0);" onclick="alert('not implements!');">Delete</a>
-                    </td>
+                    <tr>
+                        <td>${templateStatus.index+1}</td>
+                        <td><s:property value="title"/></td>
+                        <td><s:property value="company.name"/></td>
+                        <td>
+                            <s:if test="status==1">Active</s:if>
+                            <s:else>inActive</s:else>
+                        </td>
+                        <td></td>
+                        <td><s:date name="decisionDate" format="yyyy-MM-dd"/></td>
+                        <td>
+                            <a href="formdata/form-data!list.action?templateId=<s:property value="id"/>">Edit Data</a>|
+                            <a href="javascript:void(0);" onclick="alert('not implements!');">Delete</a>
+                        </td>
+                    </tr>
                 </s:iterator>
             </table>
         </div>
@@ -79,7 +81,7 @@
             <a href="company/company!preUpdate.action">Company Profile Update</a> |
         </s:if>
         <s:elseif test="#session.loginType=='COMMON_USER_LOGIN'">
-            <a href="user/user.action">Main Page</a>   |
+            <a href="user/user.action">Main Page</a> |
             <a href="user/user!preUpdate.action">User Profile Update</a> |
         </s:elseif>
         <a href="logout.action">Logout System</a>

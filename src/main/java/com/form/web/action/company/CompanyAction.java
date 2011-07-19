@@ -30,7 +30,8 @@ import java.util.List;
         @Result(name = "success", location = "/WEB-INF/jsp/company/company_welcome.jsp"),
         @Result(name = "login", location = "/WEB-INF/jsp/management_index.jsp"),
         @Result(name = "create", location = "/WEB-INF/jsp/company/company_registration.jsp"),
-        @Result(name = "preUpdate", location = "/WEB-INF/jsp/company/company_update.jsp")
+        @Result(name = "preUpdate", location = "/WEB-INF/jsp/company/company_update.jsp"),
+        @Result(name = "list", location = "/company/company.action", type = "redirect")
 })
 public class CompanyAction extends BaseAction {
     @Autowired
@@ -106,7 +107,7 @@ public class CompanyAction extends BaseAction {
         session.setAttribute(SystemConstants.SESSION_COMPANY, company);
         session.setAttribute(SystemConstants.SESSION_COMPANY_USER_LOGINID, dbUser.getLoginId());
         session.setAttribute(SystemConstants.SESSION_COMPANY_NAME, company.getName());
-        return execute();
+        return "list";
     }
 
     //forward to registration page
@@ -226,7 +227,7 @@ public class CompanyAction extends BaseAction {
         companyService.update(dbCompany);
         session.setAttribute(SystemConstants.SESSION_COMPANY, dbCompany);
         session.setAttribute(SystemConstants.SESSION_COMPANY_NAME, dbCompany.getName());
-        return execute();
+        return "list";
     }
 
     public Company getCompany() {

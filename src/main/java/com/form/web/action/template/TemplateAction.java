@@ -24,7 +24,7 @@ import java.util.List;
 @ParentPackage(value = "default")
 @Namespace("/template")
 @Results({
-       // @Result(name = "success", location = "/WEB-INF/jsp/company/company_welcome.jsp"),
+        @Result(name = "list", location = "/template/template.action", type = "redirect"),
         @Result(name = "success", location = "/WEB-INF/jsp/template/template_list.jsp"),
         @Result(name = "create", location = "/WEB-INF/jsp/template/template_create.jsp"),
         @Result(name = "preUpdate", location = "/WEB-INF/jsp/template/template_update.jsp")
@@ -115,7 +115,7 @@ public class TemplateAction extends BaseAction {
         dbTemplate.setLastModifiedBy(user.getId());
         dbTemplate.setStatus(template.getStatus());
         templateService.update(dbTemplate);
-        return execute();
+        return "list";
     }
 
     //delete template CompanyUser
@@ -128,7 +128,7 @@ public class TemplateAction extends BaseAction {
             throw new OceanRuntimeException("delete template  not exists!");
         }
         templateService.delete(template.getId());
-        return execute();
+        return "list";
     }
 
     public List<Template> getTemplates() {
