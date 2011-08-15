@@ -42,7 +42,7 @@ public class InboxAction extends BaseAction {
         QueryParams<CompleteRequest> queryParams = new QueryParams<CompleteRequest>();
         CompleteRequest completeRequestParam = new CompleteRequest();
         Page paging = new Page();
-        paging.setPageSize(100); //每页显示10条
+        paging.setPageSize(100);
         paging.setCurrentPage(1);
         SystemConstants.LoginType loginType = SystemConstants.LoginType.getValueOf((String) session.getAttribute(SystemConstants.LOGIN_TYPE));
         //if company user login

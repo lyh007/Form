@@ -13,7 +13,7 @@ public class REFNumberUtil {
      */
     public static String GenerateREFNumber() {
         UUID uuid = UUID.randomUUID();
-        return uuid.toString().replace("-","").substring(0,10);
+        return uuid.toString().replace("-","").substring(0,10).toUpperCase();
     }
 
     public static void main(String[] args) {

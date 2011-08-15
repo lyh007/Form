@@ -95,6 +95,8 @@ public class OutboxAction extends BaseAction {
             addActionError("Consumer User not exists!");
             return execute();
         }
+        String refNumber = completeRequest.getRefNumber();
+        completeRequest.setRefNumber(refNumber.toUpperCase());
         completeRequest.setCompanyId(company.getId());
         completeRequest.setCompanyUserId(companyUser.getId());
         completeRequest.setConsumerId(user.getId());
